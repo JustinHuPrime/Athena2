@@ -25,10 +25,8 @@
 
 #include "model/component/componentSet.h"
 #include "model/component/hull.h"
-#include "util/string.h"
 
 using namespace std;
-using namespace athena2::util;
 using namespace athena2::model::component;
 
 namespace athena2 {
@@ -50,7 +48,13 @@ EvalContext::ScopeGuard EvalContext::push(string const &name) noexcept {
 
 EvalContext::ScopeGuard::ScopeGuard(function<void()> const &f_) noexcept
     : f(f_) {}
-EvalContext::ScopeGuard::~ScopeGuard() noexcept { f(); }
+EvalContext::ScopeGuard::~ScopeGuard() noexcept {
+  if (f) f();
+}
+void EvalContext::ScopeGuard::reset() noexcept {
+  if (f) f();
+  f = function<void()>();
+}
 
 EvalException::EvalException(string const &message_) noexcept
     : message(message_) {}

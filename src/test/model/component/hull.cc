@@ -19,29 +19,31 @@
 
 #include "model/component/hull.h"
 
-#include <catch2/catch_test_macros.hpp>
+#include "catch2/catch_test_macros.hpp"
 
 using namespace athena2;
 using namespace athena2::model::component;
+using namespace std;
 
 TEST_CASE("Hull parsing", "[model][component][hull]") {
   EvalContext ctx("root");
-  Hull corvette = Hull::fromFile(R"(hull Corvette
-size 1
-coreSize K
-sectionSizes KC
-hullHealth 200
-armourHealth 0
-evasion 0.6
-speed 160
-disengageChanceModifier 1
-cost 0)",
+  Hull corvette = Hull::fromJson(R"({
+  "name": "Corvette",
+  "size": 1,
+  "coreSize": "K",
+  "sectionSizes": ["KC"],
+  "hullHealth": 200,
+  "evasion": 0.6,
+  "speed": 160,
+  "disengageChanceModifier": 1,
+  "cost": {}
+}
+)"_json,
                                  ctx);
-
   REQUIRE(corvette.name == "Corvette");
   REQUIRE(corvette.size == 1.f);
   REQUIRE(corvette.coreSize == "K");
-  REQUIRE(corvette.sectionSizes == std::vector<std::string>{"KC"});
+  REQUIRE(corvette.sectionSizes == vector<string>{"KC"});
   REQUIRE(corvette.hullHealth == 200.f);
   REQUIRE(corvette.armourHealth == 0.f);
   REQUIRE(corvette.evasion == 0.6f);

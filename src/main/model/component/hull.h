@@ -32,7 +32,7 @@
 namespace athena2::model::component {
 class Hull final : public Component {
  public:
-  static Hull fromFile(std::string const &, EvalContext &);
+  static Hull fromJson(nlohmann::json const &, EvalContext &);
 
   float const size;
   std::string const coreSize;

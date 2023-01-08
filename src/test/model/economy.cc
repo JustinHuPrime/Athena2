@@ -19,28 +19,29 @@
 
 #include "model/economy.h"
 
-#include <catch2/catch_test_macros.hpp>
+#include "catch2/catch_test_macros.hpp"
 
 using namespace athena2;
 using namespace athena2::model;
 using namespace std;
+using namespace nlohmann::literals;
 
 TEST_CASE("Parse zero cost", "[model][economy]") {
   EvalContext ctx("root");
-  REQUIRE(Cost::fromLine("cost 0", ctx) == 0.0f);
+  REQUIRE(Cost::fromJson("{}"_json, ctx) == 0.0f);
 }
 
 TEST_CASE("Parse alloys cost", "[model][economy]") {
   EvalContext ctx("root");
-  REQUIRE(Cost::fromLine("cost alloys 10", ctx) == 20.0f);
+  REQUIRE(Cost::fromJson(R"({"alloys": 10})"_json, ctx) == 20.0f);
 }
 
 TEST_CASE("Parse minerals cost", "[model][economy]") {
   EvalContext ctx("root");
-  REQUIRE(Cost::fromLine("cost minerals 10", ctx) == 10.0f);
+  REQUIRE(Cost::fromJson(R"({"minerals": 10})"_json, ctx) == 10.0f);
 }
 
 TEST_CASE("Parse compound cost", "[model][economy]") {
   EvalContext ctx("root");
-  REQUIRE(Cost::fromLine("cost minerals 5 alloys 10", ctx) == 25.0f);
+  REQUIRE(Cost::fromJson(R"({"alloys": 10, "minerals": 5})"_json, ctx) == 25.0f);
 }

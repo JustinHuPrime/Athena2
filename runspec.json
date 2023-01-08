@@ -1,0 +1,7 @@
+{
+  "load": {
+    "hulls": [
+      "data/hull/0_corvette.json"
+    ]
+  }
+}

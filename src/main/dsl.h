@@ -37,6 +37,8 @@ class EvalContext final {
 
     ScopeGuard &operator=(ScopeGuard &&) noexcept = default;
 
+    void reset() noexcept;
+
    private:
     std::function<void()> f;
   };

@@ -1,0 +1,11 @@
+{
+  "name": "Corvette",
+  "size": 1,
+  "coreSize": "K",
+  "sectionSizes": ["KC"],
+  "hullHealth": 200,
+  "evasion": 0.6,
+  "speed": 160,
+  "disengageChanceModifier": 1,
+  "cost": {}
+}
