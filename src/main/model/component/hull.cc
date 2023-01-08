@@ -43,6 +43,8 @@ Hull Hull::fromJson(nlohmann::json const &data, EvalContext &ctx) {
   float disengageChanceModifier =
       checkFloat(data, "disengageChanceModifier", ctx);
   json const &costData = checkObject(data, "cost", ctx);
+  optional<bool> includeComponentCost =
+      checkMaybeBool(data, "includeComponentCost", ctx);
   Cost cost = [&ctx, &costData]() {
     auto _ = ctx.push("cost");
     return Cost::fromJson(costData, ctx);
@@ -50,13 +52,15 @@ Hull Hull::fromJson(nlohmann::json const &data, EvalContext &ctx) {
 
   return Hull(name, size, coreSize, sectionSizes, hullHealth,
               armourHealth.value_or(0.f), evasion, speed,
-              disengageChanceModifier, cost);
+              disengageChanceModifier, includeComponentCost.value_or(false),
+              cost);
 }
 
 Hull::Hull(string const &name_, float size_, string const &coreSize_,
            vector<string> const &sectionSizes_, float hullHealth_,
            float armourHealth_, float evasion_, float speed_,
-           float disengageChanceModifier_, Cost const &cost_)
+           float disengageChanceModifier_, bool includeComponentCost_,
+           Cost const &cost_)
     : Component(name_),
       size(size_),
       coreSize(coreSize_),
@@ -66,5 +70,6 @@ Hull::Hull(string const &name_, float size_, string const &coreSize_,
       evasion(evasion_),
       speed(speed_),
       disengageChanceModifier(disengageChanceModifier_),
+      includeComponentCost(includeComponentCost_),
       cost(cost_) {}
 }  // namespace athena2::model::component

@@ -35,6 +35,32 @@ using namespace nlohmann;
 using namespace athena2::util;
 
 namespace athena2 {
+namespace {
+class Header final {
+ public:
+  Header(std::string const &header) noexcept : finished(false) {
+    cout << header;
+  }
+  Header(Header const &) noexcept = delete;
+  Header(Header &&other) noexcept = delete;
+
+  ~Header() noexcept {
+    if (!finished) cout << "\n";
+  }
+
+  Header &operator=(Header const &) noexcept = delete;
+  Header &operator=(Header &&other) noexcept = delete;
+
+  void finish() noexcept {
+    cout << " done!\n";
+    finished = true;
+  }
+
+ private:
+  bool finished;
+};
+}  // namespace
+
 EvalContext::EvalContext(string const &root) noexcept : contextStack(1, root) {}
 [[noreturn]] void EvalContext::error(string const &message) {
   string accumulator = "Error: ";
@@ -76,7 +102,7 @@ int eval(istream &in, EvalContext &ctx) noexcept {
     checkObject(runspec, ctx);
 
     // load section
-    cout << "Loading components...\n";
+    Header loadHeader = Header("Loading components...");
     ComponentSet components;
     json const &load = checkObject(runspec, "load", ctx);
     {
@@ -91,7 +117,7 @@ int eval(istream &in, EvalContext &ctx) noexcept {
             components.hulls.push_back(Hull::fromJson(parse(file, ctx), ctx));
           });
     }
-    cout << "\x1b[A\x1b[22Cdone!\n";
+    loadHeader.finish();
   } catch (EvalException const &e) {
     cout << e.what() << endl;
     return 1;

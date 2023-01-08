@@ -42,13 +42,15 @@ class Hull final : public Component {
   float const evasion;
   float const speed;
   float const disengageChanceModifier;
+  bool const includeComponentCost;
   Cost const cost;
 
  private:
   Hull(std::string const &name, float size, std::string const &coreSize,
        std::vector<std::string> const &sectionSizes, float hullHealth,
        float armourHealth, float evasion, float speed,
-       float disengageChanceModifier, Cost const &cost);
+       float disengageChanceModifier, bool includeComponentCost,
+       Cost const &cost);
 };
 }  // namespace athena2::model::component
 
