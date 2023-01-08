@@ -58,35 +58,6 @@ char const *EvalException::what() const noexcept { return message.c_str(); }
 
 int eval(istream &in, EvalContext &context) noexcept {
   try {
-    vector<string> lines = split(fromStream(in), '\n');
-
-    auto curr = lines.begin();
-    auto end = lines.end();
-
-    // expect first line to be "!load"
-    if (curr == end) context.error("expected !load");
-    if (*curr != "!load") context.error("expected !load");
-
-    ComponentSet components;
-
-    // while lines don't start with '!'
-    while (++curr != end && curr->front() != '!') {
-      ifstream componentFile(*curr);
-      if (!componentFile) context.error("could not open file " + *curr);
-
-      auto _ = context.push(*curr);
-      string component = fromStream(componentFile);
-
-      // check type of file based on first word
-      string type = component.substr(0, component.find(' '));
-      if (type == "hull") {
-        components.hulls.push_back(Hull::fromFile(component, context));
-      } else {
-        // not recognized
-        context.error("unrecognized component type " + type);
-      }
-    }
-
     // TODO
   } catch (EvalException const &e) {
     cout << e.what() << endl;
