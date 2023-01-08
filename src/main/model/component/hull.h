@@ -38,8 +38,11 @@ class Hull final : public Component {
   std::string const coreSize;
   std::vector<std::string> const sectionSizes;
   float const hullHealth;
+  float const hullHealthModifier;
   float const armourHealth;
   float const evasion;
+  float const evasionModifier;
+  float const trackingModifier;
   float const speed;
   float const disengageChanceModifier;
   bool const includeComponentCost;
@@ -48,7 +51,8 @@ class Hull final : public Component {
  private:
   Hull(std::string const &name, float size, std::string const &coreSize,
        std::vector<std::string> const &sectionSizes, float hullHealth,
-       float armourHealth, float evasion, float speed,
+       float hullHealthModifier, float armourHealth, float evasion,
+       float evasionModifier, float trackingModifier, float speed,
        float disengageChanceModifier, bool includeComponentCost,
        Cost const &cost);
 };

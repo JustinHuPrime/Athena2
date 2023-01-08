@@ -1,0 +1,14 @@
+{
+  "name": "Menacing Destroyer",
+  "size": 2,
+  "coreSize": "D",
+  "sectionSizes": ["MDC"],
+  "hullHealth": 600,
+  "hullArmour": 15,
+  "evasion": 0.25,
+  "speed": 140,
+  "disengageChanceModifier": 1,
+  "cost": {
+    "minerals": 550
+  }
+}

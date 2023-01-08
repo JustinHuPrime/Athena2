@@ -37,8 +37,14 @@ Hull Hull::fromJson(nlohmann::json const &data, EvalContext &ctx) {
   string coreSize = checkString(data, "coreSize", ctx);
   vector<string> sectionSizes = checkStringArray(data, "sectionSizes", ctx);
   float hullHealth = checkFloat(data, "hullHealth", ctx);
+  optional<float> hullHealthModifier =
+      checkMaybeFloat(data, "hullHealthModifier", ctx);
   optional<float> armourHealth = checkMaybeFloat(data, "armourHealth", ctx);
   float evasion = checkFloat(data, "evasion", ctx);
+  optional<float> evasionModifier =
+      checkMaybeFloat(data, "evasionModifier", ctx);
+  optional<float> trackingModifier =
+      checkMaybeFloat(data, "trackingModifier", ctx);
   float speed = checkFloat(data, "speed", ctx);
   float disengageChanceModifier =
       checkFloat(data, "disengageChanceModifier", ctx);
@@ -52,14 +58,16 @@ Hull Hull::fromJson(nlohmann::json const &data, EvalContext &ctx) {
   }() : Cost();
 
   return Hull(name, size, coreSize, sectionSizes, hullHealth,
-              armourHealth.value_or(0.f), evasion, speed,
-              disengageChanceModifier, includeComponentCost.value_or(false),
-              cost);
+              hullHealthModifier.value_or(1.f), armourHealth.value_or(0.f),
+              evasion, evasionModifier.value_or(1.f),
+              trackingModifier.value_or(1.f), speed, disengageChanceModifier,
+              includeComponentCost.value_or(false), cost);
 }
 
 Hull::Hull(string const &name_, float size_, string const &coreSize_,
            vector<string> const &sectionSizes_, float hullHealth_,
-           float armourHealth_, float evasion_, float speed_,
+           float hullHealthModifier_, float armourHealth_, float evasion_,
+           float evasionModifier_, float trackingModifier_, float speed_,
            float disengageChanceModifier_, bool includeComponentCost_,
            Cost const &cost_)
     : Component(name_),
@@ -67,8 +75,11 @@ Hull::Hull(string const &name_, float size_, string const &coreSize_,
       coreSize(coreSize_),
       sectionSizes(sectionSizes_),
       hullHealth(hullHealth_),
+      hullHealthModifier(hullHealthModifier_),
       armourHealth(armourHealth_),
       evasion(evasion_),
+      evasionModifier(evasionModifier_),
+      trackingModifier(trackingModifier_),
       speed(speed_),
       disengageChanceModifier(disengageChanceModifier_),
       includeComponentCost(includeComponentCost_),

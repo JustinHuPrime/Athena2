@@ -44,8 +44,11 @@ TEST_CASE("Hull parsing", "[model][component][hull]") {
   REQUIRE(corvette.coreSize == "K");
   REQUIRE(corvette.sectionSizes == vector<string>{"KC"});
   REQUIRE(corvette.hullHealth == 200.f);
+  REQUIRE(corvette.hullHealthModifier == 1.f);
   REQUIRE(corvette.armourHealth == 0.f);
   REQUIRE(corvette.evasion == 0.6f);
+  REQUIRE(corvette.evasionModifier == 1.f);
+  REQUIRE(corvette.trackingModifier == 1.f);
   REQUIRE(corvette.speed == 160.f);
   REQUIRE(corvette.disengageChanceModifier == 1.f);
   REQUIRE(corvette.includeComponentCost == false);
@@ -60,8 +63,11 @@ TEST_CASE("Hull parsing with all fields", "[model][component][hull]") {
   "coreSize": "K",
   "sectionSizes": ["KC"],
   "hullHealth": 200,
+  "hullHealthModifier": 1,
   "armourHealth": 0,
   "evasion": 0.6,
+  "evasionModifier": 1,
+  "trackingModifier": 1,
   "speed": 160,
   "disengageChanceModifier": 1,
   "includeComponentCost": false,
@@ -74,8 +80,11 @@ TEST_CASE("Hull parsing with all fields", "[model][component][hull]") {
   REQUIRE(corvette.coreSize == "K");
   REQUIRE(corvette.sectionSizes == vector<string>{"KC"});
   REQUIRE(corvette.hullHealth == 200.f);
+  REQUIRE(corvette.hullHealthModifier == 1.f);
   REQUIRE(corvette.armourHealth == 0.f);
   REQUIRE(corvette.evasion == 0.6f);
+  REQUIRE(corvette.evasionModifier == 1.f);
+  REQUIRE(corvette.trackingModifier == 1.f);
   REQUIRE(corvette.speed == 160.f);
   REQUIRE(corvette.disengageChanceModifier == 1.f);
   REQUIRE(corvette.includeComponentCost == false);

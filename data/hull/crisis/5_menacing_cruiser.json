@@ -1,0 +1,15 @@
+{
+  "name": "Menacing Cruiser",
+  "size": 4,
+  "coreSize": "C",
+  "sectionSizes": ["MC"],
+  "hullHealth": 1800,
+  "hullHealthModifier": 1.3,
+  "hullArmour": 34,
+  "evasion": 0.1,
+  "speed": 140,
+  "disengageChanceModifier": 1,
+  "cost": {
+    "minerals": 900
+  }
+}
