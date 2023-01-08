@@ -17,4 +17,9 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+#ifndef ATHENA2_MODEL_COMPONENT_REACTOR_H_
+#define ATHENA2_MODEL_COMPONENT_REACTOR_H_
+
 namespace athena2::model::component {}
+
+#endif  // ATHENA2_MODEL_COMPONENT_REACTOR_H_

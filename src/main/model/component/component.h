@@ -17,6 +17,9 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+#ifndef ATHENA2_MODEL_COMPONENT_COMPONENT_H_
+#define ATHENA2_MODEL_COMPONENT_COMPONENT_H_
+
 #include <string>
 
 namespace athena2::model::component {
@@ -30,3 +33,5 @@ class Component {
   explicit Component(std::string const &name) noexcept;
 };
 }  // namespace athena2::model::component
+
+#endif  // ATHENA2_MODEL_COMPONENT_COMPONENT_H_

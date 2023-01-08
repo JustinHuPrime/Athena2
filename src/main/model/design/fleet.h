@@ -17,4 +17,9 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+#ifndef ATHENA2_MODEL_DESIGN_FLEET_H_
+#define ATHENA2_MODEL_DESIGN_FLEET_H_
+
 namespace athena2::model::design {}
+
+#endif  // ATHENA2_MODEL_DESIGN_FLEET_H_
