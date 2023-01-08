@@ -1,0 +1,9 @@
+{
+  "name": "Gunship Stern",
+  "size": "DS",
+  "weaponSlots": "M",
+  "utilitySlots": "A",
+  "cost": {
+    "alloys": 30
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "Torpedo Bow",
+  "size": "CB",
+  "weaponSlots": "SSG",
+  "utilitySlots": "MMMM",
+  "cost": {
+    "alloys": 40
+  }
+}

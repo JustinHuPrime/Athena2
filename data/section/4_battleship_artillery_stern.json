@@ -1,0 +1,9 @@
+{
+  "name": "Artillery Stern",
+  "size": "BS",
+  "weaponSlots": "L",
+  "utilitySlots": "AA",
+  "cost": {
+    "alloys": 80
+  }
+}

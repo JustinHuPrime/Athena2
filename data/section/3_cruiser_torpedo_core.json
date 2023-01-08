@@ -1,0 +1,9 @@
+{
+  "name": "Torpedo Core",
+  "size": "CC",
+  "weaponSlots": "SSGG",
+  "utilitySlots": "MMMM",
+  "cost": {
+    "alloys": 40
+  }
+}

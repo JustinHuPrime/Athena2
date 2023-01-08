@@ -1,0 +1,9 @@
+{
+  "name": "Titan Core",
+  "size": "TC",
+  "weaponSlots": "LLLL",
+  "utilitySlots": "LLLLLL",
+  "cost": {
+    "alloys": 160
+  }
+}

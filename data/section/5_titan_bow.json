@@ -1,0 +1,9 @@
+{
+  "name": "Titan Bow",
+  "size": "TB",
+  "weaponSlots": "T",
+  "utilitySlots": "LLLLLL",
+  "cost": {
+    "alloys": 160
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "Picket Ship Bow",
+  "size": "DB",
+  "weaponSlots": "PSS",
+  "utilitySlots": "SSSSSS",
+  "cost": {
+    "alloys": 30
+  }
+}

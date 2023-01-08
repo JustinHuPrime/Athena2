@@ -1,0 +1,9 @@
+{
+  "name": "Picket Ship Stern",
+  "size": "DS",
+  "weaponSlots": "PP",
+  "utilitySlots": "A",
+  "cost": {
+    "alloys": 30
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "Carrier Core",
+  "size": "BC",
+  "weaponSlots": "PPSSHH",
+  "utilitySlots": "LLL",
+  "cost": {
+    "alloys": 80
+  }
+}

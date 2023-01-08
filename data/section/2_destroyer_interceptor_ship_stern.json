@@ -1,0 +1,9 @@
+{
+  "name": "Interceptor Ship Stern",
+  "size": "DS",
+  "weaponSlots": "SS",
+  "utilitySlots": "AA",
+  "cost": {
+    "alloys": 30
+  }
+}

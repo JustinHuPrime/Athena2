@@ -1,0 +1,9 @@
+{
+  "name": "Broadside Bow",
+  "size": "BB",
+  "weaponSlots": "SSML",
+  "utilitySlots": "LLL",
+  "cost": {
+    "alloys": 80
+  }
+}

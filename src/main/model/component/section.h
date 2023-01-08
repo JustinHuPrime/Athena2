@@ -20,6 +20,28 @@
 #ifndef ATHENA2_MODEL_COMPONENT_SECTION_H_
 #define ATHENA2_MODEL_COMPONENT_SECTION_H_
 
-namespace athena2::model::component {}
+#include <string>
+
+#include "dsl.h"
+#include "model/component/component.h"
+#include "model/economy.h"
+#include "nlohmann/json.hpp"
+
+namespace athena2::model::component {
+class Section final : public Component {
+ public:
+  static Section fromJson(nlohmann::json const &, EvalContext &);
+
+  std::string const size;
+  std::string const weaponSlots;
+  std::string const utilitySlots;
+  Cost const cost;
+
+ private:
+  Section(std::string const &name, std::string const &size,
+          std::string const &weaponSlots, std::string const &utilitySlots,
+          Cost const &cost) noexcept;
+};
+}  // namespace athena2::model::component
 
 #endif  // ATHENA2_MODEL_COMPONENT_SECTION_H_

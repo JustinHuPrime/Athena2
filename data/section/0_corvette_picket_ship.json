@@ -1,0 +1,9 @@
+{
+  "name": "Picket Ship",
+  "size": "KC",
+  "weaponSlots": "PSS",
+  "utilitySlots": "SSSA",
+  "cost": {
+    "alloys": 30
+  }
+}

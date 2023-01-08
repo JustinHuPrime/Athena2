@@ -54,7 +54,7 @@ class Hull final : public Component {
        float hullHealthModifier, float armourHealth, float evasion,
        float evasionModifier, float trackingModifier, float speed,
        float disengageChanceModifier, bool includeComponentCost,
-       Cost const &cost);
+       Cost const &cost) noexcept;
 };
 }  // namespace athena2::model::component
 

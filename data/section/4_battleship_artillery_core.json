@@ -1,0 +1,9 @@
+{
+  "name": "Artillery Core",
+  "size": "BC",
+  "weaponSlots": "LLL",
+  "utilitySlots": "LLL",
+  "cost": {
+    "alloys": 80
+  }
+}

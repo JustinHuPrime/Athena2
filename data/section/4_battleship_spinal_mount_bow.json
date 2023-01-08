@@ -1,0 +1,9 @@
+{
+  "name": "Spinal Mount Bow",
+  "size": "BB",
+  "weaponSlots": "X",
+  "utilitySlots": "LLL",
+  "cost": {
+    "alloys": 80
+  }
+}

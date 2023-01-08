@@ -1,0 +1,9 @@
+{
+  "name": "Titan Stern",
+  "size": "TB",
+  "weaponSlots": "LL",
+  "utilitySlots": "AAA",
+  "cost": {
+    "alloys": 160
+  }
+}

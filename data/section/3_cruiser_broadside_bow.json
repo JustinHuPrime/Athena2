@@ -1,0 +1,9 @@
+{
+  "name": "Broadside Bow",
+  "size": "CB",
+  "weaponSlots": "MM",
+  "utilitySlots": "MMMM",
+  "cost": {
+    "alloys": 40
+  }
+}

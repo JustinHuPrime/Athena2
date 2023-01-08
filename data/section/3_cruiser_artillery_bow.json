@@ -1,0 +1,9 @@
+{
+  "name": "Artillery Bow",
+  "size": "CB",
+  "weaponSlots": "L",
+  "utilitySlots": "MMMM",
+  "cost": {
+    "alloys": 40
+  }
+}

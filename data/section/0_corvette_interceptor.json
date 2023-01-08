@@ -1,0 +1,9 @@
+{
+  "name": "Interceptor",
+  "size": "KC",
+  "weaponSlots": "SSS",
+  "utilitySlots": "SSSA",
+  "cost": {
+    "alloys": 30
+  }
+}

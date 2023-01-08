@@ -1,0 +1,9 @@
+{
+  "name": "Gunship Bow",
+  "size": "DB",
+  "weaponSlots": "SSM",
+  "utilitySlots": "SSSSSS",
+  "cost": {
+    "alloys": 30
+  }
+}

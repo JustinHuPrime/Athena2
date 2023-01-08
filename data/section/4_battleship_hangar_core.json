@@ -1,0 +1,9 @@
+{
+  "name": "Hangar Core",
+  "size": "BC",
+  "weaponSlots": "MMMMH",
+  "utilitySlots": "LLL",
+  "cost": {
+    "alloys": 80
+  }
+}

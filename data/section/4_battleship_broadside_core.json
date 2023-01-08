@@ -1,0 +1,9 @@
+{
+  "name": "Broadside Core",
+  "size": "BC",
+  "weaponSlots": "MMLL",
+  "utilitySlots": "LLL",
+  "cost": {
+    "alloys": 80
+  }
+}

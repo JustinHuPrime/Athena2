@@ -1,0 +1,9 @@
+{
+  "name": "Broadside Stern",
+  "size": "CS",
+  "weaponSlots": "M",
+  "utilitySlots": "AA",
+  "cost": {
+    "alloys": 40
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "Torpedo Boat",
+  "size": "FC",
+  "weaponSlots": "SG",
+  "utilitySlots": "SSSSA",
+  "cost": {
+    "alloys": 30
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "Hangar Bow",
+  "size": "BB",
+  "weaponSlots": "PPMH",
+  "utilitySlots": "LLL",
+  "cost": {
+    "alloys": 80
+  }
+}
