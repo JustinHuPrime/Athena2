@@ -2,6 +2,10 @@
   "load": {
     "hulls": [
       "data/hull/0_corvette.json"
+    ],
+    "sections": [
+      "data/section/0_corvette_interceptor.json",
+      "data/section/0_corvette_picket_ship.json"
     ]
   }
 }

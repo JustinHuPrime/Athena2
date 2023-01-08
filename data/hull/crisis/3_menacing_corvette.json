@@ -2,7 +2,7 @@
   "name": "Menacing Corvette",
   "size": 1,
   "coreSize": "K",
-  "sectionSizes": ["MKC"],
+  "sectionSizes": ["MK"],
   "hullHealth": 200,
   "hullArmour": 3,
   "evasion": 0.6,

@@ -25,6 +25,7 @@
 
 #include "model/component/componentSet.h"
 #include "model/component/hull.h"
+#include "model/component/section.h"
 #include "nlohmann/json.hpp"
 #include "util/json.h"
 #include "version.h"
@@ -116,6 +117,15 @@ int eval(istream &in, EvalContext &ctx) noexcept {
             if (!file) ctx.error("could not open file");
             components.hulls.push_back(Hull::fromJson(parse(file, ctx), ctx));
           });
+      vector<string> sections = checkStringArray(load, "sections", ctx);
+      for_each(sections.begin(), sections.end(),
+               [&ctx, &components](string const &filename) {
+                 auto _ = ctx.push(filename);
+                 ifstream file(filename);
+                 if (!file) ctx.error("could not open file");
+                 components.sections.push_back(
+                     Section::fromJson(parse(file, ctx), ctx));
+               });
     }
     loadHeader.finish();
   } catch (EvalException const &e) {
