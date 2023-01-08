@@ -52,6 +52,7 @@ Cost::Cost(float alloys_, float minerals_, float darkMatter_,
       strategicResources(strategicResources_),
       zro(zro_),
       nanites(nanites_) {}
+Cost::Cost() noexcept : Cost(0.f, 0.f, 0.f, 0.f, 0.f, 0.f) {}
 Cost::operator string() const noexcept {
   return to_string(operator float()) + " mineral-equivalents";
 }

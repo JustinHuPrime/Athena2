@@ -42,13 +42,14 @@ Hull Hull::fromJson(nlohmann::json const &data, EvalContext &ctx) {
   float speed = checkFloat(data, "speed", ctx);
   float disengageChanceModifier =
       checkFloat(data, "disengageChanceModifier", ctx);
-  json const &costData = checkObject(data, "cost", ctx);
   optional<bool> includeComponentCost =
       checkMaybeBool(data, "includeComponentCost", ctx);
-  Cost cost = [&ctx, &costData]() {
+  optional<reference_wrapper<json const>> costData =
+      checkMaybeObject(data, "cost", ctx);
+  Cost cost = costData ? [&ctx, &costData]() {
     auto _ = ctx.push("cost");
-    return Cost::fromJson(costData, ctx);
-  }();
+    return Cost::fromJson(*costData, ctx);
+  }() : Cost();
 
   return Hull(name, size, coreSize, sectionSizes, hullHealth,
               armourHealth.value_or(0.f), evasion, speed,

@@ -35,7 +35,36 @@ TEST_CASE("Hull parsing", "[model][component][hull]") {
   "hullHealth": 200,
   "evasion": 0.6,
   "speed": 160,
+  "disengageChanceModifier": 1
+}
+)"_json,
+                                 ctx);
+  REQUIRE(corvette.name == "Corvette");
+  REQUIRE(corvette.size == 1.f);
+  REQUIRE(corvette.coreSize == "K");
+  REQUIRE(corvette.sectionSizes == vector<string>{"KC"});
+  REQUIRE(corvette.hullHealth == 200.f);
+  REQUIRE(corvette.armourHealth == 0.f);
+  REQUIRE(corvette.evasion == 0.6f);
+  REQUIRE(corvette.speed == 160.f);
+  REQUIRE(corvette.disengageChanceModifier == 1.f);
+  REQUIRE(corvette.includeComponentCost == false);
+  REQUIRE(corvette.cost == 0.f);
+}
+
+TEST_CASE("Hull parsing with all fields", "[model][component][hull]") {
+  EvalContext ctx("root");
+  Hull corvette = Hull::fromJson(R"({
+  "name": "Corvette",
+  "size": 1,
+  "coreSize": "K",
+  "sectionSizes": ["KC"],
+  "hullHealth": 200,
+  "armourHealth": 0,
+  "evasion": 0.6,
+  "speed": 160,
   "disengageChanceModifier": 1,
+  "includeComponentCost": false,
   "cost": {}
 }
 )"_json,
@@ -49,5 +78,6 @@ TEST_CASE("Hull parsing", "[model][component][hull]") {
   REQUIRE(corvette.evasion == 0.6f);
   REQUIRE(corvette.speed == 160.f);
   REQUIRE(corvette.disengageChanceModifier == 1.f);
+  REQUIRE(corvette.includeComponentCost == false);
   REQUIRE(corvette.cost == 0.f);
 }

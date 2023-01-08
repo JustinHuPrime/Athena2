@@ -22,15 +22,15 @@
 
 #include <string>
 
-#include "nlohmann/json.hpp"
-
 #include "dsl.h"
+#include "nlohmann/json.hpp"
 
 namespace athena2::model {
 class Cost final {
  public:
   static Cost fromJson(nlohmann::json const &, EvalContext &);
 
+  Cost() noexcept;
   Cost(Cost const &) noexcept = default;
   Cost(Cost &&) noexcept = default;
 
