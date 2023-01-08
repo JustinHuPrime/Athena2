@@ -1,0 +1,10 @@
+{
+  "name": "Battleship",
+  "size": 8,
+  "coreSize": "B",
+  "sectionSizes": ["BB", "BC", "BS"],
+  "hullHealth": 3600,
+  "evasion": 0.05,
+  "speed": 100,
+  "disengageChanceModifier": 1.25
+}

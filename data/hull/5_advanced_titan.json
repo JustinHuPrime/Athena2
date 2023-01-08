@@ -1,0 +1,10 @@
+{
+  "name": "Titan",
+  "size": 16,
+  "coreSize": "T",
+  "sectionSizes": ["TB", "TC", "TS"],
+  "hullHealth": 18000,
+  "evasion": 0.05,
+  "speed": 80,
+  "disengageChanceModifier": 1.25
+}

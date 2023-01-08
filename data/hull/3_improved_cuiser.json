@@ -1,0 +1,10 @@
+{
+  "name": "Cruiser",
+  "size": 4,
+  "coreSize": "C",
+  "sectionSizes": ["CB", "CC", "CS"],
+  "hullHealth": 1980,
+  "evasion": 0.1,
+  "speed": 120,
+  "disengageChanceModifier": 1.5
+}

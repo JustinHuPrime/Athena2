@@ -1,0 +1,10 @@
+{
+  "name": "Destroyer",
+  "size": 2,
+  "coreSize": "D",
+  "sectionSizes": ["DB", "DS"],
+  "hullHealth": 720,
+  "evasion": 0.35,
+  "speed": 140,
+  "disengageChanceModifier": 1.5
+}

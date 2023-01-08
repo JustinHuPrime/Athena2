@@ -1,0 +1,10 @@
+{
+  "name": "Frigate",
+  "size": 1,
+  "coreSize": "K",
+  "sectionSizes": ["FC"],
+  "hullHealth": 440,
+  "evasion": 0.2,
+  "speed": 120,
+  "disengageChanceModifier": 1
+}
