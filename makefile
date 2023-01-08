@@ -81,7 +81,7 @@ WARNINGS := -pedantic -pedantic-errors -Wall -Wextra -Wdouble-promotion\
 -Wnon-virtual-dtor -Weffc++ -Wstrict-null-sentinel -Wold-style-cast\
 -Woverloaded-virtual -Wsign-promo -Wunused -Wdisabled-optimization
 
-OPTIONS := -std=c++20 -D_POSIX_C_SOURCE=202207L -I$(SRCDIR)\
+OPTIONS := -std=c++20 -D_POSIX_C_SOURCE=202301L -I$(SRCDIR)\
 #$(shell pkg-config --cflags )
 TOPTIONS := -I$(TSRCDIR) -Ilibs/Catch2/src -Ilibs/Catch2/Build/generated-includes
 LIBS := #$(shell pkg-config --libs )
