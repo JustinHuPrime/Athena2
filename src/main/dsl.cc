@@ -25,9 +25,14 @@
 
 #include "model/component/componentSet.h"
 #include "model/component/hull.h"
+#include "nlohmann/json.hpp"
+#include "util/json.h"
+#include "version.h"
 
 using namespace std;
 using namespace athena2::model::component;
+using namespace nlohmann;
+using namespace athena2::util;
 
 namespace athena2 {
 EvalContext::EvalContext(string const &root) noexcept : contextStack(1, root) {}
@@ -60,9 +65,33 @@ EvalException::EvalException(string const &message_) noexcept
     : message(message_) {}
 char const *EvalException::what() const noexcept { return message.c_str(); }
 
-int eval(istream &in, EvalContext &context) noexcept {
+int eval(istream &in, EvalContext &ctx) noexcept {
   try {
-    // TODO
+    cout << "Athena II version " << ATHENA2_VERSION_MAJOR << "."
+         << ATHENA2_VERSION_MINOR << "." << ATHENA2_VERSION_PATCH << "\n";
+
+    if (!in) ctx.error("could not open file");
+
+    json runspec = parse(in, ctx);
+    checkObject(runspec, ctx);
+
+    // load section
+    cout << "Loading components...\n";
+    ComponentSet components;
+    json const &load = checkObject(runspec, "load", ctx);
+    {
+      auto _ = ctx.push("load");
+      vector<string> hulls = checkStringArray(load, "hulls", ctx);
+      for_each(
+          hulls.begin(), hulls.end(),
+          [&ctx, &components](string const &filename) {
+            auto _ = ctx.push(filename);
+            ifstream file(filename);
+            if (!file) ctx.error("could not open file");
+            components.hulls.push_back(Hull::fromJson(parse(file, ctx), ctx));
+          });
+    }
+    cout << "\x1b[A\x1b[22Cdone!\n";
   } catch (EvalException const &e) {
     cout << e.what() << endl;
     return 1;

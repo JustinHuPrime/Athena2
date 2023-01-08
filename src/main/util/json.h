@@ -88,6 +88,11 @@ inline std::optional<float> checkMaybeFloat(nlohmann::json const &json,
   else
     return maybeField.value().get().get<float>();
 }
+inline nlohmann::json const &checkArray(nlohmann::json const &json,
+                                        std::string const &key,
+                                        EvalContext &ctx) {
+  return checkFieldType(json, key, &nlohmann::json::is_array, "array", ctx);
+}
 inline std::vector<std::string> checkStringArray(nlohmann::json const &json,
                                                  std::string const &key,
                                                  EvalContext &ctx) {
@@ -105,6 +110,10 @@ inline nlohmann::json const &checkObject(nlohmann::json const &json,
                                          std::string const &key,
                                          EvalContext &ctx) {
   return checkFieldType(json, key, &nlohmann::json::is_object, "object", ctx);
+}
+inline nlohmann::json const &checkObject(nlohmann::json const &json,
+                                         EvalContext &ctx) {
+  return checkType(json, &nlohmann::json::is_object, "object", ctx);
 }
 }  // namespace athena2::util
 

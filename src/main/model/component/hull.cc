@@ -31,6 +31,7 @@ using namespace nlohmann;
 
 namespace athena2::model::component {
 Hull Hull::fromJson(nlohmann::json const &data, EvalContext &ctx) {
+  checkObject(data, ctx);
   string name = checkString(data, "name", ctx);
   float size = checkFloat(data, "size", ctx);
   string coreSize = checkString(data, "coreSize", ctx);
@@ -42,7 +43,7 @@ Hull Hull::fromJson(nlohmann::json const &data, EvalContext &ctx) {
   float disengageChanceModifier =
       checkFloat(data, "disengageChanceModifier", ctx);
   json const &costData = checkObject(data, "cost", ctx);
-  Cost cost = [&]() {
+  Cost cost = [&ctx, &costData]() {
     auto _ = ctx.push("cost");
     return Cost::fromJson(costData, ctx);
   }();

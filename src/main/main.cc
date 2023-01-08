@@ -23,6 +23,7 @@
 #include <vector>
 
 #include "dsl.h"
+#include "version.h"
 
 using namespace std;
 using namespace athena2;
@@ -42,7 +43,8 @@ int main(int argc, char **argv) {
   } else if (find_if(args.begin(), args.end(), [](string const &s) {
                return s == "--version" || s == "-v";
              }) != args.end()) {
-    cout << "Athena II version 0.1.0\n"
+    cout << "Athena II version " << ATHENA2_VERSION_MAJOR << "."
+         << ATHENA2_VERSION_MINOR << "." << ATHENA2_VERSION_PATCH << "\n"
          << "Copyright 2023 Justin Hu\n"
          << "This is free software; see the source for copying conditions. "
             "There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS "
@@ -54,12 +56,8 @@ int main(int argc, char **argv) {
     EvalContext context = EvalContext("(stdin)");
     return eval(cin, context);
   } else {
-    ifstream in(args[0]);
-    if (!in) {
-      cout << "Error: could not open file " << args[0] << "\n";
-      return 1;
-    }
     EvalContext context = EvalContext(args[0]);
+    ifstream in(args[0]);
     return eval(in, context);
   }
 }
