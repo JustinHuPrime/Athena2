@@ -1,0 +1,8 @@
+{
+  "name": "Fission Reactor",
+  "sizes": ["TT"],
+  "power": 1100,
+  "cost": {
+    "alloys": 160
+  }
+}

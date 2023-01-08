@@ -1,7 +1,7 @@
 {
   "name": "Cruiser",
   "size": 4,
-  "coreSize": "C",
+  "coreSize": "CC",
   "sectionSizes": ["CB", "CC", "CS"],
   "hullHealth": 1980,
   "evasion": 0.1,

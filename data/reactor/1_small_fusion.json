@@ -1,0 +1,8 @@
+{
+  "name": "Fusion Reactor",
+  "sizes": ["DD", "MD"],
+  "power": 180,
+  "cost": {
+    "alloys": 26
+  }
+}

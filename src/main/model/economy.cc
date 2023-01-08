@@ -33,9 +33,9 @@ namespace athena2::model {
 Cost Cost::fromJson(json const &data, EvalContext &ctx) {
   optional<float> alloys = checkMaybeFloat(data, "alloys", ctx);
   optional<float> minerals = checkMaybeFloat(data, "minerals", ctx);
-  optional<float> darkMatter = checkMaybeFloat(data, "darkMatter", ctx);
+  optional<float> darkMatter = checkMaybeFloat(data, "dark matter", ctx);
   optional<float> strategicResources =
-      checkMaybeFloat(data, "strategicResources", ctx);
+      checkMaybeFloat(data, "strategic resources", ctx);
   optional<float> zro = checkMaybeFloat(data, "zro", ctx);
   optional<float> nanites = checkMaybeFloat(data, "nanites", ctx);
 

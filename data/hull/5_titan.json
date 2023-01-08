@@ -1,7 +1,7 @@
 {
   "name": "Titan",
   "size": 16,
-  "coreSize": "T",
+  "coreSize": "TT",
   "sectionSizes": ["TB", "TC", "TS"],
   "hullHealth": 15000,
   "evasion": 0.05,

@@ -1,0 +1,8 @@
+{
+  "name": "Antimatter Reactor",
+  "sizes": ["BB"],
+  "power": 1250,
+  "cost": {
+    "alloys": 176
+  }
+}

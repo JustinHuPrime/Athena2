@@ -1,7 +1,7 @@
 {
   "name": "Battleship",
   "size": 8,
-  "coreSize": "B",
+  "coreSize": "BB",
   "sectionSizes": ["BB", "BC", "BS"],
   "hullHealth": 3600,
   "evasion": 0.05,

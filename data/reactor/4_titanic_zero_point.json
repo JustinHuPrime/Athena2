@@ -1,0 +1,8 @@
+{
+  "name": "Zero Point Reactor",
+  "sizes": ["TT"],
+  "power": 3200,
+  "cost": {
+    "alloys": 448
+  }
+}

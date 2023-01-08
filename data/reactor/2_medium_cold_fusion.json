@@ -1,0 +1,8 @@
+{
+  "name": "Cold Fusion Reactor",
+  "sizes": ["CC", "MC"],
+  "power": 480,
+  "cost": {
+    "alloys": 68
+  }
+}

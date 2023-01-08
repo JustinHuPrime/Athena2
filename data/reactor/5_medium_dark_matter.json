@@ -1,0 +1,9 @@
+{
+  "name": "Dark Matter Reactor",
+  "sizes": ["CC", "MC"],
+  "power": 1030,
+  "cost": {
+    "alloys": 148,
+    "dark matter": 4
+  }
+}

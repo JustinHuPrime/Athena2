@@ -1,7 +1,7 @@
 {
   "name": "Corvette",
   "size": 1,
-  "coreSize": "K",
+  "coreSize": "KK",
   "sectionSizes": ["KC"],
   "hullHealth": 220,
   "evasion": 0.6,

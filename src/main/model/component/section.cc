@@ -44,12 +44,12 @@ Section Section::fromJson(json const &data, EvalContext &ctx) {
   }() : Cost();
   return Section(name, size, weaponSlots, utilitySlots, cost);
 }
-Section::Section(string const &name, string const &size,
-                 string const &weaponSlots, string const &utilitySlots,
-                 Cost const &cost) noexcept
-    : Component(name),
-      size(size),
-      weaponSlots(weaponSlots),
-      utilitySlots(utilitySlots),
-      cost(cost) {}
+Section::Section(string const &name_, string const &size_,
+                 string const &weaponSlots_, string const &utilitySlots_,
+                 Cost const &cost_) noexcept
+    : Component(name_),
+      size(size_),
+      weaponSlots(weaponSlots_),
+      utilitySlots(utilitySlots_),
+      cost(cost_) {}
 }  // namespace athena2::model::component

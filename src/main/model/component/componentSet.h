@@ -23,6 +23,7 @@
 #include <vector>
 
 #include "model/component/hull.h"
+#include "model/component/reactor.h"
 #include "model/component/section.h"
 
 namespace athena2::model::component {
@@ -39,6 +40,7 @@ class ComponentSet {
 
   std::vector<Hull> hulls;
   std::vector<Section> sections;
+  std::vector<Reactor> reactors;
 
  private:
 };

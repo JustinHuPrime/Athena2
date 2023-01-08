@@ -1,7 +1,7 @@
 {
   "name": "Frigate",
   "size": 1,
-  "coreSize": "K",
+  "coreSize": "KK",
   "sectionSizes": ["FC"],
   "hullHealth": 480,
   "evasion": 0.2,

@@ -1,7 +1,7 @@
 {
   "name": "Destroyer",
   "size": 2,
-  "coreSize": "D",
+  "coreSize": "DD",
   "sectionSizes": ["DB", "DS"],
   "hullHealth": 720,
   "evasion": 0.35,

@@ -1,0 +1,8 @@
+{
+  "name": "Antimatter Reactor",
+  "sizes": ["CC", "MC"],
+  "power": 620,
+  "cost": {
+    "alloys": 88
+  }
+}

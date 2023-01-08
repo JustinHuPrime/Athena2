@@ -1,7 +1,7 @@
 {
   "name": "Titan Bow",
   "size": "TB",
-  "weaponSlots": "T",
+  "weaponSlots": "TT",
   "utilitySlots": "LLLLLL",
   "cost": {
     "alloys": 160

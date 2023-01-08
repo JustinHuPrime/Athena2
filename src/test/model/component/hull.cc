@@ -30,7 +30,7 @@ TEST_CASE("Hull parsing", "[model][component][hull]") {
   Hull corvette = Hull::fromJson(R"({
   "name": "Corvette",
   "size": 1,
-  "coreSize": "K",
+  "coreSize": "KK",
   "sectionSizes": ["KC"],
   "hullHealth": 200,
   "evasion": 0.6,
@@ -41,7 +41,7 @@ TEST_CASE("Hull parsing", "[model][component][hull]") {
                                  ctx);
   REQUIRE(corvette.name == "Corvette");
   REQUIRE(corvette.size == 1.f);
-  REQUIRE(corvette.coreSize == "K");
+  REQUIRE(corvette.coreSize == "KK");
   REQUIRE(corvette.sectionSizes == vector<string>{"KC"});
   REQUIRE(corvette.hullHealth == 200.f);
   REQUIRE(corvette.hullHealthModifier == 1.f);
@@ -60,7 +60,7 @@ TEST_CASE("Hull parsing with all fields", "[model][component][hull]") {
   Hull corvette = Hull::fromJson(R"({
   "name": "Corvette",
   "size": 1,
-  "coreSize": "K",
+  "coreSize": "KK",
   "sectionSizes": ["KC"],
   "hullHealth": 200,
   "hullHealthModifier": 1,
@@ -77,7 +77,7 @@ TEST_CASE("Hull parsing with all fields", "[model][component][hull]") {
                                  ctx);
   REQUIRE(corvette.name == "Corvette");
   REQUIRE(corvette.size == 1.f);
-  REQUIRE(corvette.coreSize == "K");
+  REQUIRE(corvette.coreSize == "KK");
   REQUIRE(corvette.sectionSizes == vector<string>{"KC"});
   REQUIRE(corvette.hullHealth == 200.f);
   REQUIRE(corvette.hullHealthModifier == 1.f);

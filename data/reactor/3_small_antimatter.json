@@ -1,0 +1,8 @@
+{
+  "name": "Antimatter Reactor",
+  "sizes": ["DD", "MD"],
+  "power": 320,
+  "cost": {
+    "alloys": 44
+  }
+}

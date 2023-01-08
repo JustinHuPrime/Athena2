@@ -17,30 +17,28 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef ATHENA2_MODEL_COMPONENT_REACTOR_H_
-#define ATHENA2_MODEL_COMPONENT_REACTOR_H_
+#include "model/component/reactor.h"
 
-#include <string>
-#include <vector>
+#include "util/json.h"
 
-#include "dsl.h"
-#include "model/component/component.h"
-#include "model/economy.h"
-#include "nlohmann/json.hpp"
+using namespace std;
+using namespace nlohmann;
+using namespace athena2::util;
 
 namespace athena2::model::component {
-class Reactor final : public Component {
- public:
-  static Reactor fromJson(nlohmann::json const &, EvalContext &);
-
-  std::vector<std::string> const sizes;
-  float const power;
-  Cost const cost;
-
- private:
-  Reactor(std::string const &name, std::vector<std::string> const &sizes,
-          float power, Cost const &cost) noexcept;
-};
+Reactor Reactor::fromJson(json const &data, EvalContext &ctx) {
+  checkObject(data, ctx);
+  string name = checkString(data, "name", ctx);
+  vector<string> sizes = checkStringArray(data, "sizes", ctx);
+  float power = checkFloat(data, "power", ctx);
+  json const &costData = checkObject(data, "cost", ctx);
+  Cost cost = [&ctx, &costData]() {
+    auto _ = ctx.push("cost");
+    return Cost::fromJson(costData, ctx);
+  }();
+  return Reactor(name, sizes, power, cost);
+}
+Reactor::Reactor(string const &name_, vector<string> const &sizes_,
+                 float power_, Cost const &cost_) noexcept
+    : Component(name_), sizes(sizes_), power(power_), cost(cost_) {}
 }  // namespace athena2::model::component
-
-#endif  // ATHENA2_MODEL_COMPONENT_REACTOR_H_

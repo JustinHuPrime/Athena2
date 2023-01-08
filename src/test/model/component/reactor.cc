@@ -17,30 +17,27 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef ATHENA2_MODEL_COMPONENT_REACTOR_H_
-#define ATHENA2_MODEL_COMPONENT_REACTOR_H_
+#include "model/component/reactor.h"
 
-#include <string>
-#include <vector>
+#include "catch2/catch_test_macros.hpp"
 
-#include "dsl.h"
-#include "model/component/component.h"
-#include "model/economy.h"
-#include "nlohmann/json.hpp"
+using namespace athena2;
+using namespace athena2::model::component;
+using namespace std;
 
-namespace athena2::model::component {
-class Reactor final : public Component {
- public:
-  static Reactor fromJson(nlohmann::json const &, EvalContext &);
-
-  std::vector<std::string> const sizes;
-  float const power;
-  Cost const cost;
-
- private:
-  Reactor(std::string const &name, std::vector<std::string> const &sizes,
-          float power, Cost const &cost) noexcept;
-};
-}  // namespace athena2::model::component
-
-#endif  // ATHENA2_MODEL_COMPONENT_REACTOR_H_
+TEST_CASE("Reactor parsing", "[model][component][reactor]") {
+  EvalContext ctx("root");
+  Reactor reactor = Reactor::fromJson(R"({
+  "name": "Fission Reactor",
+  "sizes": ["KK", "FF", "MK"],
+  "power": 75,
+  "cost": {
+    "alloys": 10
+  }
+})"_json,
+                                      ctx);
+  REQUIRE(reactor.name == "Fission Reactor");
+  REQUIRE(reactor.sizes == vector<string>{"KK", "FF", "MK"});
+  REQUIRE(reactor.power == 75.f);
+  REQUIRE(reactor.cost == 20.f);
+}

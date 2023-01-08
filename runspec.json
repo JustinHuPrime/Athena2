@@ -6,6 +6,9 @@
     "sections": [
       "data/section/0_corvette_interceptor.json",
       "data/section/0_corvette_picket_ship.json"
+    ],
+    "reactors": [
+      "data/reactor/0_tiny_fission.json"
     ]
   }
 }

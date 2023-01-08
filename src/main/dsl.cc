@@ -25,6 +25,7 @@
 
 #include "model/component/componentSet.h"
 #include "model/component/hull.h"
+#include "model/component/reactor.h"
 #include "model/component/section.h"
 #include "nlohmann/json.hpp"
 #include "util/json.h"
@@ -125,6 +126,15 @@ int eval(istream &in, EvalContext &ctx) noexcept {
                  if (!file) ctx.error("could not open file");
                  components.sections.push_back(
                      Section::fromJson(parse(file, ctx), ctx));
+               });
+      vector<string> reactors = checkStringArray(load, "reactors", ctx);
+      for_each(reactors.begin(), reactors.end(),
+               [&ctx, &components](string const &filename) {
+                 auto _ = ctx.push(filename);
+                 ifstream file(filename);
+                 if (!file) ctx.error("could not open file");
+                 components.reactors.push_back(
+                     Reactor::fromJson(parse(file, ctx), ctx));
                });
     }
     loadHeader.finish();
