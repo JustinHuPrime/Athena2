@@ -1,7 +1,7 @@
 {
   "name": "Menacing Cruiser",
   "size": 4,
-  "coreSize": "C",
+  "coreSize": "MC",
   "sectionSizes": ["MC"],
   "hullHealth": 1800,
   "hullHealthModifier": 1.3,
