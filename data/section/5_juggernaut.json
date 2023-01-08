@@ -1,0 +1,9 @@
+{
+  "name": "Juggernaut",
+  "size": "JU",
+  "weaponSlots": "MMMMMHHHHHHXX",
+  "utilitySlots": "LLLLLLLLLLLLLLLLLLLLLAAAA",
+  "cost": {
+    "alloys": 864
+  }
+}

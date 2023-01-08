@@ -1,0 +1,14 @@
+{
+  "name": "Star-Eater",
+  "size": 8,
+  "coreSize": "SE",
+  "sectionSizes": ["SE"],
+  "hullHealth": 150000,
+  "hullArmour": 100000,
+  "evasion": 0.05,
+  "speed": 120,
+  "disengageChanceModifier": 1,
+  "cost": {
+    "dark matter": 10000
+  }
+}

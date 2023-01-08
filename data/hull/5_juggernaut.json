@@ -1,0 +1,10 @@
+{
+  "name": "Juggernaut",
+  "size": 32,
+  "coreSize": "JU",
+  "sectionSizes": ["JU"],
+  "hullHealth": 100000,
+  "evasion": 0.02,
+  "speed": 80,
+  "disengageChanceModifier": 1
+}
