@@ -17,11 +17,49 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+#include <algorithm>
+#include <fstream>
 #include <iostream>
+#include <vector>
+
+#include "dsl.h"
 
 using namespace std;
+using namespace athena2;
 
-int main() {
-  cout << "Hello, World!" << endl;
-  return 0;
+int main(int argc, char **argv) {
+  vector<string> args;
+  copy(argv + 1, argv + argc, back_inserter(args));
+
+  if (args.size() != 1 ||
+      find_if(args.begin(), args.end(), [](string const &s) {
+        return s == "--help" || s == "-h" || s == "-?";
+      }) != args.end()) {
+    cout << "Usage: \n"
+         << argv[0] << " <runspec>: read the file <runspec>\n"
+         << argv[0] << " -        : read from stdin\n";
+    return 0;
+  } else if (find_if(args.begin(), args.end(), [](string const &s) {
+               return s == "--version" || s == "-v";
+             }) != args.end()) {
+    cout << "Athena II version 0.1.0\n"
+         << "Copyright 2023 Justin Hu\n"
+         << "This is free software; see the source for copying conditions. "
+            "There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS "
+            "FOR A PARTICULAR PURPOSE.\n";
+    return 0;
+  }
+
+  if (args[0] == "-") {
+    EvalContext context = EvalContext("(stdin)");
+    return eval(cin, context);
+  } else {
+    ifstream in(args[0]);
+    if (!in) {
+      cout << "Error: could not open file " << args[0] << "\n";
+      return 1;
+    }
+    EvalContext context = EvalContext(args[0]);
+    return eval(in, context);
+  }
 }
