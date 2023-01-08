@@ -24,6 +24,7 @@
 #include <numeric>
 
 #include "model/component/componentSet.h"
+#include "model/component/ftl.h"
 #include "model/component/hull.h"
 #include "model/component/reactor.h"
 #include "model/component/section.h"
@@ -136,6 +137,15 @@ int eval(istream &in, EvalContext &ctx) noexcept {
                  components.reactors.push_back(
                      Reactor::fromJson(parse(file, ctx), ctx));
                });
+      vector<string> ftls = checkStringArray(load, "ftls", ctx);
+      for_each(
+          ftls.begin(), ftls.end(),
+          [&ctx, &components](string const &filename) {
+            auto _ = ctx.push(filename);
+            ifstream file(filename);
+            if (!file) ctx.error("could not open file");
+            components.ftls.push_back(FTL::fromJson(parse(file, ctx), ctx));
+          });
     }
     loadHeader.finish();
   } catch (EvalException const &e) {

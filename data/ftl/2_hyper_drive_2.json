@@ -1,0 +1,8 @@
+{
+  "name": "Hyper Drive II",
+  "power": -15,
+  "disengageChances": 1,
+  "cost": {
+    "alloys": 10
+  }
+}

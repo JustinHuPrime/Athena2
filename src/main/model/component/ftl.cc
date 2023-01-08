@@ -17,35 +17,31 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef ATHENA2_MODEL_COMPONENT_COMPONENTSET_H_
-#define ATHENA2_MODEL_COMPONENT_COMPONENTSET_H_
-
-#include <vector>
-
 #include "model/component/ftl.h"
-#include "model/component/hull.h"
-#include "model/component/reactor.h"
-#include "model/component/section.h"
+
+#include "util/json.h"
+
+using namespace std;
+using namespace nlohmann;
+using namespace athena2::util;
 
 namespace athena2::model::component {
-class ComponentSet {
- public:
-  ComponentSet() noexcept = default;
-  ComponentSet(ComponentSet const &) = default;
-  ComponentSet(ComponentSet &&) = default;
-
-  ~ComponentSet() noexcept = default;
-
-  ComponentSet &operator=(ComponentSet const &) = default;
-  ComponentSet &operator=(ComponentSet &&) = default;
-
-  std::vector<Hull> hulls;
-  std::vector<Section> sections;
-  std::vector<Reactor> reactors;
-  std::vector<FTL> ftls;
-
- private:
-};
+FTL FTL::fromJson(json const &data, EvalContext &ctx) {
+  checkObject(data, ctx);
+  string name = checkString(data, "name", ctx);
+  float power = checkFloat(data, "power", ctx);
+  float disengageChances = checkFloat(data, "disengageChances", ctx);
+  json const &costData = checkObject(data, "cost", ctx);
+  Cost cost = [&ctx, &costData]() {
+    auto _ = ctx.push("cost");
+    return Cost::fromJson(costData, ctx);
+  }();
+  return FTL(name, power, disengageChances, cost);
+}
+FTL::FTL(string const &name_, float power_, float disengageChances_,
+         Cost const &cost_) noexcept
+    : Component(name_),
+      power(power_),
+      disengageChances(disengageChances_),
+      cost(cost_) {}
 }  // namespace athena2::model::component
-
-#endif  // ATHENA2_MODEL_COMPONENT_COMPONENTSET_H_

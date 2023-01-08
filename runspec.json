@@ -9,6 +9,9 @@
     ],
     "reactors": [
       "data/reactor/0_tiny_fission.json"
+    ],
+    "ftls": [
+      "data/ftl/0_hyper_drive_1.json"
     ]
   }
 }

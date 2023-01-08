@@ -99,7 +99,7 @@ RELEASEOPTIONS := -O3 -DNDEBUG
 debug: OPTIONS := $(OPTIONS) $(DEBUGOPTIONS)
 debug: $(EXENAME) $(TEXENAME) docs
 	@$(ECHO) "Linting source"
-	@libs/cpplint/cpplint.py --quiet --recursive src/main
+	@libs/cpplint/cpplint.py --quiet --recursive src/main src/test
 	@$(ECHO) "Running tests"
 	@./$(TEXENAME)
 	@$(ECHO) "Done building debug!"

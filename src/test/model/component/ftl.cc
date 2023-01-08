@@ -17,30 +17,27 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef ATHENA2_MODEL_COMPONENT_FTL_H_
-#define ATHENA2_MODEL_COMPONENT_FTL_H_
+#include "model/component/ftl.h"
 
-#include <string>
+#include "catch2/catch_test_macros.hpp"
 
-#include "dsl.h"
-#include "model/component/component.h"
-#include "model/economy.h"
-#include "nlohmann/json.hpp"
+using namespace athena2;
+using namespace athena2::model::component;
+using namespace std;
 
-namespace athena2::model::component {
-class FTL final : public Component {
- public:
-  static FTL fromJson(nlohmann::json const &, EvalContext &);
-
-  float const power;
-  float const disengageChances;
-  Cost const cost;
-
- private:
-  FTL(std::string const &name, float power, float disengageChances,
-      Cost const &cost)
-  noexcept;
-};
-}  // namespace athena2::model::component
-
-#endif  // ATHENA2_MODEL_COMPONENT_FTL_H_
+TEST_CASE("FTL parsing", "[model][component][ftl]") {
+  EvalContext ctx("root");
+  FTL ftl = FTL::fromJson(R"({
+  "name": "Hyper Drive I",
+  "power": -10,
+  "disengageChances": 1,
+  "cost": {
+    "alloys": 5
+  }
+})"_json,
+                          ctx);
+  REQUIRE(ftl.name == "Hyper Drive I");
+  REQUIRE(ftl.power == -10.f);
+  REQUIRE(ftl.disengageChances == 1.f);
+  REQUIRE(ftl.cost == 10.f);
+}
