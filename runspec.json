@@ -15,6 +15,9 @@
     ],
     "sublights": [
       "data/sublight/0_tiny_chemical.json"
+    ],
+    "sensors": [
+      "data/sensor/0_radar_system.json"
     ]
   }
 }

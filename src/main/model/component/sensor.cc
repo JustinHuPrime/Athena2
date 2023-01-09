@@ -17,29 +17,31 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef ATHENA2_MODEL_COMPONENT_SENSOR_H_
-#define ATHENA2_MODEL_COMPONENT_SENSOR_H_
+#include "model/component/sensor.h"
 
-#include <string>
+#include "util/json.h"
 
-#include "dsl.h"
-#include "model/component/component.h"
-#include "model/economy.h"
-#include "nlohmann/json.hpp"
+using namespace std;
+using namespace nlohmann;
+using namespace athena2::util;
 
 namespace athena2::model::component {
-class Sensor final : public Component {
- public:
-  static Sensor fromJson(nlohmann::json const &, EvalContext &);
-
-  float const power;
-  float const trackingBonus;
-  Cost const cost;
-
- private:
-  Sensor(std::string const &name, float power, float trackingBonus,
-         Cost const &cost) noexcept;
-};
+Sensor Sensor::fromJson(json const &data, EvalContext &ctx) {
+  checkObject(data, ctx);
+  string name = checkString(data, "name", ctx);
+  float power = checkFloat(data, "power", ctx);
+  float trackingBonus = checkFloat(data, "trackingBonus", ctx);
+  json const &costData = checkObject(data, "cost", ctx);
+  Cost cost = [&ctx, &costData]() {
+    auto _ = ctx.push("cost");
+    return Cost::fromJson(costData, ctx);
+  }();
+  return Sensor(name, power, trackingBonus, cost);
+}
+Sensor::Sensor(string const &name_, float power_, float trackingBonus_,
+               Cost const &cost_) noexcept
+    : Component(name_),
+      power(power_),
+      trackingBonus(trackingBonus_),
+      cost(cost_) {}
 }  // namespace athena2::model::component
-
-#endif  // ATHENA2_MODEL_COMPONENT_SENSOR_H_

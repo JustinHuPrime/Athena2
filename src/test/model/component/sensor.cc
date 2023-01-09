@@ -17,29 +17,27 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef ATHENA2_MODEL_COMPONENT_SENSOR_H_
-#define ATHENA2_MODEL_COMPONENT_SENSOR_H_
+#include "model/component/sensor.h"
 
-#include <string>
+#include "catch2/catch_test_macros.hpp"
 
-#include "dsl.h"
-#include "model/component/component.h"
-#include "model/economy.h"
-#include "nlohmann/json.hpp"
+using namespace athena2;
+using namespace athena2::model::component;
+using namespace std;
 
-namespace athena2::model::component {
-class Sensor final : public Component {
- public:
-  static Sensor fromJson(nlohmann::json const &, EvalContext &);
-
-  float const power;
-  float const trackingBonus;
-  Cost const cost;
-
- private:
-  Sensor(std::string const &name, float power, float trackingBonus,
-         Cost const &cost) noexcept;
-};
-}  // namespace athena2::model::component
-
-#endif  // ATHENA2_MODEL_COMPONENT_SENSOR_H_
+TEST_CASE("Sensor parsing", "[model][component][sensor]") {
+  EvalContext ctx("root");
+  Sensor sensor = Sensor::fromJson(R"({
+  "name": "Radar System",
+  "power": -5,
+  "trackingBonus": 0,
+  "cost": {
+    "alloys": 2
+  }
+})"_json,
+                                   ctx);
+  REQUIRE(sensor.name == "Radar System");
+  REQUIRE(sensor.power == -5.f);
+  REQUIRE(sensor.trackingBonus == 0.f);
+  REQUIRE(sensor.cost == 4.f);
+}

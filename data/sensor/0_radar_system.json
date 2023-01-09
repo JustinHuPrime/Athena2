@@ -1,0 +1,8 @@
+{
+  "name": "Radar System",
+  "power": -5,
+  "trackingBonus": 0,
+  "cost": {
+    "alloys": 2
+  }
+}

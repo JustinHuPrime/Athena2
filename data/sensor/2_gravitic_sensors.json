@@ -1,0 +1,8 @@
+{
+  "name": "Gravitic Sensors",
+  "power": -10,
+  "trackingBonus": 5,
+  "cost": {
+    "alloys": 4
+  }
+}

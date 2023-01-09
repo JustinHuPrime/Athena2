@@ -1,0 +1,8 @@
+{
+  "name": "Subspace Sensors",
+  "power": -15,
+  "trackingBonus": 10,
+  "cost": {
+    "alloys": 6
+  }
+}

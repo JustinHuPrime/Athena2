@@ -1,0 +1,8 @@
+{
+  "name": "Tachyon Sensors",
+  "power": -20,
+  "trackingBonus": 15,
+  "cost": {
+    "alloys": 8
+  }
+}
