@@ -1,0 +1,8 @@
+{
+  "name": "Small Dragonscale Armour",
+  "size": "S",
+  "armourHealth": 370,
+  "cost": {
+    "alloys": 29
+  }
+}

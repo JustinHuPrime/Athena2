@@ -1,0 +1,10 @@
+{
+  "name": "Medium Shields",
+  "size": "M",
+  "power": -50,
+  "shieldHealth": 315,
+  "shieldRegen": 2.1,
+  "cost": {
+    "alloys": 17
+  }
+}

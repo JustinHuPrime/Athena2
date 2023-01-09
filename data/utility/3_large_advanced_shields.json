@@ -1,0 +1,11 @@
+{
+  "name": "Large Advanced Shields",
+  "size": "L",
+  "power": -140,
+  "shieldHealth": 990,
+  "shieldRegen": 4.6,
+  "cost": {
+    "alloys": 34,
+    "strategic resources": 1
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "Small Advanced Shields",
+  "size": "S",
+  "power": -35,
+  "shieldHealth": 165,
+  "shieldRegen": 1.1,
+  "cost": {
+    "alloys": 9,
+    "strategic resources": 0.25
+  }
+}

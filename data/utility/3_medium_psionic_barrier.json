@@ -1,0 +1,10 @@
+{
+  "name": "Medium Psionic Barrier",
+  "size": "M",
+  "power": 0,
+  "shieldHealth": 250,
+  "shieldRegen": 3.6,
+  "cost": {
+    "alloys": 13
+  }
+}

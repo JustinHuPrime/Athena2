@@ -1,0 +1,8 @@
+{
+  "name": "Large Neutronium Armour",
+  "size": "L",
+  "armourHealth": 1740,
+  "cost": {
+    "alloys": 88
+  }
+}

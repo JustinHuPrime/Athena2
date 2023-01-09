@@ -1,0 +1,8 @@
+{
+  "name": "Large Crystal-Infused Plating",
+  "size": "L",
+  "hullHealth": 390,
+  "cost": {
+    "strategic resources": 1
+  }
+}

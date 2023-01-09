@@ -1,0 +1,11 @@
+{
+  "name": "Medium Psionic Shields",
+  "size": "M",
+  "power": -150,
+  "shieldHealth": 900,
+  "shieldRegen": 5,
+  "cost": {
+    "alloys": 38,
+    "zro": 0.222
+  }
+}

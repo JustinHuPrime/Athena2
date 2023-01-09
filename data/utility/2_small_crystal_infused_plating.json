@@ -1,0 +1,8 @@
+{
+  "name": "Small Crystal-Infused Plating",
+  "size": "S",
+  "hullHealth": 65,
+  "cost": {
+    "strategic resources": 0.25
+  }
+}

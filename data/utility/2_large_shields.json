@@ -1,0 +1,10 @@
+{
+  "name": "Large Shields",
+  "size": "L",
+  "power": -100,
+  "shieldHealth": 750,
+  "shieldRegen": 5.1,
+  "cost": {
+    "alloys": 34
+  }
+}

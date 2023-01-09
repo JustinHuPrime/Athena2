@@ -1,0 +1,8 @@
+{
+  "name": "Small Ceramo-Metal Armour",
+  "size": "S",
+  "armourHealth": 130,
+  "cost": {
+    "alloys": 13
+  }
+}

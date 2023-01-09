@@ -1,0 +1,8 @@
+{
+  "name": "Medium Durasteel Armour",
+  "size": "M",
+  "armourHealth": 550,
+  "cost": {
+    "alloys": 34
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Medium Plasteel Armour",
+  "size": "M",
+  "armourHealth": 425,
+  "cost": {
+    "alloys": 34
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "Large Hyper Shields",
+  "size": "L",
+  "power": -180,
+  "shieldHealth": 1320,
+  "shieldRegen": 8.7,
+  "cost": {
+    "alloys": 44,
+    "strategic resources": 1.333
+  }
+}

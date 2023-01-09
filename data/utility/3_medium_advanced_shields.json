@@ -1,0 +1,11 @@
+{
+  "name": "Medium Advanced Shields",
+  "size": "M",
+  "power": -70,
+  "shieldHealth": 415,
+  "shieldRegen": 2.7,
+  "cost": {
+    "alloys": 17,
+    "strategic resources": 0.5
+  }
+}

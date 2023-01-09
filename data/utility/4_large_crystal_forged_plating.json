@@ -1,0 +1,8 @@
+{
+  "name": "Large Crystal-Forged Plating",
+  "size": "L",
+  "hullHealth": 660,
+  "cost": {
+    "strategic resources": 1.3
+  }
+}

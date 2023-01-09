@@ -1,0 +1,11 @@
+{
+  "name": "Small Hyper Shields",
+  "size": "S",
+  "power": -45,
+  "shieldHealth": 220,
+  "shieldRegen": 1.4,
+  "cost": {
+    "alloys": 12,
+    "strategic resources": 0.333
+  }
+}

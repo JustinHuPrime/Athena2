@@ -1,0 +1,8 @@
+{
+  "name": "Medium Nanocompsite Armour",
+  "size": "M",
+  "armourHealth": 250,
+  "cost": {
+    "alloys": 20
+  }
+}

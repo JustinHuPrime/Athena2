@@ -1,0 +1,8 @@
+{
+  "name": "Small Crystal-Forged Plating",
+  "size": "S",
+  "hullHealth": 110,
+  "cost": {
+    "strategic resources": 0.33
+  }
+}

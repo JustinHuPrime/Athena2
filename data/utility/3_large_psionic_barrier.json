@@ -1,0 +1,10 @@
+{
+  "name": "Large Psionic Barrier",
+  "size": "L",
+  "power": 0,
+  "shieldHealth": 600,
+  "shieldRegen": 8.7,
+  "cost": {
+    "alloys": 26
+  }
+}

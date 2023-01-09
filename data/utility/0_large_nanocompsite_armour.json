@@ -1,0 +1,8 @@
+{
+  "name": "Large Nanocompsite Armour",
+  "size": "L",
+  "armourHealth": 600,
+  "cost": {
+    "alloys": 40
+  }
+}

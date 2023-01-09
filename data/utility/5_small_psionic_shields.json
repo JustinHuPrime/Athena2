@@ -1,0 +1,11 @@
+{
+  "name": "Small Psionic Shields",
+  "size": "S",
+  "power": -75,
+  "shieldHealth": 360,
+  "shieldRegen": 2,
+  "cost": {
+    "alloys": 21,
+    "zro": 0.111
+  }
+}

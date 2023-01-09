@@ -1,0 +1,8 @@
+{
+  "name": "Small Plasteel Armour",
+  "size": "S",
+  "armourHealth": 170,
+  "cost": {
+    "alloys": 17
+  }
+}

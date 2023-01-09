@@ -1,0 +1,10 @@
+{
+  "name": "Small Shields",
+  "size": "S",
+  "power": -25,
+  "shieldHealth": 125,
+  "shieldRegen": 0.8,
+  "cost": {
+    "alloys": 9
+  }
+}

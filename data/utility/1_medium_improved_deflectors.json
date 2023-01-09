@@ -1,0 +1,10 @@
+{
+  "name": "Medium Improved Deflectors",
+  "size": "M",
+  "power": -40,
+  "shieldHealth": 250,
+  "shieldRegen": 1.6,
+  "cost": {
+    "alloys": 13
+  }
+}

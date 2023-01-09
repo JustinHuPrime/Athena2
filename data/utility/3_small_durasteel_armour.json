@@ -1,0 +1,8 @@
+{
+  "name": "Small Durasteel Armour",
+  "size": "S",
+  "armourHealth": 220,
+  "cost": {
+    "alloys": 17
+  }
+}

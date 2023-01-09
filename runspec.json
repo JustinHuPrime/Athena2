@@ -22,6 +22,14 @@
     "computers": [
       "data/computer/0_swarm.json"
     ],
-    "auras": []
+    "auras": [],
+    "utilities": [
+      "data/utility/0_small_nanocompsite_armour.json",
+      "data/utility/0_large_nanocompsite_armour.json",
+      "data/utility/0_medium_nanocompsite_armour.json",
+      "data/utility/0_large_deflectors.json",
+      "data/utility/0_small_deflectors.json",
+      "data/utility/0_medium_deflectors.json"
+    ]
   }
 }

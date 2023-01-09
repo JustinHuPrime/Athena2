@@ -1,0 +1,10 @@
+{
+  "name": "Small Deflectors",
+  "size": "S",
+  "power": -15,
+  "shieldHealth": 75,
+  "shieldRegen": 0.5,
+  "cost": {
+    "alloys": 5
+  }
+}

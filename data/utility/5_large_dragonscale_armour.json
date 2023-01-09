@@ -1,0 +1,8 @@
+{
+  "name": "Large Dragonscale Armour",
+  "size": "L",
+  "armourHealth": 2220,
+  "cost": {
+    "alloys": 114
+  }
+}

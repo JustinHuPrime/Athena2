@@ -1,0 +1,8 @@
+{
+  "name": "Large Plasteel Armour",
+  "size": "L",
+  "armourHealth": 1020,
+  "cost": {
+    "alloys": 68
+  }
+}

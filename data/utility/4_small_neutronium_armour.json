@@ -1,0 +1,8 @@
+{
+  "name": "Small Neutronium Armour",
+  "size": "S",
+  "armourHealth": 290,
+  "cost": {
+    "alloys": 22
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "Large Psionic Shields",
+  "size": "L",
+  "power": -300,
+  "shieldHealth": 2160,
+  "shieldRegen": 12.5,
+  "cost": {
+    "alloys": 74,
+    "zro": 0.333
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Large Ceramo-Metal Armour",
+  "size": "L",
+  "armourHealth": 780,
+  "cost": {
+    "alloys": 52
+  }
+}

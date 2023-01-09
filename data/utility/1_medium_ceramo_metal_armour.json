@@ -1,0 +1,8 @@
+{
+  "name": "Medium Ceramo-Metal Armour",
+  "size": "M",
+  "armourHealth": 325,
+  "cost": {
+    "alloys": 26
+  }
+}

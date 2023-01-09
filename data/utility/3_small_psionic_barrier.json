@@ -1,0 +1,10 @@
+{
+  "name": "Small Psionic Barrier",
+  "size": "S",
+  "power": 0,
+  "shieldHealth": 100,
+  "shieldRegen": 1.4,
+  "cost": {
+    "alloys": 7
+  }
+}

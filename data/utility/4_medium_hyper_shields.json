@@ -1,0 +1,11 @@
+{
+  "name": "Medium Hyper Shields",
+  "size": "M",
+  "power": -90,
+  "shieldHealth": 550,
+  "shieldRegen": 3.6,
+  "cost": {
+    "alloys": 22,
+    "strategic resources": 0.666
+  }
+}

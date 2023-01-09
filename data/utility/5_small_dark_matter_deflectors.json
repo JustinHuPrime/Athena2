@@ -1,0 +1,11 @@
+{
+  "name": "Small Dark Matter Deflectors",
+  "size": "S",
+  "power": -55,
+  "shieldHealth": 280,
+  "shieldRegen": 1.8,
+  "cost": {
+    "alloys": 16,
+    "dark matter": 0.25
+  }
+}

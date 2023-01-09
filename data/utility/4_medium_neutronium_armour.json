@@ -1,0 +1,8 @@
+{
+  "name": "Medium Neutronium Armour",
+  "size": "M",
+  "armourHealth": 725,
+  "cost": {
+    "alloys": 44
+  }
+}

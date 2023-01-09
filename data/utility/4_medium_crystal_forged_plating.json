@@ -1,0 +1,8 @@
+{
+  "name": "Medium Crystal-Forged Plating",
+  "size": "M",
+  "hullHealth": 275,
+  "cost": {
+    "strategic resources": 0.65
+  }
+}

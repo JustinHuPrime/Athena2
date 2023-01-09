@@ -1,0 +1,11 @@
+{
+  "name": "Large Dark Matter Deflectors",
+  "size": "L",
+  "power": -220,
+  "shieldHealth": 1680,
+  "shieldRegen": 11.1,
+  "cost": {
+    "alloys": 57,
+    "dark matter": 1
+  }
+}

@@ -30,6 +30,7 @@
 #include "model/component/section.h"
 #include "model/component/sensor.h"
 #include "model/component/sublight.h"
+#include "model/component/utility.h"
 
 namespace athena2::model::component {
 class ComponentSet {
@@ -51,6 +52,7 @@ class ComponentSet {
   std::vector<Sensor> sensors;
   std::vector<Computer> computers;
   std::vector<Aura> auras;
+  std::vector<Utility> utilities;
 
  private:
 };

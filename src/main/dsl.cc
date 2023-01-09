@@ -32,6 +32,7 @@
 #include "model/component/section.h"
 #include "model/component/sensor.h"
 #include "model/component/sublight.h"
+#include "model/component/utility.h"
 #include "nlohmann/json.hpp"
 #include "util/json.h"
 #include "version.h"
@@ -186,6 +187,15 @@ int eval(istream &in, EvalContext &ctx) noexcept {
             if (!file) ctx.error("could not open file");
             components.auras.push_back(Aura::fromJson(parse(file, ctx), ctx));
           });
+      vector<string> utilities = checkStringArray(load, "utilities", ctx);
+      for_each(utilities.begin(), utilities.end(),
+               [&ctx, &components](string const &filename) {
+                 auto _ = ctx.push(filename);
+                 ifstream file(filename);
+                 if (!file) ctx.error("could not open file");
+                 components.utilities.push_back(
+                     Utility::fromJson(parse(file, ctx), ctx));
+               });
     }
     loadHeader.finish();
   } catch (EvalException const &e) {

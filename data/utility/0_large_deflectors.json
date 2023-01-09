@@ -1,0 +1,10 @@
+{
+  "name": "Large Deflectors",
+  "size": "L",
+  "power": -60,
+  "shieldHealth": 450,
+  "shieldRegen": 3,
+  "cost": {
+    "alloys": 20
+  }
+}

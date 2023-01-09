@@ -1,0 +1,11 @@
+{
+  "name": "Medium Dark Matter Deflectors",
+  "size": "M",
+  "power": -110,
+  "shieldHealth": 700,
+  "shieldRegen": 4.6,
+  "cost": {
+    "alloys": 29,
+    "dark matter": 0.5
+  }
+}

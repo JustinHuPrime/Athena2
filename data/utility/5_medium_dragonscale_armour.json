@@ -1,0 +1,8 @@
+{
+  "name": "Medium Dragonscale Armour",
+  "size": "M",
+  "armourHealth": 925,
+  "cost": {
+    "alloys": 57
+  }
+}

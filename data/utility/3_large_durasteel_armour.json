@@ -1,0 +1,8 @@
+{
+  "name": "Large Durasteel Armour",
+  "size": "L",
+  "armourHealth": 1320,
+  "cost": {
+    "alloys": 68
+  }
+}

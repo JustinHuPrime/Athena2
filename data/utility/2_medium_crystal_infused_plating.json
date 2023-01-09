@@ -1,0 +1,8 @@
+{
+  "name": "Medium Crystal-Infused Plating",
+  "size": "M",
+  "hullHealth": 160,
+  "cost": {
+    "strategic resources": 0.5
+  }
+}
