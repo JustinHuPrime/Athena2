@@ -28,6 +28,7 @@
 #include "model/component/hull.h"
 #include "model/component/reactor.h"
 #include "model/component/section.h"
+#include "model/component/sublight.h"
 #include "nlohmann/json.hpp"
 #include "util/json.h"
 #include "version.h"
@@ -146,6 +147,15 @@ int eval(istream &in, EvalContext &ctx) noexcept {
             if (!file) ctx.error("could not open file");
             components.ftls.push_back(FTL::fromJson(parse(file, ctx), ctx));
           });
+      vector<string> sublights = checkStringArray(load, "sublights", ctx);
+      for_each(sublights.begin(), sublights.end(),
+               [&ctx, &components](string const &filename) {
+                 auto _ = ctx.push(filename);
+                 ifstream file(filename);
+                 if (!file) ctx.error("could not open file");
+                 components.sublights.push_back(
+                     Sublight::fromJson(parse(file, ctx), ctx));
+               });
     }
     loadHeader.finish();
   } catch (EvalException const &e) {

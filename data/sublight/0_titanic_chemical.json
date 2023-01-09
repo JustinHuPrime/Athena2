@@ -1,0 +1,10 @@
+{
+  "name": "Chemical Thrusters",
+  "sizes": ["TT"],
+  "power": -160,
+  "speedModifier": 1,
+  "evasionBonus": 0,
+  "cost": {
+    "alloys": 48
+  }
+}

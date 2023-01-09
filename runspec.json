@@ -12,6 +12,9 @@
     ],
     "ftls": [
       "data/ftl/0_hyper_drive_1.json"
+    ],
+    "sublights": [
+      "data/sublight/0_tiny_chemical.json"
     ]
   }
 }

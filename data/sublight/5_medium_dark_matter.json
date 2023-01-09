@@ -1,0 +1,11 @@
+{
+  "name": "Dark Matter Thrusters",
+  "sizes": ["CC", "MC"],
+  "power": -120,
+  "speedModifier": 2.25,
+  "evasionBonus": 0.12,
+  "cost": {
+    "alloys": 48,
+    "dark matter": 4
+  }
+}

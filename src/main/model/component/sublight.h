@@ -20,6 +20,30 @@
 #ifndef ATHENA2_MODEL_COMPONENT_SUBLIGHT_H_
 #define ATHENA2_MODEL_COMPONENT_SUBLIGHT_H_
 
-namespace athena2::model::component {}
+#include <string>
+#include <vector>
+
+#include "dsl.h"
+#include "model/component/component.h"
+#include "model/economy.h"
+#include "nlohmann/json.hpp"
+
+namespace athena2::model::component {
+class Sublight final : public Component {
+ public:
+  static Sublight fromJson(nlohmann::json const &, EvalContext &);
+
+  std::vector<std::string> const sizes;
+  float const power;
+  float const speedModifier;
+  float const evasionBonus;
+  Cost const cost;
+
+ private:
+  Sublight(std::string const &name, std::vector<std::string> const &sizes,
+           float power, float speedModifier, float evasionBonus,
+           Cost const &cost) noexcept;
+};
+}  // namespace athena2::model::component
 
 #endif  // ATHENA2_MODEL_COMPONENT_SUBLIGHT_H_

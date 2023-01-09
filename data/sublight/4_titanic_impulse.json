@@ -1,0 +1,10 @@
+{
+  "name": "Impulse Thrusters",
+  "sizes": ["TT"],
+  "power": -400,
+  "speedModifier": 1.75,
+  "evasionBonus": 0.03,
+  "cost": {
+    "alloys": 192
+  }
+}

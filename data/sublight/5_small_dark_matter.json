@@ -1,0 +1,11 @@
+{
+  "name": "Dark Matter Thrusters",
+  "sizes": ["DD", "MD"],
+  "power": -60,
+  "speedModifier": 2.25,
+  "evasionBonus": 0.16,
+  "cost": {
+    "alloys": 24,
+    "dark matter": 2
+  }
+}

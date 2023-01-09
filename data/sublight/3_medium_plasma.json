@@ -1,0 +1,10 @@
+{
+  "name": "Plasma Thrusters",
+  "sizes": ["CC", "MC"],
+  "power": -80,
+  "speedModifier": 1.5,
+  "evasionBonus": 0.06,
+  "cost": {
+    "alloys": 36
+  }
+}

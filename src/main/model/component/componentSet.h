@@ -26,6 +26,7 @@
 #include "model/component/hull.h"
 #include "model/component/reactor.h"
 #include "model/component/section.h"
+#include "model/component/sublight.h"
 
 namespace athena2::model::component {
 class ComponentSet {
@@ -43,6 +44,7 @@ class ComponentSet {
   std::vector<Section> sections;
   std::vector<Reactor> reactors;
   std::vector<FTL> ftls;
+  std::vector<Sublight> sublights;
 
  private:
 };

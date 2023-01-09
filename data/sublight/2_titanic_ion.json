@@ -1,0 +1,10 @@
+{
+  "name": "Ion Thrusters",
+  "sizes": ["TT"],
+  "power": -240,
+  "speedModifier": 1.25,
+  "evasionBonus": 0.01,
+  "cost": {
+    "alloys": 96
+  }
+}
