@@ -1,0 +1,6 @@
+{
+  "name": "Quantum Destabilizer",
+  "size": "TT",
+  "range": 80,
+  "enemyFireRateModifier": -0.1
+}

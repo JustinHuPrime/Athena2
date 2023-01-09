@@ -1,0 +1,6 @@
+{
+  "name": "Shield Dampener",
+  "size": "TT",
+  "range": 80,
+  "enemyShieldHealthModifier": -0.2
+}

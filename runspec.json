@@ -21,6 +21,7 @@
     ],
     "computers": [
       "data/computer/0_swarm.json"
-    ]
+    ],
+    "auras": []
   }
 }

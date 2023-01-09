@@ -1,0 +1,6 @@
+{
+  "name": "Target Acquisition Array",
+  "size": "JU",
+  "range": 1e100,
+  "allyWeaponsRangeModifier": 0.4
+}

@@ -23,6 +23,7 @@
 #include <iostream>
 #include <numeric>
 
+#include "model/component/aura.h"
 #include "model/component/componentSet.h"
 #include "model/component/computer.h"
 #include "model/component/ftl.h"
@@ -176,6 +177,15 @@ int eval(istream &in, EvalContext &ctx) noexcept {
                  components.computers.push_back(
                      Computer::fromJson(parse(file, ctx), ctx));
                });
+      vector<string> auras = checkStringArray(load, "auras", ctx);
+      for_each(
+          auras.begin(), auras.end(),
+          [&ctx, &components](string const &filename) {
+            auto _ = ctx.push(filename);
+            ifstream file(filename);
+            if (!file) ctx.error("could not open file");
+            components.auras.push_back(Aura::fromJson(parse(file, ctx), ctx));
+          });
     }
     loadHeader.finish();
   } catch (EvalException const &e) {

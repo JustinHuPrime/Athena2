@@ -20,6 +20,43 @@
 #ifndef ATHENA2_MODEL_COMPONENT_AURA_H_
 #define ATHENA2_MODEL_COMPONENT_AURA_H_
 
-namespace athena2::model::component {}
+#include <string>
+
+#include "dsl.h"
+#include "model/component/component.h"
+#include "model/economy.h"
+#include "nlohmann/json.hpp"
+
+namespace athena2::model::component {
+class Aura final : public Component {
+ public:
+  static Aura fromJson(nlohmann::json const &, EvalContext &);
+
+  std::string const size;
+  float const range;
+  float const enemyFireRateModifier;
+  float const enemyShieldHealthModifier;
+  float const enemyDisengageChanceModifier;
+  float const allyFireRateModifier;
+  float const allyHullRegenModifier;
+  float const allyArmourRegenModifier;
+  float const allyTrackingBonus;
+  float const enemyPointDefenceDamageModifier;
+  float const enemyPointDefenceFireRateModifier;
+  float const allyStrikeCraftDamageModifier;
+  float const allyStrikeCraftSpeedModifier;
+  float const allyWeaponsRangeModifier;
+
+ private:
+  Aura(std::string const &name, std::string const &size, float range,
+       float enemyFireRateModifier, float enemyShieldHealthModifier,
+       float enemyDisengageChanceModifier, float allyFireRateModifier,
+       float allyHullRegenModifier, float allyArmourRegenModifier,
+       float allyTrackingBonus, float enemyPointDefenceDamageModifier,
+       float enemyPointDefenceFireRateModifier,
+       float allyStrikeCraftDamageModifier, float allyStrikeCraftSpeedModifier,
+       float allyWeaponsRangeModifier) noexcept;
+};
+}  // namespace athena2::model::component
 
 #endif  // ATHENA2_MODEL_COMPONENT_AURA_H_

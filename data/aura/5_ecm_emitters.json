@@ -1,0 +1,7 @@
+{
+  "name": "ECM Emitters",
+  "size": "JU",
+  "range": 1e100,
+  "enemyPointDefenceDamageModifier": -0.3,
+  "enemyPointDefenceFireRateModifier": -0.3
+}

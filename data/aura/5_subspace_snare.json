@@ -1,0 +1,6 @@
+{
+  "name": "Subspace Snare",
+  "size": "TT",
+  "range": 80,
+  "enemyDisengageChanceModifier": -0.2
+}

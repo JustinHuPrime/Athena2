@@ -1,0 +1,7 @@
+{
+  "name": "Strike Command",
+  "size": "JU",
+  "range": 1e100,
+  "allyStrikeCraftDamageModifier": 0.2,
+  "allyStrikeCraftSpeedModifier": 0.2
+}
