@@ -38,6 +38,10 @@ Sublight Sublight::fromJson(json const &data, EvalContext &ctx) {
     auto _ = ctx.push("cost");
     return Cost::fromJson(costData, ctx);
   }();
+  checkFields(
+      data, {"name", "sizes", "power", "speedModifier", "evasionBonus", "cost"},
+      ctx);
+
   return Sublight(name, sizes, power, speedModifier, evasionBonus, cost);
 }
 Sublight::Sublight(string const &name_, vector<string> const &sizes_,

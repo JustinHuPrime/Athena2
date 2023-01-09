@@ -36,6 +36,8 @@ FTL FTL::fromJson(json const &data, EvalContext &ctx) {
     auto _ = ctx.push("cost");
     return Cost::fromJson(costData, ctx);
   }();
+  checkFields(data, {"name", "power", "disengageChances", "cost"}, ctx);
+
   return FTL(name, power, disengageChances, cost);
 }
 FTL::FTL(string const &name_, float power_, float disengageChances_,

@@ -54,6 +54,14 @@ Computer Computer::fromJson(json const &data, EvalContext &ctx) {
     auto _ = ctx.push("cost");
     return Cost::fromJson(costData, ctx);
   }();
+  checkFields(
+      data,
+      {"name", "sizes", "tactics", "power", "fireRateModifier",
+       "evasionModifier", "sublightSpeedModifier",
+       "explosiveWeaponsDamageModifier", "trackingBonus", "chanceToHitBonus",
+       "weaponsRangeModifier", "engagementRangeModifier", "cost"},
+      ctx);
+
   return Computer(
       name, sizes, tactics, power, fireRateModifier.value_or(0.f),
       evasionModifier.value_or(0.f), sublightSpeedModifier.value_or(0.f),

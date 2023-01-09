@@ -36,6 +36,8 @@ Reactor Reactor::fromJson(json const &data, EvalContext &ctx) {
     auto _ = ctx.push("cost");
     return Cost::fromJson(costData, ctx);
   }();
+  checkFields(data, {"name", "sizes", "power", "cost"}, ctx);
+
   return Reactor(name, sizes, power, cost);
 }
 Reactor::Reactor(string const &name_, vector<string> const &sizes_,

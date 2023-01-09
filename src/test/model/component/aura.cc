@@ -30,7 +30,6 @@ TEST_CASE("Aura parsing", "[model][component][aura]") {
   Aura aura = Aura::fromJson(R"({
   "name": "Quantum Destabilizer",
   "size": "TT",
-  "range": 80,
   "enemyFireRateModifier": -0.1
 })"_json,
                              ctx);

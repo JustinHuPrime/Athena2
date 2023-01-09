@@ -206,6 +206,8 @@ int eval(istream &in, EvalContext &ctx) noexcept {
                  components.auxiliaries.push_back(
                      Auxiliary::fromJson(parse(file, ctx), ctx));
                });
+      // TODO: load weapons
+      // TODO: rest of runspec
     }
     loadHeader.finish();
   } catch (EvalException const &e) {

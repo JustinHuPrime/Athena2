@@ -56,6 +56,14 @@ Auxiliary Auxiliary::fromJson(json const &data, EvalContext &ctx) {
     auto _ = ctx.push("cost");
     return Cost::fromJson(costData, ctx);
   }();
+  checkFields(
+      data,
+      {"name", "power", "cost", "sublightSpeedModifier", "evasionModifier",
+       "armourHardeningBonus", "hullRegenModifier", "armourRegenModifier",
+       "shieldHealthModifier", "shieldHardeningBonus", "chanceToHitBonus",
+       "trackingBonus", "disengageChancesBonus"},
+      ctx);
+
   return Auxiliary(
       name, "A", power, sublightSpeedModifier.value_or(0.f),
       evasionModifier.value_or(0.f), armourHardeningBonus.value_or(0.f),

@@ -56,6 +56,12 @@ Hull Hull::fromJson(nlohmann::json const &data, EvalContext &ctx) {
     auto _ = ctx.push("cost");
     return Cost::fromJson(*costData, ctx);
   }() : Cost();
+  checkFields(data,
+              {"name", "size", "coreSize", "sectionSizes", "hullHealth",
+               "hullHealthModifier", "armourHealth", "evasion",
+               "evasionModifier", "trackingModifier", "speed",
+               "disengageChanceModifier", "includeComponentCost", "cost"},
+              ctx);
 
   return Hull(name, size, coreSize, sectionSizes, hullHealth,
               hullHealthModifier.value_or(0.f), armourHealth.value_or(0.f),

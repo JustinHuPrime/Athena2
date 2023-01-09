@@ -42,6 +42,9 @@ Section Section::fromJson(json const &data, EvalContext &ctx) {
     auto _ = ctx.push("cost");
     return Cost::fromJson(*costData, ctx);
   }() : Cost();
+  checkFields(data, {"name", "size", "weaponSlots", "utilitySlots", "cost"},
+              ctx);
+
   return Section(name, size, weaponSlots, utilitySlots, cost);
 }
 Section::Section(string const &name_, string const &size_,

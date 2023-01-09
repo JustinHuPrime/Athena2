@@ -131,6 +131,16 @@ inline nlohmann::json const &checkObject(nlohmann::json const &json,
                                          EvalContext &ctx) {
   return checkType(json, &nlohmann::json::is_object, "object", ctx);
 }
+inline void checkFields(nlohmann::json const &json,
+                        std::vector<std::string> const &allowedFields,
+                        EvalContext &ctx) {
+  for (auto const &[key, _] : json.items()) {
+    if (std::find(allowedFields.begin(), allowedFields.end(), key) ==
+        allowedFields.end()) {
+      ctx.error("unexpected field " + key);
+    }
+  }
+}
 }  // namespace athena2::util
 
 #endif  // ATHENA2_UTIL_JSON_H_

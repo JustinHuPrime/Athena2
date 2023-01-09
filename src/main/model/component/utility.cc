@@ -46,6 +46,11 @@ Utility Utility::fromJson(json const &data, EvalContext &ctx) {
     auto _ = ctx.push("cost");
     return Cost::fromJson(costData, ctx);
   }();
+  checkFields(data,
+              {"name", "size", "power", "cost", "shieldHealth", "shieldRegen",
+               "armourHealth", "hullHealth"},
+              ctx);
+
   return Utility(name, size, power, shieldHealth.value_or(0.f),
                  shieldRegen.value_or(0.f), armourHealth.value_or(0.f),
                  hullHealth.value_or(0.f), cost);

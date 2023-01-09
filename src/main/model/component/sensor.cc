@@ -36,6 +36,8 @@ Sensor Sensor::fromJson(json const &data, EvalContext &ctx) {
     auto _ = ctx.push("cost");
     return Cost::fromJson(costData, ctx);
   }();
+  checkFields(data, {"name", "power", "trackingBonus", "cost"}, ctx);
+
   return Sensor(name, power, trackingBonus, cost);
 }
 Sensor::Sensor(string const &name_, float power_, float trackingBonus_,

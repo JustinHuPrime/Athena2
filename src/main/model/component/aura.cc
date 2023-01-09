@@ -56,6 +56,15 @@ Aura Aura::fromJson(json const &data, EvalContext &ctx) {
       checkMaybeFloat(data, "allyStrikeCraftSpeedModifier", ctx);
   optional<float> allyWeaponsRangeModifier =
       checkMaybeFloat(data, "allyWeaponsRangeModifier", ctx);
+  checkFields(
+      data,
+      {"name", "size", "enemyFireRateModifier", "enemyShieldHealthModifier",
+       "enemyDisengageChanceModifier", "allyFireRateModifier",
+       "allyHullRegenModifier", "allyArmourRegenModifier", "allyTrackingBonus",
+       "enemyPointDefenceDamageModifier", "enemyPointDefenceFireRateModifier",
+       "allyStrikeCraftDamageModifier", "allyStrikeCraftSpeedModifier",
+       "allyWeaponsRangeModifier"},
+      ctx);
 
   return Aura(
       name, size, enemyFireRateModifier.value_or(0.f),
