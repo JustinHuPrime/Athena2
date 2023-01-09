@@ -2,7 +2,7 @@
   "name": "Ion Thrusters",
   "sizes": ["BB"],
   "power": -120,
-  "speedModifier": 1.25,
+  "speedModifier": 0.25,
   "evasionBonus": 0.02,
   "cost": {
     "alloys": 48

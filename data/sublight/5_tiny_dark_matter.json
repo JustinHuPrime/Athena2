@@ -2,7 +2,7 @@
   "name": "Dark Matter Thrusters",
   "sizes": ["KK", "FF", "MK"],
   "power": -30,
-  "speedModifier": 2.25,
+  "speedModifier": 1.25,
   "evasionBonus": 0.20,
   "cost": {
     "alloys": 12,

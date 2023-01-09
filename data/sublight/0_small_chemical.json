@@ -2,7 +2,7 @@
   "name": "Chemical Thrusters",
   "sizes": ["DD", "MD"],
   "power": -20,
-  "speedModifier": 1,
+  "speedModifier": 0,
   "evasionBonus": 0,
   "cost": {
     "alloys": 6

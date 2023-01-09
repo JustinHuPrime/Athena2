@@ -20,6 +20,40 @@
 #ifndef ATHENA2_MODEL_COMPONENT_COMPUTER_H_
 #define ATHENA2_MODEL_COMPONENT_COMPUTER_H_
 
-namespace athena2::model::component {}
+#include <string>
+#include <vector>
+
+#include "dsl.h"
+#include "model/component/component.h"
+#include "model/economy.h"
+#include "nlohmann/json.hpp"
+
+namespace athena2::model::component {
+class Computer final : public Component {
+ public:
+  static Computer fromJson(nlohmann::json const &, EvalContext &);
+
+  std::vector<std::string> const sizes;
+  std::string tactics;
+  float const power;
+  float const fireRateModifier;
+  float const evasionModifier;
+  float const sublightSpeedModifier;
+  float const explosiveWeaponsDamageModifier;
+  float const trackingBonus;
+  float const chanceToHitBonus;
+  float const weaponsRangeModifier;
+  float const engagementRangeModifier;
+  Cost const cost;
+
+ private:
+  Computer(std::string const &name, std::vector<std::string> const &sizes,
+           std::string const &tactics, float power, float fireRateModifier,
+           float evasionModifier, float sublightSpeedModifier,
+           float explosiveWeaponsDamageModifier, float trackingBonus,
+           float chanceToHitBonus, float weaponsRangeModifier,
+           float engagementRangeModifier, Cost const &cost) noexcept;
+};
+}  // namespace athena2::model::component
 
 #endif  // ATHENA2_MODEL_COMPONENT_COMPUTER_H_

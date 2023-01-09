@@ -31,7 +31,7 @@ TEST_CASE("Sublight parsing", "[model][component][sublight]") {
   "name": "Chemical Thrusters",
   "sizes": ["KK", "FF", "MK"],
   "power": -10,
-  "speedModifier": 1,
+  "speedModifier": 0,
   "evasionBonus": 0,
   "cost": {
     "alloys": 3
@@ -41,7 +41,7 @@ TEST_CASE("Sublight parsing", "[model][component][sublight]") {
   REQUIRE(sublight.name == "Chemical Thrusters");
   REQUIRE(sublight.sizes == vector<string>{"KK", "FF", "MK"});
   REQUIRE(sublight.power == -10.f);
-  REQUIRE(sublight.speedModifier == 1.f);
+  REQUIRE(sublight.speedModifier == 0.f);
   REQUIRE(sublight.evasionBonus == 0.f);
   REQUIRE(sublight.cost == 6.f);
 }

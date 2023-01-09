@@ -2,7 +2,7 @@
   "name": "Plasma Thrusters",
   "sizes": ["TT"],
   "power": -320,
-  "speedModifier": 1.5,
+  "speedModifier": 0.5,
   "evasionBonus": 0.02,
   "cost": {
     "alloys": 144

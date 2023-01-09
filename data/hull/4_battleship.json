@@ -6,5 +6,5 @@
   "hullHealth": 3000,
   "evasion": 0.05,
   "speed": 100,
-  "disengageChanceModifier": 1.25
+  "disengageChanceModifier": 0.25
 }

@@ -7,7 +7,7 @@
   "hullArmour": 34,
   "evasion": 0.1,
   "speed": 140,
-  "disengageChanceModifier": 1,
+  "disengageChanceModifier": 0,
   "cost": {
     "minerals": 900
   }

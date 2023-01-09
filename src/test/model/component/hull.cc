@@ -35,7 +35,7 @@ TEST_CASE("Hull parsing", "[model][component][hull]") {
   "hullHealth": 200,
   "evasion": 0.6,
   "speed": 160,
-  "disengageChanceModifier": 1
+  "disengageChanceModifier": 0
 }
 )"_json,
                                  ctx);
@@ -44,13 +44,13 @@ TEST_CASE("Hull parsing", "[model][component][hull]") {
   REQUIRE(corvette.coreSize == "KK");
   REQUIRE(corvette.sectionSizes == vector<string>{"KC"});
   REQUIRE(corvette.hullHealth == 200.f);
-  REQUIRE(corvette.hullHealthModifier == 1.f);
+  REQUIRE(corvette.hullHealthModifier == 0.f);
   REQUIRE(corvette.armourHealth == 0.f);
   REQUIRE(corvette.evasion == 0.6f);
-  REQUIRE(corvette.evasionModifier == 1.f);
-  REQUIRE(corvette.trackingModifier == 1.f);
+  REQUIRE(corvette.evasionModifier == 0.f);
+  REQUIRE(corvette.trackingModifier == 0.f);
   REQUIRE(corvette.speed == 160.f);
-  REQUIRE(corvette.disengageChanceModifier == 1.f);
+  REQUIRE(corvette.disengageChanceModifier == 0.f);
   REQUIRE(corvette.includeComponentCost == false);
   REQUIRE(corvette.cost == 0.f);
 }
@@ -63,13 +63,13 @@ TEST_CASE("Hull parsing with all fields", "[model][component][hull]") {
   "coreSize": "KK",
   "sectionSizes": ["KC"],
   "hullHealth": 200,
-  "hullHealthModifier": 1,
+  "hullHealthModifier": 0,
   "armourHealth": 0,
   "evasion": 0.6,
-  "evasionModifier": 1,
-  "trackingModifier": 1,
+  "evasionModifier": 0,
+  "trackingModifier": 0,
   "speed": 160,
-  "disengageChanceModifier": 1,
+  "disengageChanceModifier": 0,
   "includeComponentCost": false,
   "cost": {}
 }
@@ -80,13 +80,13 @@ TEST_CASE("Hull parsing with all fields", "[model][component][hull]") {
   REQUIRE(corvette.coreSize == "KK");
   REQUIRE(corvette.sectionSizes == vector<string>{"KC"});
   REQUIRE(corvette.hullHealth == 200.f);
-  REQUIRE(corvette.hullHealthModifier == 1.f);
+  REQUIRE(corvette.hullHealthModifier == 0.f);
   REQUIRE(corvette.armourHealth == 0.f);
   REQUIRE(corvette.evasion == 0.6f);
-  REQUIRE(corvette.evasionModifier == 1.f);
-  REQUIRE(corvette.trackingModifier == 1.f);
+  REQUIRE(corvette.evasionModifier == 0.f);
+  REQUIRE(corvette.trackingModifier == 0.f);
   REQUIRE(corvette.speed == 160.f);
-  REQUIRE(corvette.disengageChanceModifier == 1.f);
+  REQUIRE(corvette.disengageChanceModifier == 0.f);
   REQUIRE(corvette.includeComponentCost == false);
   REQUIRE(corvette.cost == 0.f);
 }

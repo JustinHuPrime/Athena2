@@ -6,9 +6,9 @@
   "hullHealth": 200,
   "hullArmour": 3,
   "evasion": 0.6,
-  "evasionModifier": 1.15,
+  "evasionModifier": 0.15,
   "speed": 160,
-  "disengageChanceModifier": 1.5,
+  "disengageChanceModifier": 0.5,
   "cost": {
     "minerals": 300
   }
