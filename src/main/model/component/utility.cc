@@ -36,7 +36,7 @@ Utility Utility::fromJson(json const &data, EvalContext &ctx) {
     auto _ = ctx.push("size");
     if (size.size() != 1) ctx.error("expected size to be a single character");
   }
-  float power = checkFloat(data, "power", ctx);
+  optional<float> power = checkMaybeFloat(data, "power", ctx);
   optional<float> shieldHealth = checkMaybeFloat(data, "shieldHealth", ctx);
   optional<float> shieldRegen = checkMaybeFloat(data, "shieldRegen", ctx);
   optional<float> armourHealth = checkMaybeFloat(data, "armourHealth", ctx);
@@ -51,7 +51,7 @@ Utility Utility::fromJson(json const &data, EvalContext &ctx) {
                "armourHealth", "hullHealth"},
               ctx);
 
-  return Utility(name, size, power, shieldHealth.value_or(0.f),
+  return Utility(name, size, power.value_or(0.f), shieldHealth.value_or(0.f),
                  shieldRegen.value_or(0.f), armourHealth.value_or(0.f),
                  hullHealth.value_or(0.f), cost);
 }
