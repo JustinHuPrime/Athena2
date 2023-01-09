@@ -1,7 +1,6 @@
 {
   "name": "Nanobot Cloud",
   "size": "TT",
-  "range": 80,
   "allyHullRegenModifier": 0.05,
   "allyArmourRegenModifier": 0.15
 }

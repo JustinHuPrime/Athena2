@@ -32,6 +32,14 @@ class Utility final : public Component {
  public:
   static Utility fromJson(nlohmann::json const &, EvalContext &);
 
+  Utility(Utility const &) noexcept = delete;
+  Utility(Utility &&) noexcept = default;
+
+  ~Utility() noexcept override = default;
+
+  Utility &operator=(Utility const &) noexcept = delete;
+  Utility &operator=(Utility &&) noexcept = default;
+
   std::string const size;
   float const power;
   float const shieldHealth;

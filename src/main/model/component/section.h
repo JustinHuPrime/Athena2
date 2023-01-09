@@ -32,6 +32,14 @@ class Section final : public Component {
  public:
   static Section fromJson(nlohmann::json const &, EvalContext &);
 
+  Section(Section const &) noexcept = delete;
+  Section(Section &&) noexcept = default;
+
+  ~Section() noexcept override = default;
+
+  Section &operator=(Section const &) noexcept = delete;
+  Section &operator=(Section &&) noexcept = default;
+
   std::string const size;
   std::string const weaponSlots;
   std::string const utilitySlots;

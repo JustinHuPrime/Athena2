@@ -32,7 +32,6 @@ Aura Aura::fromJson(json const &data, EvalContext &ctx) {
   checkObject(data, ctx);
   string name = checkString(data, "name", ctx);
   string size = checkString(data, "size", ctx);
-  float range = checkFloat(data, "range", ctx);
   optional<float> enemyFireRateModifier =
       checkMaybeFloat(data, "enemyFireRateModifier", ctx);
   optional<float> enemyShieldHealthModifier =
@@ -59,7 +58,7 @@ Aura Aura::fromJson(json const &data, EvalContext &ctx) {
       checkMaybeFloat(data, "allyWeaponsRangeModifier", ctx);
 
   return Aura(
-      name, size, range, enemyFireRateModifier.value_or(0.f),
+      name, size, enemyFireRateModifier.value_or(0.f),
       enemyShieldHealthModifier.value_or(0.f),
       enemyDisengageChanceModifier.value_or(0.f),
       allyFireRateModifier.value_or(0.f), allyHullRegenModifier.value_or(0.f),
@@ -70,18 +69,17 @@ Aura Aura::fromJson(json const &data, EvalContext &ctx) {
       allyStrikeCraftSpeedModifier.value_or(0.f),
       allyWeaponsRangeModifier.value_or(0.f));
 }
-Aura::Aura(string const &name, string const &size, float range,
-           float enemyFireRateModifier, float enemyShieldHealthModifier,
-           float enemyDisengageChanceModifier, float allyFireRateModifier,
-           float allyHullRegenModifier, float allyArmourRegenModifier,
-           float allyTrackingBonus, float enemyPointDefenceDamageModifier,
+Aura::Aura(string const &name, string const &size, float enemyFireRateModifier,
+           float enemyShieldHealthModifier, float enemyDisengageChanceModifier,
+           float allyFireRateModifier, float allyHullRegenModifier,
+           float allyArmourRegenModifier, float allyTrackingBonus,
+           float enemyPointDefenceDamageModifier,
            float enemyPointDefenceFireRateModifier,
            float allyStrikeCraftDamageModifier,
            float allyStrikeCraftSpeedModifier,
            float allyWeaponsRangeModifier) noexcept
     : Component(name),
       size(size),
-      range(range),
       enemyFireRateModifier(enemyFireRateModifier),
       enemyShieldHealthModifier(enemyShieldHealthModifier),
       enemyDisengageChanceModifier(enemyDisengageChanceModifier),

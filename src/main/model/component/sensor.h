@@ -32,6 +32,14 @@ class Sensor final : public Component {
  public:
   static Sensor fromJson(nlohmann::json const &, EvalContext &);
 
+  Sensor(Sensor const &) noexcept = delete;
+  Sensor(Sensor &&) noexcept = default;
+
+  ~Sensor() noexcept override = default;
+
+  Sensor &operator=(Sensor const &) noexcept = delete;
+  Sensor &operator=(Sensor &&) noexcept = default;
+
   float const power;
   float const trackingBonus;
   Cost const cost;

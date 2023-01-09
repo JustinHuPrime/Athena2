@@ -33,6 +33,14 @@ class Sublight final : public Component {
  public:
   static Sublight fromJson(nlohmann::json const &, EvalContext &);
 
+  Sublight(Sublight const &) noexcept = delete;
+  Sublight(Sublight &&) noexcept = default;
+
+  ~Sublight() noexcept override = default;
+
+  Sublight &operator=(Sublight const &) noexcept = delete;
+  Sublight &operator=(Sublight &&) noexcept = default;
+
   std::vector<std::string> const sizes;
   float const power;
   float const speedModifier;

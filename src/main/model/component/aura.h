@@ -32,8 +32,15 @@ class Aura final : public Component {
  public:
   static Aura fromJson(nlohmann::json const &, EvalContext &);
 
+  Aura(Aura const &) noexcept = delete;
+  Aura(Aura &&) noexcept = default;
+
+  ~Aura() noexcept override = default;
+
+  Aura &operator=(Aura const &) noexcept = delete;
+  Aura &operator=(Aura &&) noexcept = default;
+
   std::string const size;
-  float const range;
   float const enemyFireRateModifier;
   float const enemyShieldHealthModifier;
   float const enemyDisengageChanceModifier;
@@ -48,7 +55,7 @@ class Aura final : public Component {
   float const allyWeaponsRangeModifier;
 
  private:
-  Aura(std::string const &name, std::string const &size, float range,
+  Aura(std::string const &name, std::string const &size,
        float enemyFireRateModifier, float enemyShieldHealthModifier,
        float enemyDisengageChanceModifier, float allyFireRateModifier,
        float allyHullRegenModifier, float allyArmourRegenModifier,

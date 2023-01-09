@@ -25,6 +25,14 @@
 namespace athena2::model::component {
 class Component {
  public:
+  Component(Component const &) noexcept = delete;
+  Component(Component &&) noexcept = default;
+
+  virtual ~Component() noexcept = default;
+
+  Component &operator=(Component const &) noexcept = delete;
+  Component &operator=(Component &&) noexcept = default;
+
   operator std::string() const noexcept;
 
   std::string const name;

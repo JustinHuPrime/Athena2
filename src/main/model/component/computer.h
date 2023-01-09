@@ -33,6 +33,14 @@ class Computer final : public Component {
  public:
   static Computer fromJson(nlohmann::json const &, EvalContext &);
 
+  Computer(Computer const &) noexcept = delete;
+  Computer(Computer &&) noexcept = default;
+
+  ~Computer() noexcept override = default;
+
+  Computer &operator=(Computer const &) noexcept = delete;
+  Computer &operator=(Computer &&) noexcept = default;
+
   std::vector<std::string> const sizes;
   std::string tactics;
   float const power;

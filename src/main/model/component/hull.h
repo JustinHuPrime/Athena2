@@ -34,6 +34,14 @@ class Hull final : public Component {
  public:
   static Hull fromJson(nlohmann::json const &, EvalContext &);
 
+  Hull(Hull const &) noexcept = delete;
+  Hull(Hull &&) noexcept = default;
+
+  ~Hull() noexcept override = default;
+
+  Hull &operator=(Hull const &) noexcept = delete;
+  Hull &operator=(Hull &&) noexcept = default;
+
   float const size;
   std::string const coreSize;
   std::vector<std::string> const sectionSizes;

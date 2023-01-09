@@ -32,17 +32,18 @@
 #include "model/component/sensor.h"
 #include "model/component/sublight.h"
 #include "model/component/utility.h"
+#include "model/component/weapon.h"
 
 namespace athena2::model::component {
-class ComponentSet {
+class ComponentSet final {
  public:
   ComponentSet() noexcept = default;
-  ComponentSet(ComponentSet const &) = default;
+  ComponentSet(ComponentSet const &) = delete;
   ComponentSet(ComponentSet &&) = default;
 
   ~ComponentSet() noexcept = default;
 
-  ComponentSet &operator=(ComponentSet const &) = default;
+  ComponentSet &operator=(ComponentSet const &) = delete;
   ComponentSet &operator=(ComponentSet &&) = default;
 
   std::vector<Hull> hulls;
@@ -55,6 +56,7 @@ class ComponentSet {
   std::vector<Aura> auras;
   std::vector<Utility> utilities;
   std::vector<Auxiliary> auxiliaries;
+  std::vector<Weapon> weapons;
 
  private:
 };

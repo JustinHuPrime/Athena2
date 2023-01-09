@@ -32,6 +32,14 @@ class Auxiliary final : public Component {
  public:
   static Auxiliary fromJson(nlohmann::json const &, EvalContext &);
 
+  Auxiliary(Auxiliary const &) noexcept = delete;
+  Auxiliary(Auxiliary &&) noexcept = default;
+
+  ~Auxiliary() noexcept override = default;
+
+  Auxiliary &operator=(Auxiliary const &) noexcept = delete;
+  Auxiliary &operator=(Auxiliary &&) noexcept = default;
+
   std::string const size;
   float const power;
   float const sublightSpeedModifier;

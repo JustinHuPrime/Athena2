@@ -36,7 +36,6 @@ TEST_CASE("Aura parsing", "[model][component][aura]") {
                              ctx);
   REQUIRE(aura.name == "Quantum Destabilizer");
   REQUIRE(aura.size == "TT");
-  REQUIRE(aura.range == 80.f);
   REQUIRE(aura.enemyFireRateModifier == -0.1f);
   REQUIRE(aura.enemyShieldHealthModifier == 0.f);
   REQUIRE(aura.enemyDisengageChanceModifier == 0.f);

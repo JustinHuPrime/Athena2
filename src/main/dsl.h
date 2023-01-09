@@ -31,10 +31,12 @@ class EvalContext final {
   class ScopeGuard final {
    public:
     explicit ScopeGuard(std::function<void()> const &f) noexcept;
+    ScopeGuard(ScopeGuard const &) noexcept = delete;
     ScopeGuard(ScopeGuard &&) noexcept = default;
 
     ~ScopeGuard() noexcept;
 
+    ScopeGuard &operator=(ScopeGuard const &) noexcept = delete;
     ScopeGuard &operator=(ScopeGuard &&) noexcept = default;
 
     void reset() noexcept;

@@ -32,6 +32,14 @@ class FTL final : public Component {
  public:
   static FTL fromJson(nlohmann::json const &, EvalContext &);
 
+  FTL(FTL const &) noexcept = delete;
+  FTL(FTL &&) noexcept = default;
+
+  ~FTL() noexcept override = default;
+
+  FTL &operator=(FTL const &) noexcept = delete;
+  FTL &operator=(FTL &&) noexcept = default;
+
   float const power;
   float const disengageChances;
   Cost const cost;

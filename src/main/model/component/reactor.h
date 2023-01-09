@@ -33,6 +33,14 @@ class Reactor final : public Component {
  public:
   static Reactor fromJson(nlohmann::json const &, EvalContext &);
 
+  Reactor(Reactor const &) noexcept = delete;
+  Reactor(Reactor &&) noexcept = default;
+
+  ~Reactor() noexcept override = default;
+
+  Reactor &operator=(Reactor const &) noexcept = delete;
+  Reactor &operator=(Reactor &&) noexcept = default;
+
   std::vector<std::string> const sizes;
   float const power;
   Cost const cost;
