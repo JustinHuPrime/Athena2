@@ -1,0 +1,7 @@
+{
+  "name": "Basic Combat Computer",
+  "sizes": ["FF"],
+  "tactics": "torpedo",
+  "power": -5,
+  "cost": {}
+}

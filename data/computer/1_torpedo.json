@@ -1,0 +1,10 @@
+{
+  "name": "Combat Computer (Torpedo)",
+  "sizes": ["FF", "CC", "MD"],
+  "tactics": "torpedo",
+  "power": -10,
+  "explosiveWeaponDamageModifier": 0.05,
+  "cost": {
+    "alloys": 5
+  }
+}

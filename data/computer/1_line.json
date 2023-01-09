@@ -1,0 +1,11 @@
+{
+  "name": "Combat Computer (Line)",
+  "sizes": ["DD", "CC", "BB", "MD", "MC", "SE"],
+  "tactics": "line",
+  "power": -10,
+  "fireRateModifier": 0.05,
+  "chanceToHitBonus": 0.05,
+  "cost": {
+    "alloys": 5
+  }
+}

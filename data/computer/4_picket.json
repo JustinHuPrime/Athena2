@@ -1,0 +1,12 @@
+{
+  "name": "Sapient Combat Computer (Picket)",
+  "sizes": ["KK", "DD", "CC", "MK", "MD", "MC"],
+  "tactics": "picket",
+  "power": -25,
+  "fireRateModifier": 0.15,
+  "evasionModifier": 0.1,
+  "trackingBonus": 0.3,
+  "cost": {
+    "alloys": 20
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Precognitive Interface (Swarm)",
+  "sizes": ["KK", "MK"],
+  "tactics": "swarm",
+  "power": -25,
+  "fireRateModifier": 0.15,
+  "evasionModifier": 0.15,
+  "sublightSpeedModifier": 0.2,
+  "cost": {
+    "alloys": 20
+  }
+}

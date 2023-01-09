@@ -1,0 +1,11 @@
+{
+  "name": "Advanced Combat Computer (Picket)",
+  "sizes": ["KK", "DD", "CC", "MK", "MD", "MC"],
+  "tactics": "picket",
+  "power": -15,
+  "fireRateModifier": 0.1,
+  "trackingBonus": 0.2,
+  "cost": {
+    "alloys": 10
+  }
+}

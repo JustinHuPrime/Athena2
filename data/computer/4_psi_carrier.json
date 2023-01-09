@@ -1,0 +1,11 @@
+{
+  "name": "Precognitive Interface (Carrier)",
+  "sizes": ["CC", "BB", "TT", "SE", "JU"],
+  "tactics": "carrier",
+  "power": -25,
+  "engagementRangeModifier": 0.75,
+  "trackingBonus": 0.1,
+  "cost": {
+    "alloys": 20
+  }
+}

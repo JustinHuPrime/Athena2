@@ -24,6 +24,7 @@
 #include <numeric>
 
 #include "model/component/componentSet.h"
+#include "model/component/computer.h"
 #include "model/component/ftl.h"
 #include "model/component/hull.h"
 #include "model/component/reactor.h"
@@ -165,6 +166,15 @@ int eval(istream &in, EvalContext &ctx) noexcept {
                  if (!file) ctx.error("could not open file");
                  components.sensors.push_back(
                      Sensor::fromJson(parse(file, ctx), ctx));
+               });
+      vector<string> computers = checkStringArray(load, "computers", ctx);
+      for_each(computers.begin(), computers.end(),
+               [&ctx, &components](string const &filename) {
+                 auto _ = ctx.push(filename);
+                 ifstream file(filename);
+                 if (!file) ctx.error("could not open file");
+                 components.computers.push_back(
+                     Computer::fromJson(parse(file, ctx), ctx));
                });
     }
     loadHeader.finish();

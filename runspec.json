@@ -18,6 +18,9 @@
     ],
     "sensors": [
       "data/sensor/0_radar_system.json"
+    ],
+    "computers": [
+      "data/computer/0_swarm.json"
     ]
   }
 }

@@ -1,0 +1,10 @@
+{
+  "name": "Combat Computer (Carrier)",
+  "sizes": ["CC", "BB", "TT", "SE", "JU"],
+  "tactics": "carrier",
+  "power": -10,
+  "engagementRangeModifier": 0.25,
+  "cost": {
+    "alloys": 5
+  }
+}

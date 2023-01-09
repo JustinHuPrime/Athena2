@@ -1,0 +1,10 @@
+{
+  "name": "Sapient Combat Computer (Torpedo)",
+  "sizes": ["FF", "CC", "MD"],
+  "tactics": "torpedo",
+  "power": -25,
+  "explosiveWeaponDamageModifier": 0.15,
+  "cost": {
+    "alloys": 20
+  }
+}

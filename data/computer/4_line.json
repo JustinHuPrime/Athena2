@@ -1,0 +1,11 @@
+{
+  "name": "Sapient Combat Computer (Line)",
+  "sizes": ["DD", "CC", "BB", "MD", "MC", "SE"],
+  "tactics": "line",
+  "power": -25,
+  "fireRateModifier": 0.2,
+  "chanceToHitBonus": 0.2,
+  "cost": {
+    "alloys": 20
+  }
+}

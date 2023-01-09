@@ -1,0 +1,11 @@
+{
+  "name": "Sapient Combat Computer (Swarm)",
+  "sizes": ["KK", "MK"],
+  "tactics": "swarm",
+  "power": -25,
+  "fireRateModifier": 0.15,
+  "evasionModifier": 0.25,
+  "cost": {
+    "alloys": 20
+  }
+}

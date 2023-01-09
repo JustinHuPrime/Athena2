@@ -1,0 +1,10 @@
+{
+  "name": "Advanced Combat Computer (Carrier)",
+  "sizes": ["CC", "BB", "TT", "SE", "JU"],
+  "tactics": "carrier",
+  "power": -15,
+  "engagementRangeModifier": 0.5,
+  "cost": {
+    "alloys": 10
+  }
+}

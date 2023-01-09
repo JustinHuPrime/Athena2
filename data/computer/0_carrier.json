@@ -1,0 +1,7 @@
+{
+  "name": "Basic Combat Computer",
+  "sizes": ["JU"],
+  "tactics": "carrier",
+  "power": -5,
+  "cost": {}
+}

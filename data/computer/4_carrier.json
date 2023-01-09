@@ -1,0 +1,10 @@
+{
+  "name": "Sapient Combat Computer (Carrier)",
+  "sizes": ["CC", "BB", "TT", "SE", "JU"],
+  "tactics": "carrier",
+  "power": -25,
+  "engagementRangeModifier": 1,
+  "cost": {
+    "alloys": 20
+  }
+}

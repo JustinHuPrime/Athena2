@@ -1,0 +1,12 @@
+{
+  "name": "Precognitive Interface (Line)",
+  "sizes": ["DD", "CC", "BB", "MD", "MC", "SE"],
+  "tactics": "line",
+  "power": -25,
+  "fireRateModifier": 0.15,
+  "chanceToHitBonus": 0.15,
+  "trackingBonus": 0.1,
+  "cost": {
+    "alloys": 20
+  }
+}

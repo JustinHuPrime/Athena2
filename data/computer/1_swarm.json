@@ -1,0 +1,11 @@
+{
+  "name": "Combat Computer (Swarm)",
+  "sizes": ["KK", "MK"],
+  "tactics": "swarm",
+  "power": -10,
+  "fireRateModifier": 0.05,
+  "evasionModifier": 0.05,
+  "cost": {
+    "alloys": 5
+  }
+}

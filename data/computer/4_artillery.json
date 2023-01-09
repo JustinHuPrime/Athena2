@@ -1,0 +1,11 @@
+{
+  "name": "Sapient Combat Computer (Artillery)",
+  "sizes": ["FF", "DD", "CC", "BB", "TT", "MD", "MC", "SE", "JU"],
+  "tactics": "artillery",
+  "power": -25,
+  "fireRateModifier": 0.2,
+  "weaponsRangeModifier": 0.2,
+  "cost": {
+    "alloys": 20
+  }
+}

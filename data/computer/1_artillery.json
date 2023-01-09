@@ -1,0 +1,11 @@
+{
+  "name": "Combat Computer (Artillery)",
+  "sizes": ["FF", "DD", "CC", "BB", "TT", "MD", "MC", "SE", "JU"],
+  "tactics": "artillery",
+  "power": -10,
+  "fireRateModifier": 0.05,
+  "weaponsRangeModifier": 0.05,
+  "cost": {
+    "alloys": 5
+  }
+}
