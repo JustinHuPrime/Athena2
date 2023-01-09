@@ -1,0 +1,9 @@
+{
+  "name": "Shield Capacitor",
+  "power": -20,
+  "shieldHealthModifier": 0.2,
+  "cost": {
+    "alloys": 10,
+    "strategic resources": 1
+  }
+}

@@ -48,10 +48,11 @@ class Cost final {
   float const strategicResources;
   float const zro;
   float const nanites;
+  float const livingMetal;
 
  private:
   Cost(float alloys, float minerals, float darkMatter, float strategicResources,
-       float zro, float nanites) noexcept;
+       float zro, float nanites, float livingMetal) noexcept;
 };
 }  // namespace athena2::model
 

@@ -1,0 +1,9 @@
+{
+  "name": "Mark of the Whisperers",
+  "power": -20,
+  "evasionModifier": 0.15,
+  "cost": {
+    "alloys": 20,
+    "zro": 2
+  }
+}

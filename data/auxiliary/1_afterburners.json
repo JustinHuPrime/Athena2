@@ -1,0 +1,9 @@
+{
+  "name": "Afterburners",
+  "power": -10,
+  "sublightSpeedModifier": 0.1,
+  "evasionModifier": 0.05,
+  "cost": {
+    "alloys": 4
+  }
+}

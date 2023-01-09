@@ -1,0 +1,10 @@
+{
+  "name": "Nanite Repair System",
+  "power": -15,
+  "hullRegenModifier": 0.15,
+  "armourRegenModifier": 0.2,
+  "cost": {
+    "alloys": 10,
+    "nanites": 1
+  }
+}

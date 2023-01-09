@@ -1,0 +1,9 @@
+{
+  "name": "Reactive Armour",
+  "power": -15,
+  "armourHardeningBonus": 0.15,
+  "cost": {
+    "alloys": 10,
+    "strategic resources": 1
+  }
+}

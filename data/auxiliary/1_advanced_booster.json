@@ -1,0 +1,7 @@
+{
+  "name": "Improved Reactor Booster",
+  "power": 100,
+  "cost": {
+    "alloys": 15
+  }
+}

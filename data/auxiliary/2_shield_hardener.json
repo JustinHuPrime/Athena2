@@ -1,0 +1,9 @@
+{
+  "name": "Shield Hardener",
+  "power": -15,
+  "shieldHardeningBonus": 0.15,
+  "cost": {
+    "alloys": 10,
+    "strategic resources": 1
+  }
+}

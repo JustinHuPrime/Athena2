@@ -38,26 +38,31 @@ Cost Cost::fromJson(json const &data, EvalContext &ctx) {
       checkMaybeFloat(data, "strategic resources", ctx);
   optional<float> zro = checkMaybeFloat(data, "zro", ctx);
   optional<float> nanites = checkMaybeFloat(data, "nanites", ctx);
+  optional<float> livingMetal = checkMaybeFloat(data, "living metal", ctx);
 
   return Cost(alloys.value_or(0.f), minerals.value_or(0.f),
               darkMatter.value_or(0.f), strategicResources.value_or(0.f),
-              zro.value_or(0.f), nanites.value_or(0.f));
+              zro.value_or(0.f), nanites.value_or(0.f),
+              livingMetal.value_or(0.f));
 }
 
 Cost::Cost(float alloys_, float minerals_, float darkMatter_,
-           float strategicResources_, float zro_, float nanites_) noexcept
+           float strategicResources_, float zro_, float nanites_,
+           float livingMetal_) noexcept
     : alloys(alloys_),
       minerals(minerals_),
       darkMatter(darkMatter_),
       strategicResources(strategicResources_),
       zro(zro_),
-      nanites(nanites_) {}
-Cost::Cost() noexcept : Cost(0.f, 0.f, 0.f, 0.f, 0.f, 0.f) {}
+      nanites(nanites_),
+      livingMetal(livingMetal_) {}
+Cost::Cost() noexcept : Cost(0.f, 0.f, 0.f, 0.f, 0.f, 0.f, 0.f) {}
 Cost::operator string() const noexcept {
   return to_string(operator float()) + " mineral-equivalents";
 }
 Cost::operator float() const noexcept {
   return alloys * 2.0f + minerals * 1.0f + darkMatter * 20.0f +
-         strategicResources * 5.0f + zro * 20.0f + nanites * 40.0f;
+         strategicResources * 5.0f + zro * 20.0f + nanites * 40.0f +
+         livingMetal * 20.0f;
 }
 }  // namespace athena2::model

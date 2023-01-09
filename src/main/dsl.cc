@@ -24,6 +24,7 @@
 #include <numeric>
 
 #include "model/component/aura.h"
+#include "model/component/auxiliary.h"
 #include "model/component/componentSet.h"
 #include "model/component/computer.h"
 #include "model/component/ftl.h"
@@ -195,6 +196,15 @@ int eval(istream &in, EvalContext &ctx) noexcept {
                  if (!file) ctx.error("could not open file");
                  components.utilities.push_back(
                      Utility::fromJson(parse(file, ctx), ctx));
+               });
+      vector<string> auxiliaries = checkStringArray(load, "auxiliaries", ctx);
+      for_each(auxiliaries.begin(), auxiliaries.end(),
+               [&ctx, &components](string const &filename) {
+                 auto _ = ctx.push(filename);
+                 ifstream file(filename);
+                 if (!file) ctx.error("could not open file");
+                 components.auxiliaries.push_back(
+                     Auxiliary::fromJson(parse(file, ctx), ctx));
                });
     }
     loadHeader.finish();

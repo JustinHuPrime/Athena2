@@ -1,0 +1,9 @@
+{
+  "name": "Regenerative Hull Tissue",
+  "power": -10,
+  "hullRegenModifier": 0.05,
+  "armourRegenModifier": 0.1,
+  "cost": {
+    "alloys": 20
+  }
+}

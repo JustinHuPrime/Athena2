@@ -23,6 +23,7 @@
 #include <vector>
 
 #include "model/component/aura.h"
+#include "model/component/auxiliary.h"
 #include "model/component/computer.h"
 #include "model/component/ftl.h"
 #include "model/component/hull.h"
@@ -53,6 +54,7 @@ class ComponentSet {
   std::vector<Computer> computers;
   std::vector<Aura> auras;
   std::vector<Utility> utilities;
+  std::vector<Auxiliary> auxiliaries;
 
  private:
 };

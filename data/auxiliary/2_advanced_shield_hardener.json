@@ -1,0 +1,9 @@
+{
+  "name": "Advanced Shield Hardener",
+  "power": -25,
+  "shieldHardeningBonus": 0.25,
+  "cost": {
+    "alloys": 30,
+    "zro": 1
+  }
+}

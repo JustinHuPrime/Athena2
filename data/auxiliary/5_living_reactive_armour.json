@@ -1,0 +1,9 @@
+{
+  "name": "Living Reactive Armour",
+  "power": -25,
+  "armourHardeningBonus": 0.25,
+  "cost": {
+    "alloys": 30,
+    "living metal": 1
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "Enigmatic Decoder",
+  "power": -20,
+  "trackingBonus": 0.05,
+  "chanceToHitBonus": 0.05,
+  "cost": {
+    "alloys": 20
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Auxiliary Fire Control",
+  "power": -10,
+  "chanceToHitBonus": 0.05,
+  "cost": {
+    "alloys": 10
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Enigmatic Encoder",
+  "power": -20,
+  "disengageChancesBonus": 1,
+  "cost": {
+    "alloys": 20
+  }
+}

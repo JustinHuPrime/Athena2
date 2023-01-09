@@ -1,0 +1,10 @@
+{
+  "name": "Mark of the Composer",
+  "power": -20,
+  "hullRegenModifier": 0.1,
+  "armourRegenModifier": 0.15,
+  "cost": {
+    "alloys": 20,
+    "zro": 2
+  }
+}

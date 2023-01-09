@@ -30,6 +30,9 @@
       "data/utility/0_large_deflectors.json",
       "data/utility/0_small_deflectors.json",
       "data/utility/0_medium_deflectors.json"
+    ],
+    "auxiliaries": [
+      "data/auxiliary/0_reactor_booster.json"
     ]
   }
 }

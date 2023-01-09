@@ -1,0 +1,9 @@
+{
+  "name": "Mark of the Instrument",
+  "power": -20,
+  "sublightSpeedModifier": 0.25,
+  "cost": {
+    "alloys": 20,
+    "zro": 2
+  }
+}

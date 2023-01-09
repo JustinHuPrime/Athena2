@@ -20,6 +20,41 @@
 #ifndef ATHENA2_MODEL_COMPONENT_AUXILIARY_H_
 #define ATHENA2_MODEL_COMPONENT_AUXILIARY_H_
 
-namespace athena2::model::component {}
+#include <string>
+
+#include "dsl.h"
+#include "model/component/component.h"
+#include "model/economy.h"
+#include "nlohmann/json.hpp"
+
+namespace athena2::model::component {
+class Auxiliary final : public Component {
+ public:
+  static Auxiliary fromJson(nlohmann::json const &, EvalContext &);
+
+  std::string const size;
+  float const power;
+  float const sublightSpeedModifier;
+  float const evasionModifier;
+  float const armourHardeningBonus;
+  float const hullRegenModifier;
+  float const armourRegenModifier;
+  float const shieldHealthModifier;
+  float const shieldHardeningBonus;
+  float const chanceToHitBonus;
+  float const trackingBonus;
+  float const disengageChancesBonus;
+  Cost const cost;
+
+ private:
+  Auxiliary(std::string const &name, std::string const &size, float power,
+            float sublightSpeedModifier, float evasionModifier,
+            float armourHardeningBonus, float hullRegenModifier,
+            float armourRegenModifier, float shieldHealthModifier,
+            float shieldHardeningBonus, float chanceToHitBonus,
+            float trackingBonus, float disengageChancesBonus,
+            Cost const &cost) noexcept;
+};
+}  // namespace athena2::model::component
 
 #endif  // ATHENA2_MODEL_COMPONENT_AUXILIARY_H_
