@@ -76,7 +76,7 @@ Hull::Hull(string const &name_, float size_, string const &coreSize_,
            float evasionModifier_, float trackingModifier_, float speed_,
            float disengageChanceModifier_, bool includeComponentCost_,
            Cost const &cost_) noexcept
-    : Component(name_),
+    : Named(name_),
       size(size_),
       coreSize(coreSize_),
       sectionSizes(sectionSizes_),

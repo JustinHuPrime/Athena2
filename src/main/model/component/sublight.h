@@ -24,12 +24,12 @@
 #include <vector>
 
 #include "dsl.h"
-#include "model/component/component.h"
 #include "model/economy.h"
 #include "nlohmann/json.hpp"
+#include "util/named.h"
 
 namespace athena2::model::component {
-class Sublight final : public Component {
+class Sublight final : public util::Named {
  public:
   static Sublight fromJson(nlohmann::json const &, EvalContext &);
 

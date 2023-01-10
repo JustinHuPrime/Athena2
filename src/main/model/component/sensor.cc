@@ -42,8 +42,5 @@ Sensor Sensor::fromJson(json const &data, EvalContext &ctx) {
 }
 Sensor::Sensor(string const &name_, float power_, float trackingBonus_,
                Cost const &cost_) noexcept
-    : Component(name_),
-      power(power_),
-      trackingBonus(trackingBonus_),
-      cost(cost_) {}
+    : Named(name_), power(power_), trackingBonus(trackingBonus_), cost(cost_) {}
 }  // namespace athena2::model::component

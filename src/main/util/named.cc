@@ -17,13 +17,11 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "model/component/component.h"
-
-#include <utility>
+#include "util/named.h"
 
 using namespace std;
 
-namespace athena2::model::component {
-Component::Component(string const &name_) noexcept : name(name_) {}
-Component::operator string() const noexcept { return name; }
-}  // namespace athena2::model::component
+namespace athena2::util {
+Named::Named(string const &name_) noexcept : name(name_) {}
+Named::operator string() const noexcept { return name; }
+}  // namespace athena2::util

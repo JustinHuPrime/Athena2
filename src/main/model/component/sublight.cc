@@ -47,7 +47,7 @@ Sublight Sublight::fromJson(json const &data, EvalContext &ctx) {
 Sublight::Sublight(string const &name_, vector<string> const &sizes_,
                    float power_, float speedModifier_, float evasionBonus_,
                    Cost const &cost_) noexcept
-    : Component(name_),
+    : Named(name_),
       sizes(sizes_),
       power(power_),
       speedModifier(speedModifier_),

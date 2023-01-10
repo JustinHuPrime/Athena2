@@ -50,7 +50,7 @@ Section Section::fromJson(json const &data, EvalContext &ctx) {
 Section::Section(string const &name_, string const &size_,
                  string const &weaponSlots_, string const &utilitySlots_,
                  Cost const &cost_) noexcept
-    : Component(name_),
+    : Named(name_),
       size(size_),
       weaponSlots(weaponSlots_),
       utilitySlots(utilitySlots_),

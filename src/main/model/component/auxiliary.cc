@@ -79,7 +79,7 @@ Auxiliary::Auxiliary(string const &name_, string const &size_, float power_,
                      float shieldHardeningBonus_, float chanceToHitBonus_,
                      float trackingBonus_, float disengageChancesBonus_,
                      Cost const &cost_) noexcept
-    : Component(name_),
+    : Named(name_),
       size(size_),
       power(power_),
       sublightSpeedModifier(sublightSpeedModifier_),

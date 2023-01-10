@@ -17,29 +17,29 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef ATHENA2_MODEL_COMPONENT_COMPONENT_H_
-#define ATHENA2_MODEL_COMPONENT_COMPONENT_H_
+#ifndef ATHENA2_UTIL_NAMED_H_
+#define ATHENA2_UTIL_NAMED_H_
 
 #include <string>
 
-namespace athena2::model::component {
-class Component {
+namespace athena2::util {
+class Named {
  public:
-  Component(Component const &) noexcept = delete;
-  Component(Component &&) noexcept = default;
+  Named(Named const &) noexcept = default;
+  Named(Named &&) noexcept = default;
 
-  virtual ~Component() noexcept = default;
+  virtual ~Named() noexcept = default;
 
-  Component &operator=(Component const &) noexcept = delete;
-  Component &operator=(Component &&) noexcept = default;
+  Named &operator=(Named const &) noexcept = default;
+  Named &operator=(Named &&) noexcept = default;
 
   operator std::string() const noexcept;
 
   std::string const name;
 
  protected:
-  explicit Component(std::string const &name) noexcept;
+  explicit Named(std::string const &name) noexcept;
 };
-}  // namespace athena2::model::component
+}  // namespace athena2::util
 
-#endif  // ATHENA2_MODEL_COMPONENT_COMPONENT_H_
+#endif  // ATHENA2_UTIL_NAMED_H_

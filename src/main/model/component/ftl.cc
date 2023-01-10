@@ -42,7 +42,7 @@ FTL FTL::fromJson(json const &data, EvalContext &ctx) {
 }
 FTL::FTL(string const &name_, float power_, float disengageChances_,
          Cost const &cost_) noexcept
-    : Component(name_),
+    : Named(name_),
       power(power_),
       disengageChances(disengageChances_),
       cost(cost_) {}

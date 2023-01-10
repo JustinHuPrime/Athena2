@@ -23,12 +23,12 @@
 #include <string>
 
 #include "dsl.h"
-#include "model/component/component.h"
 #include "model/economy.h"
 #include "nlohmann/json.hpp"
+#include "util/named.h"
 
 namespace athena2::model::component {
-class FTL final : public Component {
+class FTL final : public util::Named {
  public:
   static FTL fromJson(nlohmann::json const &, EvalContext &);
 

@@ -23,12 +23,12 @@
 #include <string>
 
 #include "dsl.h"
-#include "model/component/component.h"
 #include "model/economy.h"
 #include "nlohmann/json.hpp"
+#include "util/named.h"
 
 namespace athena2::model::component {
-class Utility final : public Component {
+class Utility final : public util::Named {
  public:
   static Utility fromJson(nlohmann::json const &, EvalContext &);
 

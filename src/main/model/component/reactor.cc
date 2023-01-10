@@ -42,5 +42,5 @@ Reactor Reactor::fromJson(json const &data, EvalContext &ctx) {
 }
 Reactor::Reactor(string const &name_, vector<string> const &sizes_,
                  float power_, Cost const &cost_) noexcept
-    : Component(name_), sizes(sizes_), power(power_), cost(cost_) {}
+    : Named(name_), sizes(sizes_), power(power_), cost(cost_) {}
 }  // namespace athena2::model::component

@@ -23,12 +23,12 @@
 #include <string>
 
 #include "dsl.h"
-#include "model/component/component.h"
 #include "model/economy.h"
 #include "nlohmann/json.hpp"
+#include "util/named.h"
 
 namespace athena2::model::component {
-class Sensor final : public Component {
+class Sensor final : public util::Named {
  public:
   static Sensor fromJson(nlohmann::json const &, EvalContext &);
 

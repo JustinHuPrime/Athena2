@@ -28,7 +28,7 @@
 #include "util/named.h"
 
 namespace athena2::model::component {
-class Weapon : public Named {
+class Weapon : public util::Named {
  public:
   enum class Type {
     REGULAR,

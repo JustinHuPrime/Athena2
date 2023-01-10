@@ -24,12 +24,12 @@
 #include <vector>
 
 #include "dsl.h"
-#include "model/component/component.h"
 #include "model/economy.h"
 #include "nlohmann/json.hpp"
+#include "util/named.h"
 
 namespace athena2::model::component {
-class Reactor final : public Component {
+class Reactor final : public util::Named {
  public:
   static Reactor fromJson(nlohmann::json const &, EvalContext &);
 

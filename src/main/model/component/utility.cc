@@ -58,7 +58,7 @@ Utility Utility::fromJson(json const &data, EvalContext &ctx) {
 Utility::Utility(string const &name_, string const &size_, float power_,
                  float shieldHealth_, float shieldRegen_, float armourHealth_,
                  float hullHealth_, Cost const &cost_) noexcept
-    : Component(name_),
+    : Named(name_),
       size(size_),
       power(power_),
       shieldHealth(shieldHealth_),

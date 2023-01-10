@@ -23,12 +23,12 @@
 #include <string>
 
 #include "dsl.h"
-#include "model/component/component.h"
 #include "model/economy.h"
 #include "nlohmann/json.hpp"
+#include "util/named.h"
 
 namespace athena2::model::component {
-class Aura final : public Component {
+class Aura final : public util::Named {
  public:
   static Aura fromJson(nlohmann::json const &, EvalContext &);
 

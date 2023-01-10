@@ -26,11 +26,11 @@
 #include <vector>
 
 #include "dsl.h"
-#include "model/component/component.h"
 #include "model/economy.h"
+#include "util/named.h"
 
 namespace athena2::model::component {
-class Hull final : public Component {
+class Hull final : public util::Named {
  public:
   static Hull fromJson(nlohmann::json const &, EvalContext &);
 

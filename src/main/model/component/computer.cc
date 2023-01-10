@@ -76,7 +76,7 @@ Computer::Computer(string const &name_, vector<string> const &sizes_,
                    float explosiveWeaponsDamageModifier_, float trackingBonus_,
                    float chanceToHitBonus_, float weaponsRangeModifier_,
                    float engagementRangeModifier_, Cost const &cost_) noexcept
-    : Component(name_),
+    : Named(name_),
       sizes(sizes_),
       tactics(tactics_),
       power(power_),
