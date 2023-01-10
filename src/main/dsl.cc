@@ -23,6 +23,7 @@
 #include <functional>
 #include <iostream>
 #include <numeric>
+#include <optional>
 
 #include "model/component/aura.h"
 #include "model/component/auxiliary.h"
@@ -168,11 +169,34 @@ int eval(istream &in, EvalContext &ctx) noexcept {
     }();
     loadHeader.finish();
 
-    // TODO: rest of runspec
+    // generic hyperparams
+    float fightLengthLimit =
+        checkMaybeFloat(runspec, "fightLengthLimit", ctx).value_or(360.f);
+    float withdrawMultiplier =
+        checkMaybeFloat(runspec, "withdrawMultiplier", ctx).value_or(0.1f);
 
-    checkFields(runspec, {"load"}, ctx);
+    string mode = checkString(runspec, "mode", ctx);
+    if (mode == "auto") {
+      // auto - do AI-based design
+
+      // TODO
+      cerr << "Auto mode not yet implemented!\n";
+      abort();
+
+      checkFields(runspec,
+                  {"load", "mode", "fightLengthLimit", "withdrawMultiplier"},
+                  ctx);
+    } else if (mode == "manual") {
+      // manual mode - read fleets and simulate combat
+
+      // TODO
+
+      checkFields(runspec,
+                  {"load", "mode", "fightLengthLimit", "withdrawMultiplier"},
+                  ctx);
+    }
   } catch (EvalException const &e) {
-    cout << e.what() << endl;
+    cerr << e.what() << endl;
     return 1;
   }
 
