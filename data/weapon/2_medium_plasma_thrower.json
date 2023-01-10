@@ -1,0 +1,18 @@
+{
+  "name": "Medium Plasma Thrower",
+  "size": "M",
+  "power": -27,
+  "minDamage": 30,
+  "maxDamage": 38,
+  "cooldown": 5.7,
+  "accuracy": 0.8,
+  "tracking": 0.2,
+  "minRange": 0,
+  "maxRange": 60,
+  "shieldDamageModifier": -0.75,
+  "armourDamageModifier": 1,
+  "hullDamageModifier": 0.5,
+  "cost": {
+    "alloys": 34
+  }
+}

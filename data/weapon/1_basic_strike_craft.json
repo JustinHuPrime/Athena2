@@ -1,0 +1,25 @@
+{
+  "name": "Basic Strike Craft",
+  "size": "H",
+  "power": -34,
+  "minDamage": 4,
+  "maxDamage": 10,
+  "cooldown": 2.3,
+  "accuracy": 1,
+  "tracking": 0.8,
+  "minRange": 0,
+  "maxRange": 125,
+  "shieldSkipModifier": 1,
+  "armourDamageModifier": 0.5,
+  "unitsPerHangar": 8,
+  "regenerationPerDay": 0.5,
+  "strikeCraftRange": 10,
+  "strikeCraftHull": 7,
+  "strikeCraftArmour": 0,
+  "strikeCraftShield": 15,
+  "strikeCraftEvasion": 0.65,
+  "strikeCraftSpeed": 600,
+  "cost": {
+    "alloys": 68
+  }
+}

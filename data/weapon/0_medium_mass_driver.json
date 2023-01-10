@@ -1,0 +1,17 @@
+{
+  "name": "Medium Mass Driver",
+  "size": "M",
+  "power": -13,
+  "minDamage": 13,
+  "maxDamage": 40,
+  "cooldown": 3.6,
+  "accuracy": 0.75,
+  "tracking": 0.3,
+  "minRange": 0,
+  "maxRange": 75,
+  "shieldDamageModifier": 0.5,
+  "armourDamageModifier": -0.5,
+  "cost": {
+    "alloys": 20
+  }
+}

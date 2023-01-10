@@ -1,0 +1,19 @@
+{
+  "name": "Small Plasma Accelerator",
+  "size": "S",
+  "power": -17,
+  "minDamage": 16,
+  "maxDamage": 43,
+  "cooldown": 5,
+  "accuracy": 0.8,
+  "tracking": 0.4,
+  "minRange": 0,
+  "maxRange": 40,
+  "shieldDamageModifier": -0.75,
+  "armourDamageModifier": 1,
+  "hullDamageModifier": 0.5,
+  "cost": {
+    "alloys": 17,
+    "strategic resources": 0.25
+  }
+}

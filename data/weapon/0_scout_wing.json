@@ -1,0 +1,25 @@
+{
+  "name": "Scout Wing",
+  "size": "H",
+  "power": -20,
+  "minDamage": 4,
+  "maxDamage": 8,
+  "cooldown": 2.3,
+  "accuracy": 1,
+  "tracking": 0.7,
+  "minRange": 0,
+  "maxRange": 125,
+  "shieldSkipModifier": 1,
+  "armourDamageModifier": 0.5,
+  "unitsPerHangar": 8,
+  "regenerationPerDay": 0.5,
+  "strikeCraftRange": 10,
+  "strikeCraftHull": 5,
+  "strikeCraftArmour": 0,
+  "strikeCraftShield": 10,
+  "strikeCraftEvasion": 0.6,
+  "strikeCraftSpeed": 550,
+  "cost": {
+    "alloys": 40
+  }
+}

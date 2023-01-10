@@ -1,0 +1,18 @@
+{
+  "name": "Arc Emitter",
+  "size": "X",
+  "power": -200,
+  "minDamage": 1,
+  "maxDamage": 1300,
+  "cooldown": 10.1,
+  "accuracy": 1,
+  "tracking": 0,
+  "minRange": 10,
+  "maxRange": 150,
+  "shieldSkipModifier": 1,
+  "armourSkipModifier": 1,
+  "cost": {
+    "alloys": 176,
+    "strategic resources": 2.6
+  }
+}

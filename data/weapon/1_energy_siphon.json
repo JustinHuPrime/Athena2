@@ -1,0 +1,17 @@
+{
+  "name": "Energy Siphon",
+  "size": "S",
+  "power": -7,
+  "minDamage": 8,
+  "maxDamage": 21,
+  "cooldown": 4.25,
+  "accuracy": 0.75,
+  "tracking": 0.5,
+  "minRange": 0,
+  "maxRange": 60,
+  "shieldDamageModifier": 1,
+  "armourDamageModifier": -0.75,
+  "cost": {
+    "alloys": 15
+  }
+}

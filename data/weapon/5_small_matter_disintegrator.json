@@ -1,0 +1,20 @@
+{
+  "name": "Small Matter Disintegrator",
+  "size": "S",
+  "power": -25,
+  "minDamage": 20,
+  "maxDamage": 49,
+  "cooldown": 4.25,
+  "accuracy": 0.9,
+  "tracking": 0.6,
+  "minRange": 0,
+  "maxRange": 30,
+  "shieldDamageModifier": -0.75,
+  "armourDamageModifier": 0.5,
+  "hullDamageModifier": 0.5,
+  "sizeDamageModifier": 0.1,
+  "cost": {
+    "alloys": 29,
+    "strategic resources": 0.43
+  }
+}

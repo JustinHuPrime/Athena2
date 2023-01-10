@@ -1,0 +1,19 @@
+{
+  "name": "Large Plasma Accelerator",
+  "size": "L",
+  "power": -82,
+  "minDamage": 96,
+  "maxDamage": 258,
+  "cooldown": 6.4,
+  "accuracy": 0.8,
+  "tracking": 0.05,
+  "minRange": 45,
+  "maxRange": 80,
+  "shieldDamageModifier": -0.75,
+  "armourDamageModifier": 1,
+  "hullDamageModifier": 0.5,
+  "cost": {
+    "alloys": 68,
+    "strategic resources": 1
+  }
+}

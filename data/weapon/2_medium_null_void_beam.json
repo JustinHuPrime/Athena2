@@ -1,0 +1,18 @@
+{
+  "name": "Medium Null Void Beam",
+  "size": "M",
+  "power": -13,
+  "minDamage": 15,
+  "maxDamage": 40,
+  "cooldown": 5,
+  "accuracy": 0.9,
+  "tracking": 0.3,
+  "minRange": 0,
+  "maxRange": 90,
+  "shieldDamageModifier": 4,
+  "armourDamageModifier": -0.75,
+  "hullDamageModifier": -0.75,
+  "cost": {
+    "alloys": 26
+  }
+}

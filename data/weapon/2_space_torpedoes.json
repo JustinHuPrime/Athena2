@@ -1,0 +1,23 @@
+{
+  "name": "Space Torpedoes",
+  "size": "G",
+  "power": -20,
+  "minDamage": 100,
+  "maxDamage": 150,
+  "cooldown": 20.75,
+  "accuracy": 1,
+  "tracking": 0.1,
+  "minRange": 0,
+  "maxRange": 30,
+  "shieldSkipModifier": 1,
+  "armourDamageModifier": 0.5,
+  "sizeDamageModifier": 1,
+  "projectileHull": 4,
+  "projectileArmour": 4,
+  "projectileEvasion": 0,
+  "projectileSpeed": 200,
+  "projectileRetargetRange": 100,
+  "cost": {
+    "alloys": 34
+  }
+}

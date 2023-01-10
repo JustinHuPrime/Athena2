@@ -1,0 +1,18 @@
+{
+  "name": "Mega Cannon",
+  "size": "X",
+  "power": -200,
+  "minDamage": 700,
+  "maxDamage": 2000,
+  "cooldown": 11.4,
+  "accuracy": 0.75,
+  "tracking": 0,
+  "minRange": 45,
+  "maxRange": 150,
+  "shieldDamageModifier": 0.5,
+  "armourDamageModifier": -0.25,
+  "cost": {
+    "alloys": 176,
+    "strategic resources": 2.6
+  }
+}

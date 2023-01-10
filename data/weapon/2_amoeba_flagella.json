@@ -1,0 +1,25 @@
+{
+  "name": "Amoeba Flagella",
+  "size": "H",
+  "power": -30,
+  "minDamage": 20,
+  "maxDamage": 30,
+  "cooldown": 5,
+  "accuracy": 0.7,
+  "tracking": 0.5,
+  "minRange": 0,
+  "maxRange": 100,
+  "shieldSkipModifier": 1,
+  "armourDamageModifier": 0.5,
+  "unitsPerHangar": 8,
+  "regenerationPerDay": 0.5,
+  "strikeCraftRange": 10,
+  "strikeCraftHull": 20,
+  "strikeCraftArmour": 0,
+  "strikeCraftShield": 0,
+  "strikeCraftEvasion": 0.5,
+  "strikeCraftSpeed": 500,
+  "cost": {
+    "alloys": 60
+  }
+}

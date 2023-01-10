@@ -1,0 +1,18 @@
+{
+  "name": "Large Null Void Beam",
+  "size": "L",
+  "power": -26,
+  "minDamage": 36,
+  "maxDamage": 95,
+  "cooldown": 5.7,
+  "accuracy": 0.9,
+  "tracking": 0.05,
+  "minRange": 0,
+  "maxRange": 120,
+  "shieldDamageModifier": 4,
+  "armourDamageModifier": -0.75,
+  "hullDamageModifier": -0.75,
+  "cost": {
+    "alloys": 52
+  }
+}

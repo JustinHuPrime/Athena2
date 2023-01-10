@@ -1,0 +1,22 @@
+{
+  "name": "Marauder Missiles",
+  "size": "S",
+  "power": -17,
+  "minDamage": 49,
+  "maxDamage": 72,
+  "cooldown": 8.5,
+  "accuracy": 1,
+  "tracking": 0.25,
+  "minRange": 0,
+  "maxRange": 100,
+  "shieldSkipModifier": 1,
+  "projectileHull": 7,
+  "projectileArmour": 7,
+  "projectileEvasion": 0.4,
+  "projectileSpeed": 400,
+  "projectileRetargetRange": 100,
+  "cost": {
+    "alloys": 22,
+    "strategic resources": 0.33
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Whirlwind Missiles",
+  "size": "M",
+  "power": -17,
+  "minDamage": 61,
+  "maxDamage": 85,
+  "cooldown": 4.25,
+  "accuracy": 1,
+  "tracking": 0.3,
+  "minRange": 0,
+  "maxRange": 120,
+  "shieldSkipModifier": 1,
+  "projectileHull": 30,
+  "projectileArmour": 15,
+  "projectileEvasion": 0,
+  "projectileSpeed": 400,
+  "projectileRetargetRange": 100,
+  "cost": {
+    "alloys": 44,
+    "strategic resources": 0.65
+  }
+}

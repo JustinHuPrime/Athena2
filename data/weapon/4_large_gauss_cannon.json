@@ -1,0 +1,18 @@
+{
+  "name": "Large Gauss Cannon",
+  "size": "L",
+  "power": -88,
+  "minDamage": 96,
+  "maxDamage": 276,
+  "cooldown": 4.25,
+  "accuracy": 0.75,
+  "tracking": 0.05,
+  "minRange": 45,
+  "maxRange": 100,
+  "shieldDamageModifier": 0.5,
+  "armourDamageModifier": -0.5,
+  "cost": {
+    "alloys": 88,
+    "strategic resources": 1.3
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Small Advanced Railgun",
+  "size": "S",
+  "power": -13,
+  "minDamage": 12,
+  "maxDamage": 35,
+  "cooldown": 2.9,
+  "accuracy": 0.75,
+  "tracking": 0.5,
+  "minRange": 0,
+  "maxRange": 50,
+  "shieldDamageModifier": 0.5,
+  "armourDamageModifier": -0.5,
+  "cost": {
+    "alloys": 17,
+    "strategic resources": 0.25
+  }
+}

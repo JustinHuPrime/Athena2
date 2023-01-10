@@ -1,0 +1,18 @@
+{
+  "name": "Small Ion Disruptor",
+  "size": "S",
+  "power": -13,
+  "minDamage": 1,
+  "maxDamage": 14,
+  "cooldown": 2.3,
+  "accuracy": 1,
+  "tracking": 0.6,
+  "minRange": 0,
+  "maxRange": 30,
+  "shieldSkipModifier": 1,
+  "armourSkipModifier": 1,
+  "cost": {
+    "alloys": 17,
+    "strategic resources": 0.25
+  }
+}

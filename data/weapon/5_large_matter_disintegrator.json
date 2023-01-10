@@ -1,0 +1,20 @@
+{
+  "name": "Large Matter Disintegrator",
+  "size": "L",
+  "power": -80,
+  "minDamage": 120,
+  "maxDamage": 294,
+  "cooldown": 4.25,
+  "accuracy": 0.9,
+  "tracking": 0.05,
+  "minRange": 0,
+  "maxRange": 70,
+  "shieldDamageModifier": -0.75,
+  "armourDamageModifier": 0.5,
+  "hullDamageModifier": 0.5,
+  "sizeDamageModifier": 0.1,
+  "cost": {
+    "alloys": 114,
+    "strategic resources": 1.69
+  }
+}

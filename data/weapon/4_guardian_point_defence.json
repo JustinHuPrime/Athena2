@@ -1,0 +1,18 @@
+{
+  "name": "Guardian Point-Defence",
+  "size": "P",
+  "power": -10,
+  "minDamage": 4,
+  "maxDamage": 8,
+  "cooldown": 0.5,
+  "accuracy": 0.75,
+  "tracking": 0.3,
+  "minRange": 0,
+  "maxRange": 30,
+  "shieldDamageModifier": -0.75,
+  "armourSkipModifier": 0.25,
+  "armourDamageModifier": 1,
+  "cost": {
+    "alloys": 13
+  }
+}

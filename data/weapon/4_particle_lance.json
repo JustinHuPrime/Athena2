@@ -1,0 +1,19 @@
+{
+  "name": "Particle Lance",
+  "size": "X",
+  "power": -200,
+  "minDamage": 600,
+  "maxDamage": 1500,
+  "cooldown": 9.95,
+  "accuracy": 0.85,
+  "tracking": 0,
+  "minRange": 0,
+  "maxRange": 150,
+  "shieldDamageModifier": -0.5,
+  "armourDamageModifier": 1,
+  "hullDamageModifier": 0.5,
+  "cost": {
+    "alloys": 176,
+    "strategic resources": 2.6
+  }
+}

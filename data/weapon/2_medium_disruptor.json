@@ -1,0 +1,17 @@
+{
+  "name": "Medium Disruptor",
+  "size": "M",
+  "power": -23,
+  "minDamage": 1,
+  "maxDamage": 28,
+  "cooldown": 3.4,
+  "accuracy": 1,
+  "tracking": 0.35,
+  "minRange": 0,
+  "maxRange": 40,
+  "shieldSkipModifier": 1,
+  "armourSkipModifier": 1,
+  "cost": {
+    "alloys": 34
+  }
+}

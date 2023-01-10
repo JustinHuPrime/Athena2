@@ -1,0 +1,19 @@
+{
+  "name": "Medium UV Laser",
+  "size": "M",
+  "power": -23,
+  "minDamage": 25,
+  "maxDamage": 68,
+  "cooldown": 5,
+  "accuracy": 0.9,
+  "tracking": 0.3,
+  "minRange": 0,
+  "maxRange": 60,
+  "shieldDamageModifier": -0.5,
+  "armourDamageModifier": 0.5,
+  "hullDamageModifier": 0.25,
+  "cost": {
+    "alloys": 34
+    
+  }
+}

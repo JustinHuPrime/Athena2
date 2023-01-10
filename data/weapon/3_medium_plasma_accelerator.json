@@ -1,0 +1,19 @@
+{
+  "name": "Medium Plasma Accelerator",
+  "size": "M",
+  "power": -36,
+  "minDamage": 40,
+  "maxDamage": 108,
+  "cooldown": 5.7,
+  "accuracy": 0.8,
+  "tracking": 0.2,
+  "minRange": 0,
+  "maxRange": 60,
+  "shieldDamageModifier": -0.75,
+  "armourDamageModifier": 1,
+  "hullDamageModifier": 0.5,
+  "cost": {
+    "alloys": 34,
+    "strategic resources": 0.5
+  }
+}

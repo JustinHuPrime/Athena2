@@ -1,0 +1,18 @@
+{
+  "name": "Medium Gauss Cannon",
+  "size": "M",
+  "power": -39,
+  "minDamage": 40,
+  "maxDamage": 115,
+  "cooldown": 3.6,
+  "accuracy": 0.75,
+  "tracking": 0.3,
+  "minRange": 0,
+  "maxRange": 75,
+  "shieldDamageModifier": 0.5,
+  "armourDamageModifier": -0.5,
+  "cost": {
+    "alloys": 44,
+    "strategic resources": 0.65
+  }
+}

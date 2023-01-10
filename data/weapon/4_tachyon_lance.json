@@ -1,0 +1,19 @@
+{
+  "name": "Tachyon Lance",
+  "size": "X",
+  "power": -260,
+  "minDamage": 780,
+  "maxDamage": 1950,
+  "cooldown": 9.95,
+  "accuracy": 0.85,
+  "tracking": 0,
+  "minRange": 0,
+  "maxRange": 150,
+  "shieldDamageModifier": -0.5,
+  "armourDamageModifier": 1,
+  "hullDamageModifier": 0.5,
+  "cost": {
+    "alloys": 229,
+    "strategic resources": 3.38
+  }
+}

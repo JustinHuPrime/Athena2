@@ -1,0 +1,18 @@
+{
+  "name": "Small Blue Laser",
+  "size": "S",
+  "power": -7,
+  "minDamage": 8,
+  "maxDamage": 21,
+  "cooldown": 4.25,
+  "accuracy": 0.9,
+  "tracking": 0.5,
+  "minRange": 0,
+  "maxRange": 40,
+  "shieldDamageModifier": -0.5,
+  "armourDamageModifier": 0.5,
+  "hullDamageModifier": 0.25,
+  "cost": {
+    "alloys": 13
+  }
+}

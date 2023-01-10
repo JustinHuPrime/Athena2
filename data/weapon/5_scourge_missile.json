@@ -1,0 +1,23 @@
+{
+  "name": "Scourge Missile",
+  "size": "G",
+  "power": -35,
+  "minDamage": 135,
+  "maxDamage": 175,
+  "cooldown": 5.7,
+  "accuracy": 1,
+  "tracking": 0.8,
+  "minRange": 0,
+  "maxRange": 90,
+  "shieldSkipModifier": 1,
+  "armourDamageModifier": -0.2,
+  "sizeDamageModifier": 0.5,
+  "projectileHull": 15,
+  "projectileArmour": 0,
+  "projectileEvasion": 0.4,
+  "projectileSpeed": 400,
+  "projectileRetargetRange": 100,
+  "cost": {
+    "alloys": 65
+  }
+}

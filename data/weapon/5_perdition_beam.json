@@ -1,0 +1,19 @@
+{
+  "name": "Perdition Beam",
+  "size": "T",
+  "power": 500,
+  "minDamage": 5000,
+  "maxDamage": 10000,
+  "cooldown": 25.5,
+  "accuracy": 0.85,
+  "tracking": 0,
+  "minRange": 0,
+  "maxRange": 250,
+  "shieldDamageModifier": -0.25,
+  "armourDamageModifier": 0.5,
+  "hullDamageModifier": 0.25,
+  "cost": {
+    "alloys": 456,
+    "strategic resources": 6.76
+  }
+}

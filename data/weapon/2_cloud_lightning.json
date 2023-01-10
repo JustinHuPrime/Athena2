@@ -1,0 +1,17 @@
+{
+  "name": "Cloud Lightning",
+  "size": "L",
+  "power": -23,
+  "minDamage": 1,
+  "maxDamage": 106,
+  "cooldown": 7.15,
+  "accuracy": 1,
+  "tracking": 0.3,
+  "minRange": 0,
+  "maxRange": 60,
+  "shieldSkipModifier": 1,
+  "armourSkipModifier": 1,
+  "cost": {
+    "alloys": 17
+  }
+}

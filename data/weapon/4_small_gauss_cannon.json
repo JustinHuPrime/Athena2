@@ -1,0 +1,18 @@
+{
+  "name": "Small Gauss Cannon",
+  "size": "S",
+  "power": -17,
+  "minDamage": 16,
+  "maxDamage": 46,
+  "cooldown": 2.9,
+  "accuracy": 0.75,
+  "tracking": 0.5,
+  "minRange": 0,
+  "maxRange": 50,
+  "shieldDamageModifier": 0.5,
+  "armourDamageModifier": -0.5,
+  "cost": {
+    "alloys": 22,
+    "strategic resources": 0.33
+  }
+}

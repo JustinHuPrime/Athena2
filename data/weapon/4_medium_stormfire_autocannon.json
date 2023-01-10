@@ -1,0 +1,19 @@
+{
+  "name": "Medium Stormfire Autocannon",
+  "size": "M",
+  "power": -51,
+  "minDamage": 33,
+  "maxDamage": 68,
+  "cooldown": 1.3,
+  "accuracy": 0.85,
+  "tracking": 0.5,
+  "minRange": 0,
+  "maxRange": 35,
+  "shieldDamageModifier": 0.5,
+  "armourDamageModifier": -0.75,
+  "hullDamageModifier": 0.25,
+  "cost": {
+    "alloys": 44,
+    "strategic resources": 0.65
+  }
+}

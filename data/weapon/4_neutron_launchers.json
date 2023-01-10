@@ -1,0 +1,20 @@
+{
+  "name": "Neutron Launchers",
+  "size": "G",
+  "power": -77,
+  "minDamage": 61,
+  "maxDamage": 131,
+  "cooldown": 21.25,
+  "accuracy": 0.75,
+  "tracking": 0,
+  "minRange": 45,
+  "maxRange": 120,
+  "shieldDamageModifier": -0.5,
+  "armourDamageModifier": 0.5,
+  "hullDamageModifier": 0.75,
+  "sizeDamageModifier": 1,
+  "cost": {
+    "alloys": 114,
+    "strategic resources": 1.69
+  }
+}

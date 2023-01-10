@@ -1,0 +1,17 @@
+{
+  "name": "Large Mass Driver",
+  "size": "L",
+  "power": -30,
+  "minDamage": 30,
+  "maxDamage": 96,
+  "cooldown": 4.25,
+  "accuracy": 0.75,
+  "tracking": 0.05,
+  "minRange": 45,
+  "maxRange": 100,
+  "shieldDamageModifier": 0.5,
+  "armourDamageModifier": -0.5,
+  "cost": {
+    "alloys": 40
+  }
+}

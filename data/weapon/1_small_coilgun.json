@@ -1,0 +1,17 @@
+{
+  "name": "Small Coilgun",
+  "size": "S",
+  "power": -7,
+  "minDamage": 7,
+  "maxDamage": 21,
+  "cooldown": 2.9,
+  "accuracy": 0.75,
+  "tracking": 0.5,
+  "minRange": 0,
+  "maxRange": 50,
+  "shieldDamageModifier": 0.5,
+  "armourDamageModifier": -0.5,
+  "cost": {
+    "alloys": 13
+  }
+}

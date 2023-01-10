@@ -1,0 +1,25 @@
+{
+  "name": "Advanced Strike Craft",
+  "size": "H",
+  "power": -59,
+  "minDamage": 6,
+  "maxDamage": 17,
+  "cooldown": 2.3,
+  "accuracy": 1,
+  "tracking": 1,
+  "minRange": 0,
+  "maxRange": 125,
+  "shieldSkipModifier": 1,
+  "armourDamageModifier": 0.5,
+  "unitsPerHangar": 8,
+  "regenerationPerDay": 0.5,
+  "strikeCraftRange": 10,
+  "strikeCraftHull": 12,
+  "strikeCraftArmour": 0,
+  "strikeCraftShield": 25,
+  "strikeCraftEvasion": 0.8,
+  "strikeCraftSpeed": 700,
+  "cost": {
+    "alloys": 88
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Large Plasma Cannon",
+  "size": "L",
+  "power": -107,
+  "minDamage": 126,
+  "maxDamage": 336,
+  "cooldown": 6.4,
+  "accuracy": 0.8,
+  "tracking": 0.05,
+  "minRange": 45,
+  "maxRange": 80,
+  "shieldDamageModifier": -0.75,
+  "armourDamageModifier": 1,
+  "hullDamageModifier": 0.5,
+  "cost": {
+    "alloys": 88,
+    "strategic resources": 1.3
+  }
+}

@@ -34,6 +34,7 @@
 #include "model/component/sensor.h"
 #include "model/component/sublight.h"
 #include "model/component/utility.h"
+#include "model/component/weapon.h"
 #include "nlohmann/json.hpp"
 #include "util/json.h"
 #include "version.h"
@@ -206,10 +207,24 @@ int eval(istream &in, EvalContext &ctx) noexcept {
                  components.auxiliaries.push_back(
                      Auxiliary::fromJson(parse(file, ctx), ctx));
                });
-      // TODO: load weapons
-      // TODO: rest of runspec
+      vector<string> weapons = checkStringArray(load, "weapons", ctx);
+      for_each(weapons.begin(), weapons.end(),
+               [&ctx, &components](string const &filename) {
+                 auto _ = ctx.push(filename);
+                 ifstream file(filename);
+                 if (!file) ctx.error("could not open file");
+                 components.weapons.push_back(
+                     Weapon::fromJson(parse(file, ctx), ctx));
+               });
+      checkFields(
+          load,
+          {"hulls", "sections", "reactors", "ftls", "sublights", "sensors",
+           "computers", "auras", "utilities", "auxiliaries", "weapons"},
+          ctx);
     }
     loadHeader.finish();
+    // TODO: rest of runspec
+    checkFields(runspec, {"load"}, ctx);
   } catch (EvalException const &e) {
     cout << e.what() << endl;
     return 1;

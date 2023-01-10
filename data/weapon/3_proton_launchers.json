@@ -1,0 +1,20 @@
+{
+  "name": "Proton Launchers",
+  "size": "G",
+  "power": -59,
+  "minDamage": 47,
+  "maxDamage": 101,
+  "cooldown": 21.25,
+  "accuracy": 0.75,
+  "tracking": 0,
+  "minRange": 45,
+  "maxRange": 120,
+  "shieldDamageModifier": -0.5,
+  "armourDamageModifier": 0.5,
+  "hullDamageModifier": 0.75,
+  "sizeDamageModifier": 1,
+  "cost": {
+    "alloys": 88,
+    "strategic resources": 1.3
+  }
+}

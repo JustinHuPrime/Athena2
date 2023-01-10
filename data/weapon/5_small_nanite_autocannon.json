@@ -1,0 +1,19 @@
+{
+  "name": "Small Nanite Autocannon",
+  "size": "S",
+  "power": -30,
+  "minDamage": 17,
+  "maxDamage": 35,
+  "cooldown": 0.85,
+  "accuracy": 0.85,
+  "tracking": 0.75,
+  "minRange": 0,
+  "maxRange": 30,
+  "shieldDamageModifier": 0.5,
+  "armourDamageModifier": -0.75,
+  "hullDamageModifier": 0.25,
+  "cost": {
+    "alloys": 29,
+    "nanites": 0.43
+  }
+}

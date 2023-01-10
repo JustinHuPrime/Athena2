@@ -33,6 +33,18 @@
     ],
     "auxiliaries": [
       "data/auxiliary/0_reactor_booster.json"
+    ],
+    "weapons": [
+      "data/weapon/0_large_mass_driver.json",
+      "data/weapon/0_medium_red_laser.json",
+      "data/weapon/0_sentinel_point_defence.json",
+      "data/weapon/0_small_red_laser.json",
+      "data/weapon/0_flak_battery.json",
+      "data/weapon/0_small_mass_driver.json",
+      "data/weapon/0_nuclear_missiles.json",
+      "data/weapon/0_medium_mass_driver.json",
+      "data/weapon/0_large_red_laser.json",
+      "data/weapon/0_scout_wing.json"
     ]
   }
 }

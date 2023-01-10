@@ -1,0 +1,19 @@
+{
+  "name": "Small X-Ray Laser",
+  "size": "S",
+  "power": -13,
+  "minDamage": 13,
+  "maxDamage": 35,
+  "cooldown": 4.25,
+  "accuracy": 0.9,
+  "tracking": 0.5,
+  "minRange": 0,
+  "maxRange": 40,
+  "shieldDamageModifier": -0.5,
+  "armourDamageModifier": 0.5,
+  "hullDamageModifier": 0.25,
+  "cost": {
+    "alloys": 17,
+    "strategic resources": 0.25
+  }
+}

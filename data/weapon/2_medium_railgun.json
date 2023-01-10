@@ -1,0 +1,17 @@
+{
+  "name": "Medium Railgun",
+  "size": "M",
+  "power": -23,
+  "minDamage": 23,
+  "maxDamage": 68,
+  "cooldown": 3.6,
+  "accuracy": 0.75,
+  "tracking": 0.3,
+  "minRange": 0,
+  "maxRange": 75,
+  "shieldDamageModifier": 0.5,
+  "armourDamageModifier": -0.5,
+  "cost": {
+    "alloys": 34
+  }
+}

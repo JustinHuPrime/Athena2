@@ -1,0 +1,19 @@
+{
+  "name": "Medium Nanite Autocannon",
+  "size": "M",
+  "power": -67,
+  "minDamage": 43,
+  "maxDamage": 88,
+  "cooldown": 1.3,
+  "accuracy": 0.85,
+  "tracking": 0.5,
+  "minRange": 0,
+  "maxRange": 35,
+  "shieldDamageModifier": 0.5,
+  "armourDamageModifier": -0.75,
+  "hullDamageModifier": 0.25,
+  "cost": {
+    "alloys": 57,
+    "nanites": 0.85
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Small Railgun",
+  "size": "S",
+  "power": -10,
+  "minDamage": 9,
+  "maxDamage": 27,
+  "cooldown": 2.9,
+  "accuracy": 0.75,
+  "tracking": 0.5,
+  "minRange": 0,
+  "maxRange": 50,
+  "shieldDamageModifier": 0.5,
+  "armourDamageModifier": -0.5,
+  "cost": {
+    "alloys": 17
+  }
+}

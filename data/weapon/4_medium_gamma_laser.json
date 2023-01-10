@@ -1,0 +1,19 @@
+{
+  "name": "Medium Gamma Laser",
+  "size": "M",
+  "power": -39,
+  "minDamage": 43,
+  "maxDamage": 115,
+  "cooldown": 5,
+  "accuracy": 0.9,
+  "tracking": 0.3,
+  "minRange": 0,
+  "maxRange": 60,
+  "shieldDamageModifier": -0.5,
+  "armourDamageModifier": 0.5,
+  "hullDamageModifier": 0.25,
+  "cost": {
+    "alloys": 44,
+    "strategic resources": 0.65
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Nanite Flak Battery",
+  "size": "P",
+  "power": -13,
+  "minDamage": 6,
+  "maxDamage": 11,
+  "cooldown": 0.5,
+  "accuracy": 0.75,
+  "tracking": 0.8,
+  "minRange": 0,
+  "maxRange": 30,
+  "shieldSkipModifier": 0.25,
+  "shieldDamageModifier": 1,
+  "armourDamageModifier": -0.5,
+  "cost": {
+    "alloys": 13
+  }
+}

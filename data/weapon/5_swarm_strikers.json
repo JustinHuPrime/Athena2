@@ -1,0 +1,25 @@
+{
+  "name": "Swarm Strikers",
+  "size": "H",
+  "power": -80,
+  "minDamage": 8,
+  "maxDamage": 12,
+  "cooldown": 2,
+  "accuracy": 1,
+  "tracking": 0.8,
+  "minRange": 0,
+  "maxRange": 120,
+  "shieldSkipModifier": 1,
+  "armourSkipModifier": 0.66,
+  "unitsPerHangar": 10,
+  "regenerationPerDay": 0.5,
+  "strikeCraftRange": 10,
+  "strikeCraftHull": 40,
+  "strikeCraftArmour": 20,
+  "strikeCraftShield": 0,
+  "strikeCraftEvasion": 0.8,
+  "strikeCraftSpeed": 400,
+  "cost": {
+    "alloys": 60
+  }
+}

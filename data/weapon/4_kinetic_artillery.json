@@ -1,0 +1,18 @@
+{
+  "name": "Kinetic Artillery",
+  "size": "L",
+  "power": -91,
+  "minDamage": 195,
+  "maxDamage": 585,
+  "cooldown": 7.15,
+  "accuracy": 0.75,
+  "tracking": 0,
+  "minRange": 45,
+  "maxRange": 120,
+  "shieldDamageModifier": 1,
+  "armourDamageModifier": -0.5,
+  "cost": {
+    "alloys": 114,
+    "strategic resources": 1.69
+  }
+}

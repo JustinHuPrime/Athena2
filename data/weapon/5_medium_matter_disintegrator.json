@@ -1,0 +1,20 @@
+{
+  "name": "Medium Matter Disintegrator",
+  "size": "M",
+  "power": -40,
+  "minDamage": 50,
+  "maxDamage": 123,
+  "cooldown": 4.25,
+  "accuracy": 0.9,
+  "tracking": 0.3,
+  "minRange": 0,
+  "maxRange": 50,
+  "shieldDamageModifier": -0.75,
+  "armourDamageModifier": 0.5,
+  "hullDamageModifier": 0.5,
+  "sizeDamageModifier": 0.1,
+  "cost": {
+    "alloys": 57,
+    "strategic resources": 0.85
+  }
+}

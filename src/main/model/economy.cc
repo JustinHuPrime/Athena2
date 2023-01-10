@@ -39,6 +39,10 @@ Cost Cost::fromJson(json const &data, EvalContext &ctx) {
   optional<float> zro = checkMaybeFloat(data, "zro", ctx);
   optional<float> nanites = checkMaybeFloat(data, "nanites", ctx);
   optional<float> livingMetal = checkMaybeFloat(data, "living metal", ctx);
+  checkFields(data,
+              {"alloys", "minerals", "dark matter", "strategic resources",
+               "zro", "nanites", "living metal"},
+              ctx);
 
   return Cost(alloys.value_or(0.f), minerals.value_or(0.f),
               darkMatter.value_or(0.f), strategicResources.value_or(0.f),

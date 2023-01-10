@@ -1,0 +1,24 @@
+{
+  "name": "Devastator Torpedoes",
+  "size": "G",
+  "power": -34,
+  "minDamage": 169,
+  "maxDamage": 254,
+  "cooldown": 20.75,
+  "accuracy": 1,
+  "tracking": 0.1,
+  "minRange": 0,
+  "maxRange": 30,
+  "shieldSkipModifier": 1,
+  "armourDamageModifier": 0.5,
+  "sizeDamageModifier": 1,
+  "projectileHull": 10,
+  "projectileArmour": 10,
+  "projectileEvasion": 0,
+  "projectileSpeed": 250,
+  "projectileRetargetRange": 100,
+  "cost": {
+    "alloys": 44,
+    "strategic resources": 0.65
+  }
+}

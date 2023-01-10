@@ -1,0 +1,18 @@
+{
+  "name": "Giga Cannon",
+  "size": "X",
+  "power": -260,
+  "minDamage": 910,
+  "maxDamage": 2600,
+  "cooldown": 11.4,
+  "accuracy": 0.75,
+  "tracking": 0,
+  "minRange": 45,
+  "maxRange": 150,
+  "shieldDamageModifier": 0.5,
+  "armourDamageModifier": -0.25,
+  "cost": {
+    "alloys": 229,
+    "strategic resources": 3.38
+  }
+}

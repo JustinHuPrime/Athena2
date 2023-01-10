@@ -1,0 +1,19 @@
+{
+  "name": "Large Stormfire Autocannon",
+  "size": "L",
+  "power": -115,
+  "minDamage": 78,
+  "maxDamage": 162,
+  "cooldown": 1.7,
+  "accuracy": 0.85,
+  "tracking": 0.25,
+  "minRange": 0,
+  "maxRange": 40,
+  "shieldDamageModifier": 0.5,
+  "armourDamageModifier": -0.75,
+  "hullDamageModifier": 0.25,
+  "cost": {
+    "alloys": 88,
+    "strategic resources": 1.3
+  }
+}
