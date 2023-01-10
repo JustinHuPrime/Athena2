@@ -19,6 +19,7 @@
 
 #include "model/component/componentSet.h"
 
+#include <string>
 #include <utility>
 
 using namespace std;
@@ -34,6 +35,17 @@ void addChecked(vector<T> &destination, T &&component, EvalContext &ctx) {
     ctx.error("duplicate component " + component.name);
 
   destination.emplace_back(move(component));
+}
+template <typename T>
+optional<reference_wrapper<T const>> getFrom(vector<T> const &from,
+                                             string const &name) {
+  auto it = find_if(from.begin(), from.end(), [&name](T const &component) {
+    return component.name == name;
+  });
+  if (it == from.end())
+    return nullopt;
+  else
+    return *it;
 }
 }  // namespace
 
@@ -80,5 +92,49 @@ ComponentSet &ComponentSet::add(Auxiliary &&auxiliary, EvalContext &ctx) {
 ComponentSet &ComponentSet::add(Weapon &&weapon, EvalContext &ctx) {
   addChecked(weapons, move(weapon), ctx);
   return *this;
+}
+optional<reference_wrapper<Hull const>> ComponentSet::getHull(
+    string const &name) const noexcept {
+  return getFrom(hulls, name);
+}
+optional<reference_wrapper<Section const>> ComponentSet::getSection(
+    string const &name) const noexcept {
+  return getFrom(sections, name);
+}
+optional<reference_wrapper<Reactor const>> ComponentSet::getReactor(
+    string const &name) const noexcept {
+  return getFrom(reactors, name);
+}
+optional<reference_wrapper<FTL const>> ComponentSet::getFTL(
+    string const &name) const noexcept {
+  return getFrom(ftls, name);
+}
+optional<reference_wrapper<Sublight const>> ComponentSet::getSublight(
+    string const &name) const noexcept {
+  return getFrom(sublights, name);
+}
+optional<reference_wrapper<Sensor const>> ComponentSet::getSensor(
+    string const &name) const noexcept {
+  return getFrom(sensors, name);
+}
+optional<reference_wrapper<Computer const>> ComponentSet::getComputer(
+    string const &name) const noexcept {
+  return getFrom(computers, name);
+}
+optional<reference_wrapper<Aura const>> ComponentSet::getAura(
+    string const &name) const noexcept {
+  return getFrom(auras, name);
+}
+optional<reference_wrapper<Utility const>> ComponentSet::getUtility(
+    string const &name) const noexcept {
+  return getFrom(utilities, name);
+}
+optional<reference_wrapper<Auxiliary const>> ComponentSet::getAuxiliary(
+    string const &name) const noexcept {
+  return getFrom(auxiliaries, name);
+}
+optional<reference_wrapper<Weapon const>> ComponentSet::getWeapon(
+    string const &name) const noexcept {
+  return getFrom(weapons, name);
 }
 }  // namespace athena2::model::component

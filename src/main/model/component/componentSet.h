@@ -20,6 +20,9 @@
 #ifndef ATHENA2_MODEL_COMPONENT_COMPONENTSET_H_
 #define ATHENA2_MODEL_COMPONENT_COMPONENTSET_H_
 
+#include <optional>
+#include <string>
+#include <utility>
 #include <vector>
 
 #include "dsl.h"
@@ -58,6 +61,29 @@ class ComponentSet final {
   ComponentSet &add(Utility &&, EvalContext &);
   ComponentSet &add(Auxiliary &&, EvalContext &);
   ComponentSet &add(Weapon &&, EvalContext &);
+
+  std::optional<std::reference_wrapper<Hull const>> getHull(
+      std::string const &name) const noexcept;
+  std::optional<std::reference_wrapper<Section const>> getSection(
+      std::string const &name) const noexcept;
+  std::optional<std::reference_wrapper<Reactor const>> getReactor(
+      std::string const &name) const noexcept;
+  std::optional<std::reference_wrapper<FTL const>> getFTL(
+      std::string const &name) const noexcept;
+  std::optional<std::reference_wrapper<Sublight const>> getSublight(
+      std::string const &name) const noexcept;
+  std::optional<std::reference_wrapper<Sensor const>> getSensor(
+      std::string const &name) const noexcept;
+  std::optional<std::reference_wrapper<Computer const>> getComputer(
+      std::string const &name) const noexcept;
+  std::optional<std::reference_wrapper<Aura const>> getAura(
+      std::string const &name) const noexcept;
+  std::optional<std::reference_wrapper<Utility const>> getUtility(
+      std::string const &name) const noexcept;
+  std::optional<std::reference_wrapper<Auxiliary const>> getAuxiliary(
+      std::string const &name) const noexcept;
+  std::optional<std::reference_wrapper<Weapon const>> getWeapon(
+      std::string const &name) const noexcept;
 
  private:
   std::vector<Hull> hulls;
