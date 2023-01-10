@@ -51,7 +51,8 @@ inline nlohmann::json const &checkFieldType(
   if (!json.contains(key)) {
     ctx.error("missing field " + key);
   } else if (!(json[key].*typechecker)()) {
-    ctx.error("expected " + type + " for field " + key);
+    auto _ = ctx.push(key);
+    ctx.error("expected field of type " + type);
   }
 
   return json[key];

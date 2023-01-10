@@ -83,7 +83,11 @@ Section Section::fromJson(json const &data, ComponentSet const &components,
     }
     return auxiliaries;
   }();
-  return Section(section, weapons, utilities, auxiliaries);
+  try {
+    return Section(section, weapons, utilities, auxiliaries);
+  } catch (DesignException const &e) {
+    ctx.error("invalid design: "s + e.what());
+  }
 }
 
 Section::Section(component::Section const &section_,
