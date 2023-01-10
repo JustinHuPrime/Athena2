@@ -4,7 +4,7 @@
   "coreSize": "MC",
   "sectionSizes": ["MC"],
   "hullHealth": 1800,
-  "hullArmour": 34,
+  "armourHealth": 34,
   "evasion": 0.1,
   "speed": 140,
   "disengageChanceModifier": 0,

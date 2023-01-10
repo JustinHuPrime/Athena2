@@ -1,5 +1,5 @@
 {
-  "name": "Ion Thrusters",
+  "name": "Battleship Ion Thrusters",
   "sizes": ["BB"],
   "power": -120,
   "speedModifier": 0.25,

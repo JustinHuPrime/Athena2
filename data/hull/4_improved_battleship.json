@@ -1,5 +1,5 @@
 {
-  "name": "Battleship",
+  "name": "Battleship (Improved)",
   "size": 8,
   "coreSize": "BB",
   "sectionSizes": ["BB", "BC", "BS"],

@@ -1,5 +1,5 @@
 {
-  "name": "Impulse Thrusters",
+  "name": "Corvette Impulse Thrusters",
   "sizes": ["KK", "FF", "MK"],
   "power": -25,
   "speedModifier": 0.75,

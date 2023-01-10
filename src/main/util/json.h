@@ -108,6 +108,7 @@ inline std::vector<std::string> checkStringArray(nlohmann::json const &json,
                                                  EvalContext &ctx) {
   nlohmann::json array =
       checkFieldType(json, key, &nlohmann::json::is_array, "array", ctx);
+  auto _ = ctx.push(key);
   std::vector<std::string> result;
   for (auto const &[key, val] : array.items()) {
     auto _ = ctx.push(key);

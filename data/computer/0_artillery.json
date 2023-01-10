@@ -1,5 +1,5 @@
 {
-  "name": "Basic Combat Computer",
+  "name": "Basic Combat Computer (Artillery)",
   "sizes": ["BB", "TT"],
   "tactics": "artillery",
   "power": -5,

@@ -1,5 +1,5 @@
 {
-  "name": "Chemical Thrusters",
+  "name": "Destroyer Chemical Thrusters",
   "sizes": ["DD", "MD"],
   "power": -20,
   "speedModifier": 0,

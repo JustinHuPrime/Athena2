@@ -1,5 +1,5 @@
 {
-  "name": "Plasma Thrusters",
+  "name": "Cruiser Plasma Thrusters",
   "sizes": ["CC", "MC"],
   "power": -80,
   "speedModifier": 0.5,

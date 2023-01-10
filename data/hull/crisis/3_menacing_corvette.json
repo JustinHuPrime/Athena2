@@ -1,10 +1,10 @@
 {
-  "name": "Menacing Corvette",
+  "name": "Menacing Corvette (Improved)",
   "size": 1,
   "coreSize": "MK",
   "sectionSizes": ["MK"],
   "hullHealth": 200,
-  "hullArmour": 3,
+  "armourHealth": 3,
   "evasion": 0.6,
   "evasionModifier": 0.15,
   "speed": 160,

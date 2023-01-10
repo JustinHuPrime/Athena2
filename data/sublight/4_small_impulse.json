@@ -1,5 +1,5 @@
 {
-  "name": "Impulse Thrusters",
+  "name": "Destroyer Impulse Thrusters",
   "sizes": ["DD", "MD"],
   "power": -50,
   "speedModifier": 0.75,

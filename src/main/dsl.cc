@@ -20,6 +20,7 @@
 #include "dsl.h"
 
 #include <fstream>
+#include <functional>
 #include <iostream>
 #include <numeric>
 
@@ -69,6 +70,49 @@ class Header final {
  private:
   bool finished;
 };
+
+template <typename T>
+void loadComponentsOfType(
+    ComponentSet &components, json const &load, string const &key,
+    function<T(json const &, EvalContext &)> const &fromJson,
+    EvalContext &ctx) {
+  vector<string> componentFiles = checkStringArray(load, key, ctx);
+  auto _ = ctx.push(key);
+  for_each(componentFiles.begin(), componentFiles.end(),
+           [&ctx, &components, &fromJson](string const &filename) {
+             auto _ = ctx.push(filename);
+             ifstream file(filename);
+             if (!file) ctx.error("could not open file");
+             components.add(fromJson(parse(file, ctx), ctx), ctx);
+           });
+}
+ComponentSet loadComponents(json const &load, EvalContext &ctx) {
+  ComponentSet components;
+  loadComponentsOfType<Hull>(components, load, "hulls", Hull::fromJson, ctx);
+  loadComponentsOfType<Section>(components, load, "sections", Section::fromJson,
+                                ctx);
+  loadComponentsOfType<Reactor>(components, load, "reactors", Reactor::fromJson,
+                                ctx);
+  loadComponentsOfType<FTL>(components, load, "ftls", FTL::fromJson, ctx);
+  loadComponentsOfType<Sublight>(components, load, "sublights",
+                                 Sublight::fromJson, ctx);
+  loadComponentsOfType<Sensor>(components, load, "sensors", Sensor::fromJson,
+                               ctx);
+  loadComponentsOfType<Computer>(components, load, "computers",
+                                 Computer::fromJson, ctx);
+  loadComponentsOfType<Aura>(components, load, "auras", Aura::fromJson, ctx);
+  loadComponentsOfType<Utility>(components, load, "utilities",
+                                Utility::fromJson, ctx);
+  loadComponentsOfType<Auxiliary>(components, load, "auxiliaries",
+                                  Auxiliary::fromJson, ctx);
+  loadComponentsOfType<Weapon>(components, load, "weapons", Weapon::fromJson,
+                               ctx);
+  checkFields(load,
+              {"hulls", "sections", "reactors", "ftls", "sublights", "sensors",
+               "computers", "auras", "utilities", "auxiliaries", "weapons"},
+              ctx);
+  return components;
+}
 }  // namespace
 
 EvalContext::EvalContext(string const &root) noexcept : contextStack(1, root) {}
@@ -101,6 +145,10 @@ EvalException::EvalException(string const &message_) noexcept
     : message(message_) {}
 char const *EvalException::what() const noexcept { return message.c_str(); }
 
+DesignException::DesignException(string const &message_) noexcept
+    : message(message_) {}
+char const *DesignException::what() const noexcept { return message.c_str(); }
+
 int eval(istream &in, EvalContext &ctx) noexcept {
   try {
     cout << "Athena II version " << ATHENA2_VERSION_MAJOR << "."
@@ -113,117 +161,15 @@ int eval(istream &in, EvalContext &ctx) noexcept {
 
     // load section
     Header loadHeader = Header("Loading components...");
-    ComponentSet components;
     json const &load = checkObject(runspec, "load", ctx);
-    {
+    ComponentSet components = [&ctx, &load]() {
       auto _ = ctx.push("load");
-      vector<string> hulls = checkStringArray(load, "hulls", ctx);
-      for_each(
-          hulls.begin(), hulls.end(),
-          [&ctx, &components](string const &filename) {
-            auto _ = ctx.push(filename);
-            ifstream file(filename);
-            if (!file) ctx.error("could not open file");
-            components.hulls.push_back(Hull::fromJson(parse(file, ctx), ctx));
-          });
-      vector<string> sections = checkStringArray(load, "sections", ctx);
-      for_each(sections.begin(), sections.end(),
-               [&ctx, &components](string const &filename) {
-                 auto _ = ctx.push(filename);
-                 ifstream file(filename);
-                 if (!file) ctx.error("could not open file");
-                 components.sections.push_back(
-                     Section::fromJson(parse(file, ctx), ctx));
-               });
-      vector<string> reactors = checkStringArray(load, "reactors", ctx);
-      for_each(reactors.begin(), reactors.end(),
-               [&ctx, &components](string const &filename) {
-                 auto _ = ctx.push(filename);
-                 ifstream file(filename);
-                 if (!file) ctx.error("could not open file");
-                 components.reactors.push_back(
-                     Reactor::fromJson(parse(file, ctx), ctx));
-               });
-      vector<string> ftls = checkStringArray(load, "ftls", ctx);
-      for_each(
-          ftls.begin(), ftls.end(),
-          [&ctx, &components](string const &filename) {
-            auto _ = ctx.push(filename);
-            ifstream file(filename);
-            if (!file) ctx.error("could not open file");
-            components.ftls.push_back(FTL::fromJson(parse(file, ctx), ctx));
-          });
-      vector<string> sublights = checkStringArray(load, "sublights", ctx);
-      for_each(sublights.begin(), sublights.end(),
-               [&ctx, &components](string const &filename) {
-                 auto _ = ctx.push(filename);
-                 ifstream file(filename);
-                 if (!file) ctx.error("could not open file");
-                 components.sublights.push_back(
-                     Sublight::fromJson(parse(file, ctx), ctx));
-               });
-      vector<string> sensors = checkStringArray(load, "sensors", ctx);
-      for_each(sensors.begin(), sensors.end(),
-               [&ctx, &components](string const &filename) {
-                 auto _ = ctx.push(filename);
-                 ifstream file(filename);
-                 if (!file) ctx.error("could not open file");
-                 components.sensors.push_back(
-                     Sensor::fromJson(parse(file, ctx), ctx));
-               });
-      vector<string> computers = checkStringArray(load, "computers", ctx);
-      for_each(computers.begin(), computers.end(),
-               [&ctx, &components](string const &filename) {
-                 auto _ = ctx.push(filename);
-                 ifstream file(filename);
-                 if (!file) ctx.error("could not open file");
-                 components.computers.push_back(
-                     Computer::fromJson(parse(file, ctx), ctx));
-               });
-      vector<string> auras = checkStringArray(load, "auras", ctx);
-      for_each(
-          auras.begin(), auras.end(),
-          [&ctx, &components](string const &filename) {
-            auto _ = ctx.push(filename);
-            ifstream file(filename);
-            if (!file) ctx.error("could not open file");
-            components.auras.push_back(Aura::fromJson(parse(file, ctx), ctx));
-          });
-      vector<string> utilities = checkStringArray(load, "utilities", ctx);
-      for_each(utilities.begin(), utilities.end(),
-               [&ctx, &components](string const &filename) {
-                 auto _ = ctx.push(filename);
-                 ifstream file(filename);
-                 if (!file) ctx.error("could not open file");
-                 components.utilities.push_back(
-                     Utility::fromJson(parse(file, ctx), ctx));
-               });
-      vector<string> auxiliaries = checkStringArray(load, "auxiliaries", ctx);
-      for_each(auxiliaries.begin(), auxiliaries.end(),
-               [&ctx, &components](string const &filename) {
-                 auto _ = ctx.push(filename);
-                 ifstream file(filename);
-                 if (!file) ctx.error("could not open file");
-                 components.auxiliaries.push_back(
-                     Auxiliary::fromJson(parse(file, ctx), ctx));
-               });
-      vector<string> weapons = checkStringArray(load, "weapons", ctx);
-      for_each(weapons.begin(), weapons.end(),
-               [&ctx, &components](string const &filename) {
-                 auto _ = ctx.push(filename);
-                 ifstream file(filename);
-                 if (!file) ctx.error("could not open file");
-                 components.weapons.push_back(
-                     Weapon::fromJson(parse(file, ctx), ctx));
-               });
-      checkFields(
-          load,
-          {"hulls", "sections", "reactors", "ftls", "sublights", "sensors",
-           "computers", "auras", "utilities", "auxiliaries", "weapons"},
-          ctx);
-    }
+      return loadComponents(load, ctx);
+    }();
     loadHeader.finish();
+
     // TODO: rest of runspec
+
     checkFields(runspec, {"load"}, ctx);
   } catch (EvalException const &e) {
     cout << e.what() << endl;

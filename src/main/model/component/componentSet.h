@@ -22,6 +22,7 @@
 
 #include <vector>
 
+#include "dsl.h"
 #include "model/component/aura.h"
 #include "model/component/auxiliary.h"
 #include "model/component/computer.h"
@@ -46,6 +47,19 @@ class ComponentSet final {
   ComponentSet &operator=(ComponentSet const &) = delete;
   ComponentSet &operator=(ComponentSet &&) = default;
 
+  ComponentSet &add(Hull &&, EvalContext &);
+  ComponentSet &add(Section &&, EvalContext &);
+  ComponentSet &add(Reactor &&, EvalContext &);
+  ComponentSet &add(FTL &&, EvalContext &);
+  ComponentSet &add(Sublight &&, EvalContext &);
+  ComponentSet &add(Sensor &&, EvalContext &);
+  ComponentSet &add(Computer &&, EvalContext &);
+  ComponentSet &add(Aura &&, EvalContext &);
+  ComponentSet &add(Utility &&, EvalContext &);
+  ComponentSet &add(Auxiliary &&, EvalContext &);
+  ComponentSet &add(Weapon &&, EvalContext &);
+
+ private:
   std::vector<Hull> hulls;
   std::vector<Section> sections;
   std::vector<Reactor> reactors;
@@ -57,8 +71,6 @@ class ComponentSet final {
   std::vector<Utility> utilities;
   std::vector<Auxiliary> auxiliaries;
   std::vector<Weapon> weapons;
-
- private:
 };
 }  // namespace athena2::model::component
 

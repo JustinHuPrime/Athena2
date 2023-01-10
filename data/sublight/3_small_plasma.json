@@ -1,5 +1,5 @@
 {
-  "name": "Plasma Thrusters",
+  "name": "Destroyer Plasma Thrusters",
   "sizes": ["DD", "MD"],
   "power": -40,
   "speedModifier": 0.5,

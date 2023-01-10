@@ -1,5 +1,5 @@
 {
-  "name": "Ion Thrusters",
+  "name": "Colossal Ion Thrusters",
   "sizes": ["SE", "JU"],
   "power": -300,
   "speedModifier": 0.25,

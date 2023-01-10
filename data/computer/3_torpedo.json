@@ -3,7 +3,7 @@
   "sizes": ["FF", "CC", "MD"],
   "tactics": "torpedo",
   "power": -15,
-  "explosiveWeaponDamageModifier": 0.1,
+  "explosiveWeaponsDamageModifier": 0.1,
   "cost": {
     "alloys": 10
   }

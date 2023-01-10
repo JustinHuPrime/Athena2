@@ -1,5 +1,5 @@
 {
-  "name": "Basic Combat Computer",
+  "name": "Basic Combat Computer (Picket)",
   "sizes": ["DD"],
   "tactics": "picket",
   "power": -5,

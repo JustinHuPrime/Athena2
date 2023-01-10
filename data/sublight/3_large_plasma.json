@@ -1,5 +1,5 @@
 {
-  "name": "Plasma Thrusters",
+  "name": "Battleship Plasma Thrusters",
   "sizes": ["BB"],
   "power": -160,
   "speedModifier": 0.5,

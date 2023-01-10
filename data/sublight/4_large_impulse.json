@@ -1,5 +1,5 @@
 {
-  "name": "Impulse Thrusters",
+  "name": "Battleship Impulse Thrusters",
   "sizes": ["BB"],
   "power": -200,
   "speedModifier": 0.75,

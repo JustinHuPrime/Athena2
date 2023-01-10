@@ -1,5 +1,5 @@
 {
-  "name": "Ion Thrusters",
+  "name": "Corvette Ion Thrusters",
   "sizes": ["KK", "FF", "MK"],
   "power": -15,
   "speedModifier": 0.25,

@@ -1,5 +1,5 @@
 {
-  "name": "Basic Combat Computer",
+  "name": "Basic Combat Computer (Swarm)",
   "sizes": ["KK", "MK"],
   "tactics": "swarm",
   "power": -5,

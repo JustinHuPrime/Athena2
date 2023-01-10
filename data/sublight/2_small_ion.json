@@ -1,5 +1,5 @@
 {
-  "name": "Ion Thrusters",
+  "name": "Destroyer Ion Thrusters",
   "sizes": ["DD", "MD"],
   "power": -30,
   "speedModifier": 0.25,

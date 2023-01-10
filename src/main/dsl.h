@@ -78,6 +78,22 @@ class EvalException final : public std::exception {
  private:
   std::string message;
 };
+class DesignException final : public std::exception {
+ public:
+  explicit DesignException(std::string const &) noexcept;
+  DesignException(DesignException const &) noexcept = default;
+  DesignException(DesignException &&) noexcept = default;
+
+  ~DesignException() noexcept override = default;
+
+  DesignException &operator=(DesignException const &) noexcept = default;
+  DesignException &operator=(DesignException &&) noexcept = default;
+
+  char const *what() const noexcept override;
+
+ private:
+  std::string message;
+};
 
 int eval(std::istream &, EvalContext &) noexcept;
 }  // namespace athena2

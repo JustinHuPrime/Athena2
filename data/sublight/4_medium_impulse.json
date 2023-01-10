@@ -1,5 +1,5 @@
 {
-  "name": "Impulse Thrusters",
+  "name": "Cruiser Impulse Thrusters",
   "sizes": ["CC", "MC"],
   "power": -100,
   "speedModifier": 0.75,

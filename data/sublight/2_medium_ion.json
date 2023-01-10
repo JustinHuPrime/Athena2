@@ -1,5 +1,5 @@
 {
-  "name": "Ion Thrusters",
+  "name": "Cruiser Ion Thrusters",
   "sizes": ["CC", "MC"],
   "power": -60,
   "speedModifier": 0.25,

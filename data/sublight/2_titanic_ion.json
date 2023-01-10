@@ -1,5 +1,5 @@
 {
-  "name": "Ion Thrusters",
+  "name": "Titan Ion Thrusters",
   "sizes": ["TT"],
   "power": -240,
   "speedModifier": 0.25,

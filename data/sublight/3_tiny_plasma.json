@@ -1,5 +1,5 @@
 {
-  "name": "Plasma Thrusters",
+  "name": "Corvette Plasma Thrusters",
   "sizes": ["KK", "FF", "MK"],
   "power": -20,
   "speedModifier": 0.5,
