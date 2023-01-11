@@ -44,9 +44,8 @@ Section Section::fromJson(json const &data, ComponentSet const &components,
     if (!section) ctx.error("no such section '" + sectionName + "'");
     return *section;
   }();
-  vector<reference_wrapper<Weapon const>> weapons = [&components, &weaponNames,
-                                                     &ctx]() {
-    vector<reference_wrapper<Weapon const>> weapons;
+  vector<reference_wrapper<Weapon const>> weapons;
+  {
     auto _ = ctx.push("weapons");
     for (size_t idx = 0; idx < weaponNames.size(); ++idx) {
       auto _ = ctx.push(to_string(idx));
@@ -54,11 +53,9 @@ Section Section::fromJson(json const &data, ComponentSet const &components,
       if (!weapon) ctx.error("no such weapon '" + weaponNames[idx] + "'");
       weapons.push_back(*weapon);
     }
-    return weapons;
-  }();
-  vector<reference_wrapper<Utility const>> utilities = [&components,
-                                                        &utilityNames, &ctx]() {
-    vector<reference_wrapper<Utility const>> utilities;
+  }
+  vector<reference_wrapper<Utility const>> utilities;
+  {
     auto _ = ctx.push("utilities");
     for (size_t idx = 0; idx < utilityNames.size(); ++idx) {
       auto _ = ctx.push(to_string(idx));
@@ -67,12 +64,9 @@ Section Section::fromJson(json const &data, ComponentSet const &components,
         ctx.error("no such utility component '" + utilityNames[idx] + "'");
       utilities.push_back(*utility);
     }
-    return utilities;
-  }();
-  vector<reference_wrapper<Auxiliary const>> auxiliaries = [&components,
-                                                            &auxiliaryNames,
-                                                            &ctx]() {
-    vector<reference_wrapper<Auxiliary const>> auxiliaries;
+  }
+  vector<reference_wrapper<Auxiliary const>> auxiliaries;
+  {
     auto _ = ctx.push("auxiliaries");
     for (size_t idx = 0; idx < auxiliaryNames.size(); ++idx) {
       auto _ = ctx.push(to_string(idx));
@@ -81,8 +75,8 @@ Section Section::fromJson(json const &data, ComponentSet const &components,
         ctx.error("no such auxiliary component '" + auxiliaryNames[idx] + "'");
       auxiliaries.push_back(*auxiliary);
     }
-    return auxiliaries;
-  }();
+  }
+
   try {
     return Section(section, weapons, utilities, auxiliaries);
   } catch (DesignException const &e) {
