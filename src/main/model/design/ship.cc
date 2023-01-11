@@ -34,7 +34,7 @@ Ship Ship::fromJson(json const &data, ComponentSet const &components,
   string hullName = checkString(data, "hull", ctx);
   string reactorName = checkString(data, "reactor", ctx);
   string ftlName = checkString(data, "ftl", ctx);
-  string sublightName = checkString(data, "ftl", ctx);
+  string sublightName = checkString(data, "sublight", ctx);
   string sensorName = checkString(data, "sensor", ctx);
   string computerName = checkString(data, "computer", ctx);
   optional<string> auraName = checkMaybeString(data, "aura", ctx);

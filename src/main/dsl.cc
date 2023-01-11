@@ -24,6 +24,7 @@
 #include <iostream>
 #include <numeric>
 #include <optional>
+#include <utility>
 
 #include "model/component/aura.h"
 #include "model/component/auxiliary.h"
@@ -37,14 +38,18 @@
 #include "model/component/sublight.h"
 #include "model/component/utility.h"
 #include "model/component/weapon.h"
+#include "model/design/fleet.h"
+#include "model/evaluator.h"
 #include "nlohmann/json.hpp"
 #include "util/json.h"
 #include "version.h"
 
 using namespace std;
+using namespace athena2::model::design;
 using namespace athena2::model::component;
 using namespace nlohmann;
 using namespace athena2::util;
+using namespace athena2::model;
 
 namespace athena2 {
 namespace {
@@ -90,8 +95,9 @@ void loadComponentsOfType(
 ComponentSet loadComponents(json const &load, EvalContext &ctx) {
   ComponentSet components;
   loadComponentsOfType<Hull>(components, load, "hulls", Hull::fromJson, ctx);
-  loadComponentsOfType<Section>(components, load, "sections", Section::fromJson,
-                                ctx);
+  loadComponentsOfType<athena2::model::component::Section>(
+      components, load, "sections",
+      athena2::model::component::Section::fromJson, ctx);
   loadComponentsOfType<Reactor>(components, load, "reactors", Reactor::fromJson,
                                 ctx);
   loadComponentsOfType<FTL>(components, load, "ftls", FTL::fromJson, ctx);
@@ -170,12 +176,18 @@ int eval(istream &in, EvalContext &ctx) noexcept {
     loadHeader.finish();
 
     // generic hyperparams
+    Header paramsHeader = Header("Loading settings...");
     float fightLengthLimit =
         checkMaybeFloat(runspec, "fightLengthLimit", ctx).value_or(360.f);
     float withdrawMultiplier =
         checkMaybeFloat(runspec, "withdrawMultiplier", ctx).value_or(0.1f);
-
+    EvaluationSettings evaluationSettings = {
+        .fightLengthLimit = fightLengthLimit,
+        .withdrawMultiplier = withdrawMultiplier,
+    };
     string mode = checkString(runspec, "mode", ctx);
+    paramsHeader.finish();
+
     if (mode == "auto") {
       // auto - do AI-based design
 
@@ -188,12 +200,45 @@ int eval(istream &in, EvalContext &ctx) noexcept {
                   ctx);
     } else if (mode == "manual") {
       // manual mode - read fleets and simulate combat
+      Header loadFleetHeader = Header("Loading fleets...");
+      json const &fleetData = checkArray(runspec, "fleets", ctx);
+      checkFields(
+          runspec,
+          {"load", "mode", "fightLengthLimit", "withdrawMultiplier", "fleets"},
+          ctx);
 
-      // TODO
+      vector<Fleet> fleets;
+      for (auto const &[key, val] : fleetData.items()) {
+        auto _ = ctx.push(key);
+        fleets.push_back(Fleet::fromJson(val, components, ctx));
+      }
+      loadFleetHeader.finish();
 
-      checkFields(runspec,
-                  {"load", "mode", "fightLengthLimit", "withdrawMultiplier"},
-                  ctx);
+      cout << "\n"
+           << "Results\n"
+           << "\n";
+      for (size_t firstIdx = 0; firstIdx < fleets.size(); ++firstIdx) {
+        for (size_t secondIdx = firstIdx + 1; secondIdx < fleets.size();
+             ++secondIdx) {
+          auto const &first = fleets[firstIdx];
+          auto const &second = fleets[secondIdx];
+          cout << first.name << " vs " << second.name << ": ";
+          pair<float, float> result =
+              evaluate(first, second, evaluationSettings);
+          cout << first.name << ": " << -result.first << ", " << second.name
+               << ": " << -result.second;
+          // TODO: add out of cost (e.g. `${-result.first}/${first.cost}`)
+          if (result.first < result.second) {
+            cout << "; " << first.name << " wins by "
+                 << result.second - result.first << "\n";
+          } else if (result.second < result.first) {
+            cout << "; " << second.name << " wins by "
+                 << result.first - result.second << "\n";
+          } else {
+            cout << "; draw\n";
+          }
+        }
+      }
     }
   } catch (EvalException const &e) {
     cerr << e.what() << endl;

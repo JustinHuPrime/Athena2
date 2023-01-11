@@ -1,0 +1,105 @@
+{
+  "load": {
+    "hulls": ["data/hull/0_corvette.json"],
+    "sections": [
+      "data/section/0_corvette_interceptor.json",
+      "data/section/0_corvette_picket_ship.json"
+    ],
+    "reactors": ["data/reactor/0_tiny_fission.json"],
+    "ftls": ["data/ftl/0_hyper_drive_1.json"],
+    "sublights": ["data/sublight/0_tiny_chemical.json"],
+    "sensors": ["data/sensor/0_radar_system.json"],
+    "computers": ["data/computer/0_swarm.json"],
+    "auras": [],
+    "utilities": [
+      "data/utility/0_small_nanocompsite_armour.json",
+      "data/utility/0_large_nanocompsite_armour.json",
+      "data/utility/0_medium_nanocompsite_armour.json",
+      "data/utility/0_large_deflectors.json",
+      "data/utility/0_small_deflectors.json",
+      "data/utility/0_medium_deflectors.json"
+    ],
+    "auxiliaries": ["data/auxiliary/0_reactor_booster.json"],
+    "weapons": [
+      "data/weapon/0_large_mass_driver.json",
+      "data/weapon/0_medium_red_laser.json",
+      "data/weapon/0_sentinel_point_defence.json",
+      "data/weapon/0_small_red_laser.json",
+      "data/weapon/0_flak_battery.json",
+      "data/weapon/0_small_mass_driver.json",
+      "data/weapon/0_nuclear_missiles.json",
+      "data/weapon/0_medium_mass_driver.json",
+      "data/weapon/0_large_red_laser.json",
+      "data/weapon/0_scout_wing.json"
+    ]
+  },
+  "mode": "manual",
+  "fleets": [
+    {
+      "name": "Missile Corvettes",
+      "ships": [
+        {
+          "ship": {
+            "name": "Alpha",
+            "hull": "Corvette",
+            "reactor": "Corvette Fission Reactor",
+            "ftl": "Hyper Drive I",
+            "sublight": "Corvette Chemical Thrusters",
+            "sensor": "Radar System",
+            "computer": "Basic Combat Computer (Swarm)",
+            "sections": [
+              {
+                "section": "Interceptor Corvette",
+                "weapons": [
+                  "Small Mass Driver",
+                  "Small Red Laser",
+                  "Nuclear Missiles"
+                ],
+                "utilities": [
+                  "Small Nanocomposite Armour",
+                  "Small Nanocomposite Armour",
+                  "Small Deflectors"
+                ],
+                "auxiliaries": []
+              }
+            ]
+          },
+          "count": 3
+        }
+      ]
+    },
+    {
+      "name": "Point-Defence Corvettes",
+      "ships": [
+        {
+          "ship": {
+            "name": "Alpha",
+            "hull": "Corvette",
+            "reactor": "Corvette Fission Reactor",
+            "ftl": "Hyper Drive I",
+            "sublight": "Corvette Chemical Thrusters",
+            "sensor": "Radar System",
+            "computer": "Basic Combat Computer (Swarm)",
+            "sections": [
+              {
+                "section": "Picket Ship Corvette",
+                "weapons": [
+                  "Small Mass Driver",
+                  "Small Red Laser",
+                  "Sentinel Point-Defence"
+                ],
+                "utilities": [
+                  "Small Nanocomposite Armour",
+                  "Small Nanocomposite Armour",
+                  "Small Deflectors"
+                ],
+                "auxiliaries": []
+              }
+            ]
+          },
+          "count": 3
+        }
+      ]
+    }
+  ]
+}
