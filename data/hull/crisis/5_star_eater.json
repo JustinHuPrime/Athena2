@@ -8,6 +8,7 @@
   "evasion": 0.05,
   "speed": 120,
   "disengageChanceModifier": 0,
+  "includeComponentCost": false,
   "cost": {
     "dark matter": 10000
   }

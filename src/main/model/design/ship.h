@@ -61,6 +61,7 @@ class Ship final : public util::Named {
   std::optional<std::reference_wrapper<component::Aura const>> const aura;
   std::vector<Section> const sections;
   float const power;
+  float const cost;
 
  private:
   /**
@@ -73,6 +74,7 @@ class Ship final : public util::Named {
        std::vector<Section> const &);
 
   float computePower() const noexcept;
+  float computeCost() const noexcept;
 };
 }  // namespace athena2::model::design
 

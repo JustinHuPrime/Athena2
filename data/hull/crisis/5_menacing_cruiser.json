@@ -9,6 +9,7 @@
   "evasion": 0.1,
   "speed": 140,
   "disengageChanceModifier": 0,
+  "includeComponentCost": false,
   "cost": {
     "minerals": 900
   }

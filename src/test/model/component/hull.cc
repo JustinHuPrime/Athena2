@@ -51,7 +51,7 @@ TEST_CASE("Hull parsing", "[model][component][hull]") {
   REQUIRE(corvette.trackingModifier == 0.f);
   REQUIRE(corvette.speed == 160.f);
   REQUIRE(corvette.disengageChanceModifier == 0.f);
-  REQUIRE(corvette.includeComponentCost == false);
+  REQUIRE(corvette.includeComponentCost == true);
   REQUIRE(corvette.cost == 0.f);
 }
 
@@ -70,7 +70,7 @@ TEST_CASE("Hull parsing with all fields", "[model][component][hull]") {
   "trackingModifier": 0,
   "speed": 160,
   "disengageChanceModifier": 0,
-  "includeComponentCost": false,
+  "includeComponentCost": true,
   "cost": {}
 }
 )"_json,
@@ -87,6 +87,6 @@ TEST_CASE("Hull parsing with all fields", "[model][component][hull]") {
   REQUIRE(corvette.trackingModifier == 0.f);
   REQUIRE(corvette.speed == 160.f);
   REQUIRE(corvette.disengageChanceModifier == 0.f);
-  REQUIRE(corvette.includeComponentCost == false);
+  REQUIRE(corvette.includeComponentCost == true);
   REQUIRE(corvette.cost == 0.f);
 }

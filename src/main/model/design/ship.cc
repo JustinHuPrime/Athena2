@@ -116,7 +116,8 @@ Ship::Ship(string const &name_, Hull const &hull_, Reactor const &reactor_,
       computer(computer_),
       aura(aura_),
       sections(sections_),
-      power(computePower()) {
+      power(computePower()),
+      cost(computeCost()) {
   if (find(reactor.sizes.begin(), reactor.sizes.end(), hull.coreSize) ==
       reactor.sizes.end())
     throw DesignException("reactor does not fit hull");
@@ -141,5 +142,17 @@ float Ship::computePower() const noexcept {
                     [](float acc, Section const &section) {
                       return acc + section.power;
                     });
+}
+float Ship::computeCost() const noexcept {
+  if (hull.includeComponentCost) {
+    return hull.cost + reactor.cost + ftl.cost + sublight.cost + sensor.cost +
+           computer.cost +
+           accumulate(sections.begin(), sections.end(), 0.f,
+                      [](float rsf, Section const &section) {
+                        return rsf + section.cost;
+                      });
+  } else {
+    return hull.cost;
+  }
 }
 }  // namespace athena2::model::design

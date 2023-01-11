@@ -225,9 +225,9 @@ int eval(istream &in, EvalContext &ctx) noexcept {
           cout << first.name << " vs " << second.name << ": ";
           pair<float, float> result =
               evaluate(first, second, evaluationSettings);
-          cout << first.name << ": " << -result.first << ", " << second.name
-               << ": " << -result.second;
-          // TODO: add out of cost (e.g. `${-result.first}/${first.cost}`)
+          cout << first.name << ": " << -result.first << "/" << first.cost
+               << ", " << second.name << ": " << -result.second << "/"
+               << second.cost;
           if (result.first < result.second) {
             cout << "; " << first.name << " wins by "
                  << result.second - result.first << "\n";

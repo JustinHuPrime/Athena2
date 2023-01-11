@@ -67,7 +67,7 @@ Hull Hull::fromJson(nlohmann::json const &data, EvalContext &ctx) {
               hullHealthModifier.value_or(0.f), armourHealth.value_or(0.f),
               evasion, evasionModifier.value_or(0.f),
               trackingModifier.value_or(0.f), speed, disengageChanceModifier,
-              includeComponentCost.value_or(false), cost);
+              includeComponentCost.value_or(true), cost);
 }
 
 Hull::Hull(string const &name_, float size_, string const &coreSize_,

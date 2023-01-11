@@ -45,10 +45,12 @@ class Fleet final : public util::Named {
   Fleet &operator=(Fleet &&) noexcept = default;
 
   std::vector<std::pair<Ship, size_t>> const ships;
+  float const cost;
 
  private:
   Fleet(std::string const &name,
         std::vector<std::pair<Ship, size_t>> const &ships) noexcept;
+  float computeCost() const noexcept;
 };
 }  // namespace athena2::model::design
 

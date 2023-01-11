@@ -53,5 +53,11 @@ Fleet Fleet::fromJson(json const &data, ComponentSet const &components,
 
 Fleet::Fleet(std::string const &name_,
              vector<pair<Ship, size_t>> const &ships_) noexcept
-    : Named(name_), ships(ships_) {}
+    : Named(name_), ships(ships_), cost(computeCost()) {}
+float Fleet::computeCost() const noexcept {
+  return accumulate(ships.begin(), ships.end(), 0.f,
+                    [](float rsf, pair<Ship, size_t> const &element) {
+                      return rsf + element.first.cost * element.second;
+                    });
+}
 }  // namespace athena2::model::design

@@ -51,6 +51,7 @@ class Section final {
   std::vector<std::reference_wrapper<component::Auxiliary const>> const
       auxiliaries;
   float const power;
+  float const cost;
 
  private:
   /**
@@ -63,6 +64,7 @@ class Section final {
       std::vector<std::reference_wrapper<component::Utility const>> const &,
       std::vector<std::reference_wrapper<component::Auxiliary const>> const &);
   float computePower() const noexcept;
+  float computeCost() const noexcept;
 };
 }  // namespace athena2::model::design
 
