@@ -38,6 +38,7 @@ Section Section::fromJson(json const &data, ComponentSet const &components,
   vector<string> weaponNames = checkStringArray(data, "weapons", ctx);
   vector<string> utilityNames = checkStringArray(data, "utilities", ctx);
   vector<string> auxiliaryNames = checkStringArray(data, "auxiliaries", ctx);
+
   component::Section const &section = [&components, &sectionName, &ctx]() {
     auto _ = ctx.push("section");
     auto section = components.getSection(sectionName);
@@ -80,7 +81,7 @@ Section Section::fromJson(json const &data, ComponentSet const &components,
   try {
     return Section(section, weapons, utilities, auxiliaries);
   } catch (DesignException const &e) {
-    ctx.error("invalid design: "s + e.what());
+    ctx.error("invalid section design: "s + e.what());
   }
 }
 

@@ -74,6 +74,16 @@ inline std::string checkString(nlohmann::json const &json,
   return checkFieldType(json, key, &nlohmann::json::is_string, "string", ctx)
       .get<std::string>();
 }
+inline std::optional<std::string> checkMaybeString(nlohmann::json const &json,
+                                                   std::string const &key,
+                                                   EvalContext &ctx) {
+  auto maybeField =
+      checkMaybeFieldType(json, key, &nlohmann::json::is_string, "string", ctx);
+  if (!maybeField)
+    return std::nullopt;
+  else
+    return maybeField->get().get<std::string>();
+}
 inline float checkFloat(nlohmann::json const &json, std::string const &key,
                         EvalContext &ctx) {
   return checkFieldType(json, key, &nlohmann::json::is_number, "number", ctx)
