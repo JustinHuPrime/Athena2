@@ -111,5 +111,31 @@ Ship::Ship(string const &name_, Hull const &hull_, Reactor const &reactor_,
       sensor(sensor_),
       computer(computer_),
       aura(aura_),
-      sections(sections_) {}
+      sections(sections_),
+      power(computePower()) {
+  if (find(reactor.sizes.begin(), reactor.sizes.end(), hull.coreSize) ==
+      reactor.sizes.end())
+    throw DesignException("reactor does not fit hull");
+
+  if (find(sublight.sizes.begin(), sublight.sizes.end(), hull.coreSize) ==
+      sublight.sizes.end())
+    throw DesignException("sublight does not fit hull");
+
+  if (find(computer.sizes.begin(), computer.sizes.end(), hull.coreSize) ==
+      computer.sizes.end())
+    throw DesignException("computer does not fit hull");
+
+  if (aura && aura->get().size != hull.coreSize)
+    throw DesignException("aura does not fit hull");
+
+  if (power < 0) throw DesignException("insufficient power");
+}
+float Ship::computePower() const noexcept {
+  return reactor.power + ftl.power + sublight.power + sensor.power +
+         computer.power +
+         accumulate(sections.begin(), sections.end(), 0.0f,
+                    [](float acc, Section const &section) {
+                      return acc + section.power;
+                    });
+}
 }  // namespace athena2::model::design

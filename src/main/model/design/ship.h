@@ -60,6 +60,7 @@ class Ship final : public util::Named {
   component::Computer const &computer;
   std::optional<std::reference_wrapper<component::Aura const>> const aura;
   std::vector<Section> const sections;
+  float const power;
 
  private:
   /**
@@ -70,6 +71,8 @@ class Ship final : public util::Named {
        component::Sensor const &, component::Computer const &,
        std::optional<std::reference_wrapper<component::Aura const>> const &,
        std::vector<Section> const &);
+
+  float computePower() const noexcept;
 };
 }  // namespace athena2::model::design
 
