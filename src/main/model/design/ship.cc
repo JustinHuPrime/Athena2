@@ -39,6 +39,10 @@ Ship Ship::fromJson(json const &data, ComponentSet const &components,
   string computerName = checkString(data, "computer", ctx);
   optional<string> auraName = checkMaybeString(data, "aura", ctx);
   json const &sectionsData = checkArray(data, "sections", ctx);
+  checkFields(data,
+              {"name", "hull", "reactor", "ftl", "sublight", "sensor",
+               "computer", "aura", "sections"},
+              ctx);
 
   Hull const &hull = [&components, &hullName, &ctx]() {
     auto _ = ctx.push("hull");

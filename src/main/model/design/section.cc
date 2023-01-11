@@ -38,6 +38,7 @@ Section Section::fromJson(json const &data, ComponentSet const &components,
   vector<string> weaponNames = checkStringArray(data, "weapons", ctx);
   vector<string> utilityNames = checkStringArray(data, "utilities", ctx);
   vector<string> auxiliaryNames = checkStringArray(data, "auxiliaries", ctx);
+  checkFields(data, {"section", "weapons", "utilities", "auxiliaries"}, ctx);
 
   component::Section const &section = [&components, &sectionName, &ctx]() {
     auto _ = ctx.push("section");

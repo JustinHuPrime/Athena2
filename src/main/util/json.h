@@ -20,13 +20,14 @@
 #ifndef ATHENA2_UTIL_JSON_H_
 #define ATHENA2_UTIL_JSON_H_
 
-#include <nlohmann/json_fwd.hpp>
+#include <limits>
 #include <optional>
 #include <string>
 #include <utility>
 #include <vector>
 
 #include "dsl.h"
+#include "nlohmann/json_fwd.hpp"
 
 namespace athena2::util {
 inline nlohmann::json parse(std::istream &stream, EvalContext &ctx) {
@@ -43,6 +44,15 @@ inline nlohmann::json const &checkType(nlohmann::json const &json,
                                        EvalContext &ctx) {
   if (!(json.*typechecker)()) ctx.error("expected " + type);
   return json;
+}
+inline nlohmann::json const &checkField(nlohmann::json const &json,
+                                        std::string const &key,
+                                        EvalContext &ctx) {
+  if (!json.contains(key)) {
+    ctx.error("missing field " + key);
+  }
+
+  return json[key];
 }
 inline nlohmann::json const &checkFieldType(
     nlohmann::json const &json, std::string const &key,
@@ -88,6 +98,23 @@ inline float checkFloat(nlohmann::json const &json, std::string const &key,
                         EvalContext &ctx) {
   return checkFieldType(json, key, &nlohmann::json::is_number, "number", ctx)
       .get<float>();
+}
+inline size_t checkUnsignedInteger(nlohmann::json const &json,
+                                   std::string const &key, EvalContext &ctx) {
+  float value =
+      checkFieldType(json, key, &nlohmann::json::is_number, "number", ctx)
+          .get<float>();
+  auto _ = ctx.push(key);
+  if (std::numeric_limits<size_t>::min() > value) {
+    ctx.error("value must be positive");
+  }
+  if (std::numeric_limits<size_t>::max() < value) {
+    ctx.error("value too large");
+  }
+  if (floorf(value) != value) {
+    ctx.error("value must be an integer");
+  }
+  return value;
 }
 inline std::optional<float> checkMaybeFloat(nlohmann::json const &json,
                                             std::string const &key,

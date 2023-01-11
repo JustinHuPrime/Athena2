@@ -20,6 +20,36 @@
 #ifndef ATHENA2_MODEL_DESIGN_FLEET_H_
 #define ATHENA2_MODEL_DESIGN_FLEET_H_
 
-namespace athena2::model::design {}
+#include <string>
+#include <utility>
+#include <vector>
+
+#include "dsl.h"
+#include "model/component/componentSet.h"
+#include "model/design/ship.h"
+#include "nlohmann/json.hpp"
+#include "util/named.h"
+
+namespace athena2::model::design {
+class Fleet final : public util::Named {
+ public:
+  static Fleet fromJson(nlohmann::json const &, component::ComponentSet const &,
+                        EvalContext &ctx);
+
+  Fleet(Fleet const &) noexcept = default;
+  Fleet(Fleet &&) noexcept = default;
+
+  ~Fleet() noexcept = default;
+
+  Fleet &operator=(Fleet const &) noexcept = default;
+  Fleet &operator=(Fleet &&) noexcept = default;
+
+  std::vector<std::pair<Ship, size_t>> const ships;
+
+ private:
+  Fleet(std::string const &name,
+        std::vector<std::pair<Ship, size_t>> const &ships) noexcept;
+};
+}  // namespace athena2::model::design
 
 #endif  // ATHENA2_MODEL_DESIGN_FLEET_H_
