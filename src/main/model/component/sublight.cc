@@ -31,26 +31,28 @@ Sublight Sublight::fromJson(json const &data, EvalContext &ctx) {
   string name = checkString(data, "name", ctx);
   vector<string> sizes = checkStringArray(data, "sizes", ctx);
   float power = checkFloat(data, "power", ctx);
-  float speedModifier = checkFloat(data, "speedModifier", ctx);
+  float sublightSpeedModifier = checkFloat(data, "sublightSpeedModifier", ctx);
   float evasionBonus = checkFloat(data, "evasionBonus", ctx);
   json const &costData = checkObject(data, "cost", ctx);
   Cost cost = [&ctx, &costData]() {
     auto _ = ctx.push("cost");
     return Cost::fromJson(costData, ctx);
   }();
-  checkFields(
-      data, {"name", "sizes", "power", "speedModifier", "evasionBonus", "cost"},
-      ctx);
+  checkFields(data,
+              {"name", "sizes", "power", "sublightSpeedModifier",
+               "evasionBonus", "cost"},
+              ctx);
 
-  return Sublight(name, sizes, power, speedModifier, evasionBonus, cost);
+  return Sublight(name, sizes, power, sublightSpeedModifier, evasionBonus,
+                  cost);
 }
 Sublight::Sublight(string const &name_, vector<string> const &sizes_,
-                   float power_, float speedModifier_, float evasionBonus_,
-                   Cost const &cost_) noexcept
+                   float power_, float sublightSpeedModifier_,
+                   float evasionBonus_, Cost const &cost_) noexcept
     : Named(name_),
       sizes(sizes_),
       power(power_),
-      speedModifier(speedModifier_),
+      sublightSpeedModifier(sublightSpeedModifier_),
       evasionBonus(evasionBonus_),
       cost(cost_) {}
 }  // namespace athena2::model::component

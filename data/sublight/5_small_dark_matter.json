@@ -2,7 +2,7 @@
   "name": "Destroyer Dark Matter Thrusters",
   "sizes": ["DD", "MD"],
   "power": -60,
-  "speedModifier": 1.25,
+  "sublightSpeedModifier": 1.25,
   "evasionBonus": 0.16,
   "cost": {
     "alloys": 24,

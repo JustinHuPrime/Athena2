@@ -2,7 +2,7 @@
   "name": "Destroyer Plasma Thrusters",
   "sizes": ["DD", "MD"],
   "power": -40,
-  "speedModifier": 0.5,
+  "sublightSpeedModifier": 0.5,
   "evasionBonus": 0.08,
   "cost": {
     "alloys": 18

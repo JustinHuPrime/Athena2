@@ -2,7 +2,7 @@
   "name": "Titan Impulse Thrusters",
   "sizes": ["TT"],
   "power": -400,
-  "speedModifier": 0.75,
+  "sublightSpeedModifier": 0.75,
   "evasionBonus": 0.03,
   "cost": {
     "alloys": 192

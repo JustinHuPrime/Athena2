@@ -2,7 +2,7 @@
   "name": "Titan Ion Thrusters",
   "sizes": ["TT"],
   "power": -240,
-  "speedModifier": 0.25,
+  "sublightSpeedModifier": 0.25,
   "evasionBonus": 0.01,
   "cost": {
     "alloys": 96

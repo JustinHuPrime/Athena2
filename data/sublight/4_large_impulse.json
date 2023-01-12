@@ -2,7 +2,7 @@
   "name": "Battleship Impulse Thrusters",
   "sizes": ["BB"],
   "power": -200,
-  "speedModifier": 0.75,
+  "sublightSpeedModifier": 0.75,
   "evasionBonus": 0.06,
   "cost": {
     "alloys": 96

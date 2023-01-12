@@ -2,7 +2,7 @@
   "name": "Titan Chemical Thrusters",
   "sizes": ["TT"],
   "power": -160,
-  "speedModifier": 0,
+  "sublightSpeedModifier": 0,
   "evasionBonus": 0,
   "cost": {
     "alloys": 48

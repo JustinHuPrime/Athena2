@@ -2,7 +2,7 @@
   "name": "Destroyer Ion Thrusters",
   "sizes": ["DD", "MD"],
   "power": -30,
-  "speedModifier": 0.25,
+  "sublightSpeedModifier": 0.25,
   "evasionBonus": 0.04,
   "cost": {
     "alloys": 12

@@ -43,13 +43,13 @@ class Sublight final : public util::Named {
 
   std::vector<std::string> const sizes;
   float const power;
-  float const speedModifier;
+  float const sublightSpeedModifier;
   float const evasionBonus;
   Cost const cost;
 
  private:
   Sublight(std::string const &name, std::vector<std::string> const &sizes,
-           float power, float speedModifier, float evasionBonus,
+           float power, float sublightSpeedModifier, float evasionBonus,
            Cost const &cost) noexcept;
 };
 }  // namespace athena2::model::component

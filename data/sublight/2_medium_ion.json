@@ -2,7 +2,7 @@
   "name": "Cruiser Ion Thrusters",
   "sizes": ["CC", "MC"],
   "power": -60,
-  "speedModifier": 0.25,
+  "sublightSpeedModifier": 0.25,
   "evasionBonus": 0.03,
   "cost": {
     "alloys": 24

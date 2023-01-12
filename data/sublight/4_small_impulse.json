@@ -2,7 +2,7 @@
   "name": "Destroyer Impulse Thrusters",
   "sizes": ["DD", "MD"],
   "power": -50,
-  "speedModifier": 0.75,
+  "sublightSpeedModifier": 0.75,
   "evasionBonus": 0.12,
   "cost": {
     "alloys": 24

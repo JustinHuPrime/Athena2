@@ -2,7 +2,7 @@
   "name": "Corvette Plasma Thrusters",
   "sizes": ["KK", "FF", "MK"],
   "power": -20,
-  "speedModifier": 0.5,
+  "sublightSpeedModifier": 0.5,
   "evasionBonus": 0.1,
   "cost": {
     "alloys": 9

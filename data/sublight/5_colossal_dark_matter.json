@@ -2,7 +2,7 @@
   "name": "Colossal Dark Matter Thrusters",
   "sizes": ["SE", "JU"],
   "power": -600,
-  "speedModifier": 1.25,
+  "sublightSpeedModifier": 1.25,
   "evasionBonus": 0,
   "cost": {
     "alloys": 300,

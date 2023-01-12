@@ -2,7 +2,7 @@
   "name": "Colossal Plasma Thrusters",
   "sizes": ["SE", "JU"],
   "power": -400,
-  "speedModifier": 0.5,
+  "sublightSpeedModifier": 0.5,
   "evasionBonus": 0,
   "cost": {
     "alloys": 180

@@ -93,9 +93,7 @@ Section::Section(component::Section const &section_,
     : section(section_),
       weapons(weapons_),
       utilities(utilities_),
-      auxiliaries(auxiliaries_),
-      power(computePower()),
-      cost(computeCost()) {
+      auxiliaries(auxiliaries_) {
   string weaponSizes = accumulate(weapons.begin(), weapons.end(), ""s,
                                   [](string const &rsf, Weapon const &weapon) {
                                     return rsf + weapon.size;
@@ -125,33 +123,5 @@ Section::Section(component::Section const &section_,
   if (!unmatched.empty())
     throw DesignException("utility components requiring missing slots (" +
                           unmatched + ") found in section design");
-}
-float Section::computePower() const noexcept {
-  return accumulate(weapons.begin(), weapons.end(), 0.f,
-                    [](float rsf, Weapon const &weapon) {
-                      return rsf + weapon.power;
-                    }) +
-         accumulate(utilities.begin(), utilities.end(), 0.f,
-                    [](float rsf, Utility const &utility) {
-                      return rsf + utility.power;
-                    }) +
-         accumulate(auxiliaries.begin(), auxiliaries.end(), 0.f,
-                    [](float rsf, Auxiliary const &auxiliary) {
-                      return rsf + auxiliary.power;
-                    });
-}
-float Section::computeCost() const noexcept {
-  return accumulate(weapons.begin(), weapons.end(), 0.f,
-                    [](float rsf, Weapon const &weapon) {
-                      return rsf + weapon.cost;
-                    }) +
-         accumulate(utilities.begin(), utilities.end(), 0.f,
-                    [](float rsf, Utility const &utility) {
-                      return rsf + utility.cost;
-                    }) +
-         accumulate(auxiliaries.begin(), auxiliaries.end(), 0.f,
-                    [](float rsf, Auxiliary const &auxiliary) {
-                      return rsf + auxiliary.cost;
-                    });
 }
 }  // namespace athena2::model::design

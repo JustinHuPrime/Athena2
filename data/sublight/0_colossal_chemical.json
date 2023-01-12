@@ -2,7 +2,7 @@
   "name": "Colossal Chemical Thrusters",
   "sizes": ["SE", "JU"],
   "power": -200,
-  "speedModifier": 0,
+  "sublightSpeedModifier": 0,
   "evasionBonus": 0,
   "cost": {
     "alloys": 60

@@ -2,7 +2,7 @@
   "name": "Cruiser Chemical Thrusters",
   "sizes": ["CC", "MC"],
   "power": -40,
-  "speedModifier": 0,
+  "sublightSpeedModifier": 0,
   "evasionBonus": 0,
   "cost": {
     "alloys": 12

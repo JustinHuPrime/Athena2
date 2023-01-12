@@ -39,7 +39,7 @@ class Fleet final : public util::Named {
   Fleet(Fleet const &) noexcept = default;
   Fleet(Fleet &&) noexcept = default;
 
-  ~Fleet() noexcept = default;
+  ~Fleet() noexcept override = default;
 
   Fleet &operator=(Fleet const &) noexcept = default;
   Fleet &operator=(Fleet &&) noexcept = default;

@@ -2,7 +2,7 @@
   "name": "Battleship Plasma Thrusters",
   "sizes": ["BB"],
   "power": -160,
-  "speedModifier": 0.5,
+  "sublightSpeedModifier": 0.5,
   "evasionBonus": 0.04,
   "cost": {
     "alloys": 72

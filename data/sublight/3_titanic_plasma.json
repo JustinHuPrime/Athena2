@@ -2,7 +2,7 @@
   "name": "Titan Plasma Thrusters",
   "sizes": ["TT"],
   "power": -320,
-  "speedModifier": 0.5,
+  "sublightSpeedModifier": 0.5,
   "evasionBonus": 0.02,
   "cost": {
     "alloys": 144

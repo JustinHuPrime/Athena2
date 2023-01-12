@@ -47,11 +47,12 @@ class Ship final : public util::Named {
   Ship(Ship const &) noexcept = default;
   Ship(Ship &&) noexcept = default;
 
-  ~Ship() noexcept = default;
+  ~Ship() noexcept override = default;
 
   Ship &operator=(Ship const &) noexcept = default;
   Ship &operator=(Ship &&) noexcept = default;
 
+  // ship design
   component::Hull const &hull;
   component::Reactor const &reactor;
   component::FTL const &ftl;
@@ -60,8 +61,33 @@ class Ship final : public util::Named {
   component::Computer const &computer;
   std::optional<std::reference_wrapper<component::Aura const>> const aura;
   std::vector<Section> const sections;
+
+  // basic stats
   float const power;
   float const cost;
+  float const speed;
+
+  // defensive stats
+  float const evasion;
+  float const hullHealth;
+  float const hullRegen;
+  float const armourHealth;
+  float const armourRegen;
+  float const armourHardening;
+  float const shieldHealth;
+  float const shieldRegen;
+  float const shieldHardening;
+  float const disengageChances;
+  float const disengageChanceModifier;
+
+  // offensive stats
+  float const chanceToHitBonus;
+  float const trackingBonus;
+  float const trackingModifier;
+  float const fireRateModifier;
+  float const explosiveWeaponsDamageModifier;
+  float const weaponsRangeModifier;
+  float const engagementRangeModifier;
 
  private:
   /**
@@ -72,9 +98,6 @@ class Ship final : public util::Named {
        component::Sensor const &, component::Computer const &,
        std::optional<std::reference_wrapper<component::Aura const>> const &,
        std::vector<Section> const &);
-
-  float computePower() const noexcept;
-  float computeCost() const noexcept;
 };
 }  // namespace athena2::model::design
 

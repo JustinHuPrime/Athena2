@@ -2,7 +2,7 @@
   "name": "Colossal Impulse Thrusters",
   "sizes": ["SE", "JU"],
   "power": -500,
-  "speedModifier": 0.75,
+  "sublightSpeedModifier": 0.75,
   "evasionBonus": 0,
   "cost": {
     "alloys": 240

@@ -2,7 +2,7 @@
   "name": "Battleship Chemical Thrusters",
   "sizes": ["BB"],
   "power": -80,
-  "speedModifier": 0,
+  "sublightSpeedModifier": 0,
   "evasionBonus": 0,
   "cost": {
     "alloys": 24
