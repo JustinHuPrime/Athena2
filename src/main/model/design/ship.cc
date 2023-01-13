@@ -19,6 +19,8 @@
 
 #include "model/design/ship.h"
 
+#include <algorithm>
+
 #include "util/json.h"
 
 using namespace athena2::util;
@@ -333,6 +335,18 @@ Ship::Ship(string const &name_, Hull const &hull_, Reactor const &reactor_,
       explosiveWeaponsDamageModifier(computer.explosiveWeaponsDamageModifier),
       weaponsRangeModifier(computer.weaponsRangeModifier),
       engagementRangeModifier(computer.engagementRangeModifier) {
+  vector<string> sectionSizes;
+  transform(sections.begin(), sections.end(), back_inserter(sectionSizes),
+            [](Section const &section) { return section.section.size; });
+  sort(sectionSizes.begin(), sectionSizes.end());
+  vector<string> unmatched;
+  set_difference(sectionSizes.begin(), sectionSizes.end(),
+                 hull.sectionSizes.begin(), hull.sectionSizes.end(),
+                 back_inserter(unmatched));
+  if (!unmatched.empty())
+    throw DesignException(to_string(unmatched.size()) +
+                          "sections requriring missing slots");
+
   if (find(reactor.sizes.begin(), reactor.sizes.end(), hull.coreSize) ==
       reactor.sizes.end())
     throw DesignException("reactor does not fit hull");
