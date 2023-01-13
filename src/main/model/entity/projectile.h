@@ -20,6 +20,27 @@
 #ifndef ATHENA2_MODEL_ENTITY_PROJECTILE_H_
 #define ATHENA2_MODEL_ENTITY_PROJECTILE_H_
 
-namespace athena2::model::entity {}
+#include "model/component/weapon.h"
+#include "model/design/ship.h"
+#include "model/entity/entity.h"
+#include "model/entity/ship.h"
+
+namespace athena2::model::entity {
+class Projectile final : public Damageable, public Locatable {
+ public:
+  Projectile(component::Weapon const &, Ship const &) noexcept;
+
+  Projectile(Projectile const &) noexcept = default;
+  Projectile(Projectile &&) noexcept = default;
+
+  ~Projectile() noexcept = default;
+
+  Projectile &operator=(Projectile const &) noexcept = default;
+  Projectile &operator=(Projectile &&) noexcept = default;
+
+  component::Weapon const &weapon;
+  design::Ship const &ship;
+};
+}  // namespace athena2::model::entity
 
 #endif  // ATHENA2_MODEL_ENTITY_PROJECTILE_H_

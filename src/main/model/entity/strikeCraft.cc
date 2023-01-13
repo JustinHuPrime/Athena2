@@ -17,30 +17,19 @@
 //
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#ifndef ATHENA2_MODEL_ENTITY_STRIKECRAFT_H_
-#define ATHENA2_MODEL_ENTITY_STRIKECRAFT_H_
+#include "model/entity/strikeCraft.h"
 
-#include "model/component/weapon.h"
-#include "model/design/ship.h"
-#include "model/entity/entity.h"
-#include "model/entity/ship.h"
+using namespace athena2::model::component;
+using namespace athena2::model::entity;
+using namespace athena2::model::design;
 
 namespace athena2::model::entity {
-class StrikeCraft final : public Damageable, public Locatable {
- public:
-  StrikeCraft(component::Weapon const &, entity::Ship const &) noexcept;
-
-  StrikeCraft(StrikeCraft const &) noexcept = default;
-  StrikeCraft(StrikeCraft &&) noexcept = default;
-
-  ~StrikeCraft() noexcept = default;
-
-  StrikeCraft &operator=(StrikeCraft const &) noexcept = default;
-  StrikeCraft &operator=(StrikeCraft &&) noexcept = default;
-
-  component::Weapon const &weapon;
-  design::Ship const &ship;
-};
+StrikeCraft::StrikeCraft(component::Weapon const &weapon_,
+                         Ship const &ship_) noexcept
+    : Damageable(weapon_.data.hangarWeapon.strikeCraftHull,
+                 weapon_.data.hangarWeapon.strikeCraftArmour,
+                 weapon_.data.hangarWeapon.strikeCraftHull),
+      Locatable(ship_.position),
+      weapon(weapon_),
+      ship(ship_.design) {}
 }  // namespace athena2::model::entity
-
-#endif  // ATHENA2_MODEL_ENTITY_STRIKECRAFT_H_

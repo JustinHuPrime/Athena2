@@ -20,6 +20,32 @@
 #ifndef ATHENA2_MODEL_ENTITY_FLEET_H_
 #define ATHENA2_MODEL_ENTITY_FLEET_H_
 
-namespace athena2::model::entity {}
+#include <vector>
+
+#include "model/design/fleet.h"
+#include "model/entity/projectile.h"
+#include "model/entity/ship.h"
+#include "model/entity/strikeCraft.h"
+
+namespace athena2::model::entity {
+class Fleet final {
+ public:
+  Fleet(design::Fleet const &design, float position) noexcept;
+
+  Fleet(Fleet const &) noexcept = default;
+  Fleet(Fleet &&) noexcept = default;
+
+  ~Fleet() noexcept = default;
+
+  Fleet &operator=(Fleet const &) noexcept = default;
+  Fleet &operator=(Fleet &&) noexcept = default;
+
+  std::vector<Ship> ships;
+  std::vector<Projectile> projectiles;
+  std::vector<StrikeCraft> strikeCraft;
+  std::vector<Ship> destroyed;
+  std::vector<Ship> withdrawn;
+};
+}  // namespace athena2::model::entity
 
 #endif  // ATHENA2_MODEL_ENTITY_FLEET_H_

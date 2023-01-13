@@ -19,6 +19,8 @@
 
 #include "model/evaluator.h"
 
+#include "model/entity/fleet.h"
+
 using namespace athena2::model::design;
 using namespace std;
 

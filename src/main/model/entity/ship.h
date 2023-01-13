@@ -20,6 +20,44 @@
 #ifndef ATHENA2_MODEL_ENTITY_SHIP_H_
 #define ATHENA2_MODEL_ENTITY_SHIP_H_
 
-namespace athena2::model::entity {}
+#include <vector>
+
+#include "model/component/weapon.h"
+#include "model/design/ship.h"
+#include "model/entity/entity.h"
+
+namespace athena2::model::entity {
+class Ship;
+class Weapon final {
+ public:
+  Weapon(component::Weapon const &, Ship const &) noexcept;
+
+  Weapon(Weapon const &) noexcept = default;
+  Weapon(Weapon &&) noexcept = default;
+
+  ~Weapon() noexcept = default;
+
+  Weapon &operator=(Weapon const &) noexcept = default;
+  Weapon &operator=(Weapon &&) noexcept = default;
+
+  component::Weapon const &component;
+  Ship const &ship;
+};
+class Ship final : public Damageable, public Locatable {
+ public:
+  Ship(design::Ship const &, float position) noexcept;
+
+  Ship(Ship const &) noexcept = default;
+  Ship(Ship &&) noexcept = default;
+
+  ~Ship() noexcept = default;
+
+  Ship &operator=(Ship const &) noexcept = default;
+  Ship &operator=(Ship &&) noexcept = default;
+
+  std::vector<Weapon> weapons;
+  design::Ship const &design;
+};
+}  // namespace athena2::model::entity
 
 #endif  // ATHENA2_MODEL_ENTITY_SHIP_H_
