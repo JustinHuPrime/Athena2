@@ -21,32 +21,20 @@
 #define ATHENA2_MODEL_ENTITY_ENTITY_H_
 
 namespace athena2::model::entity {
-class Damageable {
+class Entity {
  public:
-  Damageable(float hull, float armour, float shields) noexcept;
-  Damageable(Damageable const &) noexcept = default;
-  Damageable(Damageable &&) noexcept = default;
+  Entity(float hull, float armour, float shields, float position) noexcept;
+  Entity(Entity const &) noexcept = default;
+  Entity(Entity &&) noexcept = default;
 
-  ~Damageable() noexcept = default;
+  ~Entity() noexcept = default;
 
-  Damageable &operator=(Damageable const &) noexcept = default;
-  Damageable &operator=(Damageable &&) noexcept = default;
+  Entity &operator=(Entity const &) noexcept = default;
+  Entity &operator=(Entity &&) noexcept = default;
 
   float hull;
   float armour;
   float shields;
-};
-class Locatable {
- public:
-  explicit Locatable(float position) noexcept;
-  Locatable(Locatable const &) noexcept = default;
-  Locatable(Locatable &&) noexcept = default;
-
-  ~Locatable() noexcept = default;
-
-  Locatable &operator=(Locatable const &) noexcept = default;
-  Locatable &operator=(Locatable &&) noexcept = default;
-
   float position;
 };
 }  // namespace athena2::model::entity

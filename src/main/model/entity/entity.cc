@@ -20,7 +20,7 @@
 #include "model/entity/entity.h"
 
 namespace athena2::model::entity {
-Damageable::Damageable(float hull_, float armour_, float shields_) noexcept
-    : hull(hull_), armour(armour_), shields(shields) {}
-Locatable::Locatable(float position_) noexcept : position(position_) {}
+Entity::Entity(float hull_, float armour_, float shields_,
+               float position_) noexcept
+    : hull(hull_), armour(armour_), shields(shields), position(position_) {}
 }  // namespace athena2::model::entity

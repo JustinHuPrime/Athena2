@@ -26,7 +26,7 @@
 #include "model/entity/ship.h"
 
 namespace athena2::model::entity {
-class StrikeCraft final : public Damageable, public Locatable {
+class StrikeCraft final : public Entity {
  public:
   StrikeCraft(component::Weapon const &, entity::Ship const &) noexcept;
 

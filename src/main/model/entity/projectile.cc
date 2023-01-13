@@ -26,9 +26,9 @@ using namespace athena2::model::design;
 namespace athena2::model::entity {
 Projectile::Projectile(component::Weapon const &weapon_,
                        Ship const &ship_) noexcept
-    : Damageable(weapon_.data.projectileWeapon.projectileHull,
-                 weapon_.data.projectileWeapon.projectileArmour, 0.f),
-      Locatable(ship_.position),
+    : Entity(weapon_.data.projectileWeapon.projectileHull,
+             weapon_.data.projectileWeapon.projectileArmour, 0.f,
+             ship_.position),
       weapon(weapon_),
       ship(ship_.design) {}
 }  // namespace athena2::model::entity

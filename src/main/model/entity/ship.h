@@ -43,7 +43,7 @@ class Weapon final {
   component::Weapon const &component;
   Ship const &ship;
 };
-class Ship final : public Damageable, public Locatable {
+class Ship final : public Entity {
  public:
   Ship(design::Ship const &, float position) noexcept;
 

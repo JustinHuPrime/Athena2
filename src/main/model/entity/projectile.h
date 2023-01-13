@@ -26,7 +26,7 @@
 #include "model/entity/ship.h"
 
 namespace athena2::model::entity {
-class Projectile final : public Damageable, public Locatable {
+class Projectile final : public Entity {
  public:
   Projectile(component::Weapon const &, Ship const &) noexcept;
 

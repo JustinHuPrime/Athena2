@@ -26,10 +26,9 @@ using namespace athena2::model::design;
 namespace athena2::model::entity {
 StrikeCraft::StrikeCraft(component::Weapon const &weapon_,
                          Ship const &ship_) noexcept
-    : Damageable(weapon_.data.hangarWeapon.strikeCraftHull,
-                 weapon_.data.hangarWeapon.strikeCraftArmour,
-                 weapon_.data.hangarWeapon.strikeCraftHull),
-      Locatable(ship_.position),
+    : Entity(weapon_.data.hangarWeapon.strikeCraftHull,
+             weapon_.data.hangarWeapon.strikeCraftArmour,
+             weapon_.data.hangarWeapon.strikeCraftHull, ship_.position),
       weapon(weapon_),
       ship(ship_.design) {}
 }  // namespace athena2::model::entity

@@ -27,9 +27,8 @@ namespace athena2::model::entity {
 Weapon::Weapon(component::Weapon const &weapon_, Ship const &ship_) noexcept
     : component(weapon_), ship(ship_) {}
 Ship::Ship(design::Ship const &design_, float position_) noexcept
-    : Damageable(design_.hullHealth, design_.armourHealth,
-                 design_.shieldHealth),
-      Locatable(position_),
+    : Entity(design_.hullHealth, design_.armourHealth, design_.shieldHealth,
+             position_),
       weapons(),
       design(design_),
       disengageChancesRemaining(design.disengageChances) {}
