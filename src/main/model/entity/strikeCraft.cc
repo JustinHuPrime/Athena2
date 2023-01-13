@@ -27,8 +27,9 @@ namespace athena2::model::entity {
 StrikeCraft::StrikeCraft(component::Weapon const &weapon_,
                          Ship const &ship_) noexcept
     : Entity(weapon_.data.hangarWeapon.strikeCraftHull,
-             weapon_.data.hangarWeapon.strikeCraftArmour,
-             weapon_.data.hangarWeapon.strikeCraftHull, ship_.position),
+             weapon_.data.hangarWeapon.strikeCraftArmour, 0.f,
+             weapon_.data.hangarWeapon.strikeCraftHull, 0.f,
+             weapon_.data.hangarWeapon.strikeCraftEvasion, ship_.position),
       weapon(weapon_),
       ship(ship_.design) {}
 }  // namespace athena2::model::entity

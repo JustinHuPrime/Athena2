@@ -20,7 +20,14 @@
 #include "model/entity/entity.h"
 
 namespace athena2::model::entity {
-Entity::Entity(float hull_, float armour_, float shields_,
+Entity::Entity(float hull_, float armour_, float armourHardening_,
+               float shields_, float shieldHardening_, float evasion_,
                float position_) noexcept
-    : hull(hull_), armour(armour_), shields(shields), position(position_) {}
+    : hull(hull_),
+      armour(armour_),
+      armourHardening(armourHardening_),
+      shields(shields),
+      shieldHardening(shieldHardening_),
+      position(position_),
+      evasion(evasion_) {}
 }  // namespace athena2::model::entity

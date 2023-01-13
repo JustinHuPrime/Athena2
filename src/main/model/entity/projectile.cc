@@ -27,8 +27,8 @@ namespace athena2::model::entity {
 Projectile::Projectile(component::Weapon const &weapon_,
                        Ship const &ship_) noexcept
     : Entity(weapon_.data.projectileWeapon.projectileHull,
-             weapon_.data.projectileWeapon.projectileArmour, 0.f,
-             ship_.position),
+             weapon_.data.projectileWeapon.projectileArmour, 0.f, 0.f, 0.f,
+             weapon_.data.projectileWeapon.projectileEvasion, ship_.position),
       weapon(weapon_),
       ship(ship_.design) {}
 }  // namespace athena2::model::entity

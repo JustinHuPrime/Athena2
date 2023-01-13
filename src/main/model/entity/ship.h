@@ -40,8 +40,12 @@ class Weapon final {
   Weapon &operator=(Weapon const &) noexcept = default;
   Weapon &operator=(Weapon &&) noexcept = default;
 
+  void doDamage(Entity &target) noexcept;
+
   component::Weapon const &component;
   Ship const &ship;
+
+  float cooldown;
 };
 class Ship final : public Entity {
  public:

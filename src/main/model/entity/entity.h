@@ -23,7 +23,8 @@
 namespace athena2::model::entity {
 class Entity {
  public:
-  Entity(float hull, float armour, float shields, float position) noexcept;
+  Entity(float hull, float armour, float armourHardening, float shields,
+         float shieldHardening, float evasion, float position) noexcept;
   Entity(Entity const &) noexcept = default;
   Entity(Entity &&) noexcept = default;
 
@@ -34,7 +35,10 @@ class Entity {
 
   float hull;
   float armour;
+  float armourHardening;
   float shields;
+  float shieldHardening;
+  float evasion;
   float position;
 };
 }  // namespace athena2::model::entity
