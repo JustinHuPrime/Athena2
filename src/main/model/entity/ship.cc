@@ -31,5 +31,6 @@ Ship::Ship(design::Ship const &design_, float position_) noexcept
                  design_.shieldHealth),
       Locatable(position_),
       weapons(),
-      design(design_) {}
+      design(design_),
+      disengageChancesRemaining(design.disengageChances) {}
 }  // namespace athena2::model::entity

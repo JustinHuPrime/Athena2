@@ -57,6 +57,7 @@ class Ship final : public Damageable, public Locatable {
 
   std::vector<Weapon> weapons;
   design::Ship const &design;
+  float disengageChancesRemaining;
 };
 }  // namespace athena2::model::entity
 

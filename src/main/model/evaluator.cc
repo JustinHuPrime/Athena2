@@ -19,14 +19,77 @@
 
 #include "model/evaluator.h"
 
+#include <numeric>
+
+#include "model/design/fleet.h"
 #include "model/entity/fleet.h"
 
 using namespace athena2::model::design;
+using namespace athena2::model::entity;
+using namespace athena2::model::component;
 using namespace std;
 
 namespace athena2::model {
-pair<float, float> evaluate(Fleet const &a, Fleet const &b,
+namespace {
+float engagementRange(design::Fleet const &fleet) {
+  float maxEngagementRange = 0.f;
+  for (auto const &[ship, _] : fleet.ships) {
+    float maxWeaponRange = 0.f;
+    for (design::Section const &section : ship.sections) {
+      for (component::Weapon const &weapon : section.weapons) {
+        if (weapon.maxRange > maxWeaponRange) maxWeaponRange = weapon.maxRange;
+      }
+    }
+    float shipEngagementRange =
+        maxWeaponRange * (1.f + ship.engagementRangeModifier);
+    if (shipEngagementRange > maxEngagementRange)
+      maxEngagementRange = shipEngagementRange;
+  }
+  return maxEngagementRange;
+}
+}  // namespace
+
+pair<float, float> evaluate(design::Fleet const &aDesign,
+                            design::Fleet const &bDesign,
                             EvaluationSettings const &settings) noexcept {
-  return pair(0.f, 0.f);  // TODO
+  // instantiate fleets at max engagement range
+  entity::Fleet a = entity::Fleet(aDesign, 0.f);
+  entity::Fleet b = entity::Fleet(
+      bDesign, fmaxf(engagementRange(aDesign), engagementRange(bDesign)));
+
+  // for each tick
+  for (float tick = 0.f;
+       tick < settings.fightLengthLimit && !a.ships.empty() && !b.ships.empty();
+       tick += 0.1f) {
+    // fire weapons:
+    //  - fire ship weapons
+    //  - fire strike craft weapons
+    // check for projectile hits
+    // apply damage
+    //  - update damage penalties to fire rate
+    //  - check for disengage
+    // tick weapons
+    // tick regen
+    // move ships
+  }
+
+  return pair(accumulate(a.destroyed.begin(), a.destroyed.end(), 0.f,
+                         [](float rsf, entity::Ship const &ship) {
+                           return rsf + ship.design.cost;
+                         }) +
+                  settings.withdrawMultiplier *
+                      accumulate(a.withdrawn.begin(), a.withdrawn.end(), 0.f,
+                                 [](float rsf, entity::Ship const &ship) {
+                                   return rsf + ship.design.cost;
+                                 }),
+              accumulate(b.destroyed.begin(), b.destroyed.end(), 0.f,
+                         [](float rsf, entity::Ship const &ship) {
+                           return rsf + ship.design.cost;
+                         }) +
+                  settings.withdrawMultiplier *
+                      accumulate(b.withdrawn.begin(), b.withdrawn.end(), 0.f,
+                                 [](float rsf, entity::Ship const &ship) {
+                                   return rsf + ship.design.cost;
+                                 }));
 }
 }  // namespace athena2::model
