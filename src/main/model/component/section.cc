@@ -33,9 +33,7 @@ Section Section::fromJson(json const &data, EvalContext &ctx) {
   string name = checkString(data, "name", ctx);
   string size = checkString(data, "size", ctx);
   string weaponSlots = checkString(data, "weaponSlots", ctx);
-  sort(weaponSlots.begin(), weaponSlots.end());
   string utilitySlots = checkString(data, "utilitySlots", ctx);
-  sort(utilitySlots.begin(), utilitySlots.end());
   optional<reference_wrapper<json const>> costData =
       checkMaybeObject(data, "cost", ctx);
   Cost cost = costData ? [&ctx, &costData]() {
@@ -52,7 +50,15 @@ Section::Section(string const &name_, string const &size_,
                  Cost const &cost_) noexcept
     : Named(name_),
       size(size_),
-      weaponSlots(weaponSlots_),
-      utilitySlots(utilitySlots_),
+      weaponSlots([&weaponSlots_]() {
+        string weaponSlots = weaponSlots_;
+        sort(weaponSlots.begin(), weaponSlots.end());
+        return weaponSlots;
+      }()),
+      utilitySlots([&utilitySlots_]() {
+        string utilitySlots = utilitySlots_;
+        sort(utilitySlots.begin(), utilitySlots.end());
+        return utilitySlots;
+      }()),
       cost(cost_) {}
 }  // namespace athena2::model::component

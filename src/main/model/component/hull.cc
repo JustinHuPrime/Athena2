@@ -19,6 +19,7 @@
 
 #include "model/component/hull.h"
 
+#include <algorithm>
 #include <optional>
 #include <vector>
 
@@ -79,7 +80,11 @@ Hull::Hull(string const &name_, float size_, string const &coreSize_,
     : Named(name_),
       size(size_),
       coreSize(coreSize_),
-      sectionSizes(sectionSizes_),
+      sectionSizes([&sectionSizes_]() {
+        vector<string> sectionSizes = sectionSizes_;
+        sort(sectionSizes.begin(), sectionSizes.end());
+        return sectionSizes;
+      }()),
       hullHealth(hullHealth_),
       hullHealthModifier(hullHealthModifier_),
       armourHealth(armourHealth_),
