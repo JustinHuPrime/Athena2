@@ -1,6 +1,7 @@
 {
   "name": "Devastator Torpedoes",
   "size": "G",
+  "tag": "explosive",
   "power": -34,
   "minDamage": 169,
   "maxDamage": 254,

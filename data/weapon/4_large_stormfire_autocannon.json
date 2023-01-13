@@ -1,6 +1,7 @@
 {
   "name": "Large Stormfire Autocannon",
   "size": "L",
+  "tag": "kinetic",
   "power": -115,
   "minDamage": 78,
   "maxDamage": 162,

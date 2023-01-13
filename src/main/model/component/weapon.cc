@@ -34,6 +34,7 @@ Weapon Weapon::fromJson(json const &data, EvalContext &ctx) {
     auto _ = ctx.push("size");
     if (size.size() != 1) ctx.error("expected size to be a single character");
   }
+  string tag = checkString(data, "tag", ctx);
   float power = checkFloat(data, "power", ctx);
   float minDamage = checkFloat(data, "minDamage", ctx);
   float maxDamage = checkFloat(data, "maxDamage", ctx);
@@ -70,6 +71,7 @@ Weapon Weapon::fromJson(json const &data, EvalContext &ctx) {
     checkFields(data,
                 {"name",
                  "size",
+                 "tag",
                  "power",
                  "minDamage",
                  "maxDamage",
@@ -93,8 +95,8 @@ Weapon Weapon::fromJson(json const &data, EvalContext &ctx) {
                 ctx);
 
     return Weapon(
-        name, size, power, minDamage, maxDamage, minRange, maxRange, tracking,
-        accuracy, cooldown, shieldDamageModifier.value_or(0.f),
+        name, size, tag, power, minDamage, maxDamage, minRange, maxRange,
+        tracking, accuracy, cooldown, shieldDamageModifier.value_or(0.f),
         shieldSkipModifier.value_or(0.f), armourDamageModifier.value_or(0.f),
         armourSkipModifier.value_or(0.f), hullDamageModifier.value_or(0.f),
         sizeDamageModifier.value_or(0.f), projectileSpeed, projectileEvasion,
@@ -112,6 +114,7 @@ Weapon Weapon::fromJson(json const &data, EvalContext &ctx) {
     checkFields(data,
                 {"name",
                  "size",
+                 "tag",
                  "power",
                  "minDamage",
                  "maxDamage",
@@ -138,8 +141,8 @@ Weapon Weapon::fromJson(json const &data, EvalContext &ctx) {
                 ctx);
 
     return Weapon(
-        name, size, power, minDamage, maxDamage, minRange, maxRange, tracking,
-        accuracy, cooldown, shieldDamageModifier.value_or(0.f),
+        name, size, tag, power, minDamage, maxDamage, minRange, maxRange,
+        tracking, accuracy, cooldown, shieldDamageModifier.value_or(0.f),
         shieldSkipModifier.value_or(0.f), armourDamageModifier.value_or(0.f),
         armourSkipModifier.value_or(0.f), hullDamageModifier.value_or(0.f),
         sizeDamageModifier.value_or(0.f), unitsPerHangar, regenerationPerDay,
@@ -149,29 +152,30 @@ Weapon Weapon::fromJson(json const &data, EvalContext &ctx) {
     // regular weapon
     checkFields(
         data,
-        {"name", "size", "power", "minDamage", "maxDamage", "minRange",
+        {"name", "size", "tag", "power", "minDamage", "maxDamage", "minRange",
          "maxRange", "tracking", "accuracy", "cooldown", "shieldDamageModifier",
          "shieldSkipModifier", "armourDamageModifier", "armourSkipModifier",
          "hullDamageModifier", "sizeDamageModifier", "cost"},
         ctx);
 
     return Weapon(
-        name, size, power, minDamage, maxDamage, minRange, maxRange, tracking,
-        accuracy, cooldown, shieldDamageModifier.value_or(0.f),
+        name, size, tag, power, minDamage, maxDamage, minRange, maxRange,
+        tracking, accuracy, cooldown, shieldDamageModifier.value_or(0.f),
         shieldSkipModifier.value_or(0.f), armourDamageModifier.value_or(0.f),
         armourSkipModifier.value_or(0.f), hullDamageModifier.value_or(0.f),
         sizeDamageModifier.value_or(0.f), cost);
   }
 }
-Weapon::Weapon(string const &name_, string const &size_, float power_,
-               float minDamage_, float maxDamage_, float minRange_,
-               float maxRange_, float tracking_, float accuracy_,
-               float cooldown_, float shieldDamageModifier_,
+Weapon::Weapon(string const &name_, string const &size_, string const &tag_,
+               float power_, float minDamage_, float maxDamage_,
+               float minRange_, float maxRange_, float tracking_,
+               float accuracy_, float cooldown_, float shieldDamageModifier_,
                float shieldSkipModifier_, float armourDamageModifier_,
                float armourSkipModifier_, float hullDamageModifier_,
                float sizeDamageModifier_, Cost const &cost_) noexcept
     : Named(name_),
       size(size_),
+      tag(tag_),
       power(power_),
       minDamage(minDamage_),
       maxDamage(maxDamage_),
@@ -189,10 +193,10 @@ Weapon::Weapon(string const &name_, string const &size_, float power_,
       type(Weapon::Type::REGULAR),
       data{.regularWeapon{}},
       cost(cost_) {}
-Weapon::Weapon(string const &name_, string const &size_, float power_,
-               float minDamage_, float maxDamage_, float minRange_,
-               float maxRange_, float tracking_, float accuracy_,
-               float cooldown_, float shieldDamageModifier_,
+Weapon::Weapon(string const &name_, string const &size_, string const &tag_,
+               float power_, float minDamage_, float maxDamage_,
+               float minRange_, float maxRange_, float tracking_,
+               float accuracy_, float cooldown_, float shieldDamageModifier_,
                float shieldSkipModifier_, float armourDamageModifier_,
                float armourSkipModifier_, float hullDamageModifier_,
                float sizeDamageModifier_, float projectileSpeed_,
@@ -201,6 +205,7 @@ Weapon::Weapon(string const &name_, string const &size_, float power_,
                Cost const &cost_) noexcept
     : Named(name_),
       size(size_),
+      tag(tag_),
       power(power_),
       minDamage(minDamage_),
       maxDamage(maxDamage_),
@@ -226,10 +231,10 @@ Weapon::Weapon(string const &name_, string const &size_, float power_,
           },
       },
       cost(cost_) {}
-Weapon::Weapon(string const &name_, string const &size_, float power_,
-               float minDamage_, float maxDamage_, float minRange_,
-               float maxRange_, float tracking_, float accuracy_,
-               float cooldown_, float shieldDamageModifier_,
+Weapon::Weapon(string const &name_, string const &size_, string const &tag_,
+               float power_, float minDamage_, float maxDamage_,
+               float minRange_, float maxRange_, float tracking_,
+               float accuracy_, float cooldown_, float shieldDamageModifier_,
                float shieldSkipModifier_, float armourDamageModifier_,
                float armourSkipModifier_, float hullDamageModifier_,
                float sizeDamageModifier_, float unitsPerHangar_,
@@ -239,6 +244,7 @@ Weapon::Weapon(string const &name_, string const &size_, float power_,
                float strikeCraftHull_, Cost const &cost_) noexcept
     : Named(name_),
       size(size_),
+      tag(tag_),
       power(power_),
       minDamage(minDamage_),
       maxDamage(maxDamage_),

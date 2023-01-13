@@ -1,6 +1,7 @@
 {
   "name": "Small Disruptor",
   "size": "S",
+  "tag": "energy",
   "power": -10,
   "minDamage": 1,
   "maxDamage": 11,

@@ -1,6 +1,7 @@
 {
   "name": "Small Autocannon",
   "size": "S",
+  "tag": "kinetic",
   "power": -13,
   "minDamage": 8,
   "maxDamage": 16,

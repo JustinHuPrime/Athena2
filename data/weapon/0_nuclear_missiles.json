@@ -1,6 +1,7 @@
 {
   "name": "Nuclear Missiles",
   "size": "S",
+  "tag": "explosive",
   "power": -5,
   "minDamage": 16,
   "maxDamage": 24,

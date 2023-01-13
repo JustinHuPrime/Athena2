@@ -1,6 +1,7 @@
 {
   "name": "Cloud Lightning",
   "size": "L",
+  "tag": "energy",
   "power": -23,
   "minDamage": 1,
   "maxDamage": 106,

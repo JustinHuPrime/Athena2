@@ -1,6 +1,7 @@
 {
   "name": "Large Plasma Thrower",
   "size": "L",
+  "tag": "energy",
   "power": -63,
   "minDamage": 72,
   "maxDamage": 198,

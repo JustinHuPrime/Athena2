@@ -1,6 +1,7 @@
 {
   "name": "Scout Wing",
   "size": "H",
+  "tag": "hangar",
   "power": -20,
   "minDamage": 4,
   "maxDamage": 8,

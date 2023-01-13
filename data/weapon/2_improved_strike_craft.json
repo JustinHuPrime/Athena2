@@ -1,6 +1,7 @@
 {
   "name": "Improved Strike Craft",
   "size": "H",
+  "tag": "hangar",
   "power": -45,
   "minDamage": 5,
   "maxDamage": 13,

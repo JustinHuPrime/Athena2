@@ -1,6 +1,7 @@
 {
   "name": "Flak Artillery",
   "size": "P",
+  "tag": "point-defence",
   "power": -10,
   "minDamage": 4,
   "maxDamage": 8,

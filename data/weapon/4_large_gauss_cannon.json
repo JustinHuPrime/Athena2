@@ -1,6 +1,7 @@
 {
   "name": "Large Gauss Cannon",
   "size": "L",
+  "tag": "kinetic",
   "power": -88,
   "minDamage": 96,
   "maxDamage": 276,

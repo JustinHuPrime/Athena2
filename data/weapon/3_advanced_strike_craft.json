@@ -1,6 +1,7 @@
 {
   "name": "Advanced Strike Craft",
   "size": "H",
+  "tag": "hangar",
   "power": -59,
   "minDamage": 6,
   "maxDamage": 17,

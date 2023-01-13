@@ -1,6 +1,7 @@
 {
   "name": "Medium Railgun",
   "size": "M",
+  "tag": "kinetic",
   "power": -23,
   "minDamage": 23,
   "maxDamage": 68,

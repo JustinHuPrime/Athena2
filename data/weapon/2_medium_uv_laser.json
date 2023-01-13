@@ -1,6 +1,7 @@
 {
   "name": "Medium UV Laser",
   "size": "M",
+  "tag": "energy",
   "power": -23,
   "minDamage": 25,
   "maxDamage": 68,
@@ -14,6 +15,5 @@
   "hullDamageModifier": 0.25,
   "cost": {
     "alloys": 34
-    
   }
 }

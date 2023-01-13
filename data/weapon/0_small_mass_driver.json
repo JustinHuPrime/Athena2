@@ -1,6 +1,7 @@
 {
   "name": "Small Mass Driver",
   "size": "S",
+  "tag": "kinetic",
   "power": -5,
   "minDamage": 5,
   "maxDamage": 16,

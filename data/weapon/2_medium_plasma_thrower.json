@@ -1,6 +1,7 @@
 {
   "name": "Medium Plasma Thrower",
   "size": "M",
+  "tag": "energy",
   "power": -27,
   "minDamage": 30,
   "maxDamage": 38,

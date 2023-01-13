@@ -1,6 +1,7 @@
 {
   "name": "Large Null Void Beam",
   "size": "L",
+  "tag": "energy",
   "power": -26,
   "minDamage": 36,
   "maxDamage": 95,

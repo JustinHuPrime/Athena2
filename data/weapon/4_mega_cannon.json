@@ -1,6 +1,7 @@
 {
   "name": "Mega Cannon",
   "size": "X",
+  "tag": "kinetic",
   "power": -200,
   "minDamage": 700,
   "maxDamage": 2000,

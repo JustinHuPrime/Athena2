@@ -1,6 +1,7 @@
 {
   "name": "Flak Battery",
   "size": "P",
+  "tag": "point-defence",
   "power": -5,
   "minDamage": 2,
   "maxDamage": 4,

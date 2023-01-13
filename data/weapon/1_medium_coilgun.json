@@ -1,6 +1,7 @@
 {
   "name": "Medium Coilgun",
   "size": "M",
+  "tag": "kinetic",
   "power": -17,
   "minDamage": 18,
   "maxDamage": 53,

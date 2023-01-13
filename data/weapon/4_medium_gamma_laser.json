@@ -1,6 +1,7 @@
 {
   "name": "Medium Gamma Laser",
   "size": "M",
+  "tag": "energy",
   "power": -39,
   "minDamage": 43,
   "maxDamage": 115,

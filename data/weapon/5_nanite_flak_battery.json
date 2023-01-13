@@ -1,6 +1,7 @@
 {
   "name": "Nanite Flak Battery",
   "size": "P",
+  "tag": "point-defence",
   "power": -13,
   "minDamage": 6,
   "maxDamage": 11,

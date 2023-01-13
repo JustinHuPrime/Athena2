@@ -1,6 +1,7 @@
 {
   "name": "Large Plasma Accelerator",
   "size": "L",
+  "tag": "energy",
   "power": -82,
   "minDamage": 96,
   "maxDamage": 258,

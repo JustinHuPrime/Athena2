@@ -1,6 +1,7 @@
 {
   "name": "Medium Autocannon",
   "size": "M",
+  "tag": "kinetic",
   "power": -30,
   "minDamage": 20,
   "maxDamage": 40,

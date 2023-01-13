@@ -1,6 +1,7 @@
 {
   "name": "Medium Mass Driver",
   "size": "M",
+  "tag": "kinetic",
   "power": -13,
   "minDamage": 13,
   "maxDamage": 40,

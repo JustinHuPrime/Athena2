@@ -1,6 +1,7 @@
 {
   "name": "Particle Lance",
   "size": "X",
+  "tag": "energy",
   "power": -200,
   "minDamage": 600,
   "maxDamage": 1500,

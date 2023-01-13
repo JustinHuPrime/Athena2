@@ -1,6 +1,7 @@
 {
   "name": "Medium Stormfire Autocannon",
   "size": "M",
+  "tag": "kinetic",
   "power": -51,
   "minDamage": 33,
   "maxDamage": 68,

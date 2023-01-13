@@ -1,6 +1,7 @@
 {
   "name": "Giga Cannon",
   "size": "X",
+  "tag": "kinetic",
   "power": -260,
   "minDamage": 910,
   "maxDamage": 2600,

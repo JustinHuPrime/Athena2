@@ -1,6 +1,7 @@
 {
   "name": "Medium Disruptor",
   "size": "M",
+  "tag": "energy",
   "power": -23,
   "minDamage": 1,
   "maxDamage": 28,

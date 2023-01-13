@@ -1,6 +1,7 @@
 {
   "name": "Small Phased Disruptor",
   "size": "S",
+  "tag": "energy",
   "power": -17,
   "minDamage": 1,
   "maxDamage": 19,

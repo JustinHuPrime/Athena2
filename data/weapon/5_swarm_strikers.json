@@ -1,6 +1,7 @@
 {
   "name": "Swarm Strikers",
   "size": "H",
+  "tag": "hangar",
   "power": -80,
   "minDamage": 8,
   "maxDamage": 12,

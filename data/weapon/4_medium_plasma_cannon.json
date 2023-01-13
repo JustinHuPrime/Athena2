@@ -1,6 +1,7 @@
 {
   "name": "Medium Plasma Cannon",
   "size": "M",
+  "tag": "energy",
   "power": -47,
   "minDamage": 53,
   "maxDamage": 140,

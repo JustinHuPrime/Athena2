@@ -1,6 +1,7 @@
 {
   "name": "Small Ripper Autocannon",
   "size": "S",
+  "tag": "kinetic",
   "power": -17,
   "minDamage": 10,
   "maxDamage": 21,

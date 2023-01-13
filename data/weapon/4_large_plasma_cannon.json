@@ -1,6 +1,7 @@
 {
   "name": "Large Plasma Cannon",
   "size": "L",
+  "tag": "energy",
   "power": -107,
   "minDamage": 126,
   "maxDamage": 336,

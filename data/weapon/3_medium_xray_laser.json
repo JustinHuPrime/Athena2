@@ -1,6 +1,7 @@
 {
   "name": "Medium X-Ray Laser",
   "size": "M",
+  "tag": "energy",
   "power": -30,
   "minDamage": 33,
   "maxDamage": 88,

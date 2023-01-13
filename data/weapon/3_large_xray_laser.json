@@ -1,6 +1,7 @@
 {
   "name": "Large X-Ray Laser",
   "size": "L",
+  "tag": "energy",
   "power": -67,
   "minDamage": 78,
   "maxDamage": 210,

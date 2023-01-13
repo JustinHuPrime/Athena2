@@ -1,6 +1,7 @@
 {
   "name": "Small Advanced Railgun",
   "size": "S",
+  "tag": "kinetic",
   "power": -13,
   "minDamage": 12,
   "maxDamage": 35,

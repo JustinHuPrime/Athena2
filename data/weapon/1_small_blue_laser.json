@@ -1,6 +1,7 @@
 {
   "name": "Small Blue Laser",
   "size": "S",
+  "tag": "energy",
   "power": -7,
   "minDamage": 8,
   "maxDamage": 21,

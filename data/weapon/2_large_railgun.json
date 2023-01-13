@@ -1,6 +1,7 @@
 {
   "name": "Large Railgun",
   "size": "L",
+  "tag": "kinetic",
   "power": -51,
   "minDamage": 54,
   "maxDamage": 162,

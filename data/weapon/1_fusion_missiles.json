@@ -1,6 +1,7 @@
 {
   "name": "Fusion Missiles",
   "size": "S",
+  "tag": "explosive",
   "power": -7,
   "minDamage": 21,
   "maxDamage": 32,

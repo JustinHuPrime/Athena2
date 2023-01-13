@@ -1,6 +1,7 @@
 {
   "name": "Small Ion Disruptor",
   "size": "S",
+  "tag": "energy",
   "power": -13,
   "minDamage": 1,
   "maxDamage": 14,

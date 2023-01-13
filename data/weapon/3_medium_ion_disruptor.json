@@ -1,6 +1,7 @@
 {
   "name": "Medium Ion Disruptor",
   "size": "M",
+  "tag": "energy",
   "power": -30,
   "minDamage": 1,
   "maxDamage": 37,

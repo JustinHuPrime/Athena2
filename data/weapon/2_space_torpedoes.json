@@ -1,6 +1,7 @@
 {
   "name": "Space Torpedoes",
   "size": "G",
+  "tag": "explosive",
   "power": -20,
   "minDamage": 100,
   "maxDamage": 150,

@@ -1,6 +1,7 @@
 {
   "name": "Large Mass Driver",
   "size": "L",
+  "tag": "kinetic",
   "power": -30,
   "minDamage": 30,
   "maxDamage": 96,

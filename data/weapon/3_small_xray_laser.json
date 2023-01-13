@@ -1,6 +1,7 @@
 {
   "name": "Small X-Ray Laser",
   "size": "S",
+  "tag": "energy",
   "power": -13,
   "minDamage": 13,
   "maxDamage": 35,

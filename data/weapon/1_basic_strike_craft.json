@@ -1,6 +1,7 @@
 {
   "name": "Basic Strike Craft",
   "size": "H",
+  "tag": "hangar",
   "power": -34,
   "minDamage": 4,
   "maxDamage": 10,

@@ -1,6 +1,7 @@
 {
   "name": "Small Plasma Accelerator",
   "size": "S",
+  "tag": "energy",
   "power": -17,
   "minDamage": 16,
   "maxDamage": 43,

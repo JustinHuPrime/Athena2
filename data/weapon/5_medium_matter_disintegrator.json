@@ -1,6 +1,7 @@
 {
   "name": "Medium Matter Disintegrator",
   "size": "M",
+  "tag": "energy",
   "power": -40,
   "minDamage": 50,
   "maxDamage": 123,

@@ -1,6 +1,7 @@
 {
   "name": "Small Plasma Cannon",
   "size": "S",
+  "tag": "energy",
   "power": -23,
   "minDamage": 21,
   "maxDamage": 56,

@@ -1,6 +1,7 @@
 {
   "name": "Large Red Laser",
   "size": "L",
+  "tag": "energy",
   "power": -30,
   "minDamage": 36,
   "maxDamage": 96,

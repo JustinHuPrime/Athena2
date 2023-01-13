@@ -1,6 +1,7 @@
 {
   "name": "Small Gamma Laser",
   "size": "S",
+  "tag": "energy",
   "power": -17,
   "minDamage": 17,
   "maxDamage": 46,

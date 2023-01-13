@@ -1,6 +1,7 @@
 {
   "name": "Medium Red Laser",
   "size": "M",
+  "tag": "energy",
   "power": -13,
   "minDamage": 15,
   "maxDamage": 40,

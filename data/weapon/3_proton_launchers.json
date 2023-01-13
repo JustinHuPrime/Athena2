@@ -1,6 +1,7 @@
 {
   "name": "Proton Launchers",
   "size": "G",
+  "tag": "energy",
   "power": -59,
   "minDamage": 47,
   "maxDamage": 101,

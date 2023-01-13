@@ -1,6 +1,7 @@
 {
   "name": "Small Red Laser",
   "size": "S",
+  "tag": "energy",
   "power": -5,
   "minDamage": 6,
   "maxDamage": 16,

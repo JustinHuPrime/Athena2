@@ -1,6 +1,7 @@
 {
   "name": "Small Stormfire Autocannon",
   "size": "S",
+  "tag": "kinetic",
   "power": -23,
   "minDamage": 13,
   "maxDamage": 27,

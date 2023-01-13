@@ -30,6 +30,7 @@ TEST_CASE("Weapon parsing", "[model][component][weapon]") {
   Weapon weapon = Weapon::fromJson(R"({
   "name": "Small Red Laser",
   "size": "S",
+  "tag": "energy",
   "power": -5,
   "minDamage": 6,
   "maxDamage": 16,
@@ -48,6 +49,7 @@ TEST_CASE("Weapon parsing", "[model][component][weapon]") {
                                    ctx);
   REQUIRE(weapon.name == "Small Red Laser");
   REQUIRE(weapon.size == "S");
+  REQUIRE(weapon.tag == "energy");
   REQUIRE(weapon.power == -5.f);
   REQUIRE(weapon.minDamage == 6.f);
   REQUIRE(weapon.maxDamage == 16);

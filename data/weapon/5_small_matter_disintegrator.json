@@ -1,6 +1,7 @@
 {
   "name": "Small Matter Disintegrator",
   "size": "S",
+  "tag": "energy",
   "power": -25,
   "minDamage": 20,
   "maxDamage": 49,

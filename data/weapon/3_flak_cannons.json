@@ -1,6 +1,7 @@
 {
   "name": "Flak Cannons",
   "size": "P",
+  "tag": "point-defence",
   "power": -7,
   "minDamage": 3,
   "maxDamage": 6,

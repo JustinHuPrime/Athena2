@@ -1,6 +1,7 @@
 {
   "name": "Scourge Missile",
   "size": "G",
+  "tag": "explosive",
   "power": -35,
   "minDamage": 135,
   "maxDamage": 175,

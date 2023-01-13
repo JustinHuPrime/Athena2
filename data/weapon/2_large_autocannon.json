@@ -1,6 +1,7 @@
 {
   "name": "Large Autocannon",
   "size": "L",
+  "tag": "kinetic",
   "power": -67,
   "minDamage": 48,
   "maxDamage": 96,

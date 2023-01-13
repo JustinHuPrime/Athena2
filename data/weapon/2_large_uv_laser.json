@@ -1,6 +1,7 @@
 {
   "name": "Large UV Laser",
   "size": "L",
+  "tag": "energy",
   "power": -51,
   "minDamage": 60,
   "maxDamage": 162,

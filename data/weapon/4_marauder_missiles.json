@@ -1,6 +1,7 @@
 {
   "name": "Marauder Missiles",
   "size": "S",
+  "tag": "explosive",
   "power": -17,
   "minDamage": 49,
   "maxDamage": 72,

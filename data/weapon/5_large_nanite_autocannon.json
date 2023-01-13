@@ -1,6 +1,7 @@
 {
   "name": "Large Nanite Autocannon",
   "size": "L",
+  "tag": "kinetic",
   "power": -150,
   "minDamage": 102,
   "maxDamage": 210,

@@ -1,6 +1,7 @@
 {
   "name": "Arc Emitter",
   "size": "X",
+  "tag": "energy",
   "power": -200,
   "minDamage": 1,
   "maxDamage": 1300,

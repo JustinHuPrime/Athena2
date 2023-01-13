@@ -1,6 +1,7 @@
 {
   "name": "Neutron Launchers",
   "size": "G",
+  "tag": "energy",
   "power": -77,
   "minDamage": 61,
   "maxDamage": 131,

@@ -1,6 +1,7 @@
 {
   "name": "Small Plasma Thrower",
   "size": "S",
+  "tag": "energy",
   "power": -13,
   "minDamage": 12,
   "maxDamage": 33,

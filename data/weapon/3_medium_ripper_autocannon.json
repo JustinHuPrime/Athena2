@@ -1,6 +1,7 @@
 {
   "name": "Medium Ripper Autocannon",
   "size": "M",
+  "tag": "kinetic",
   "power": -39,
   "minDamage": 25,
   "maxDamage": 53,

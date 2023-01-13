@@ -1,6 +1,7 @@
 {
   "name": "Tachyon Lance",
   "size": "X",
+  "tag": "energy",
   "power": -260,
   "minDamage": 780,
   "maxDamage": 1950,

@@ -1,6 +1,7 @@
 {
   "name": "Barrier Point-Defence",
   "size": "P",
+  "tag": "point-defence",
   "power": -7,
   "minDamage": 3,
   "maxDamage": 6,

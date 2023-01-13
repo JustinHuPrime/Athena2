@@ -1,6 +1,7 @@
 {
   "name": "Medium Null Void Beam",
   "size": "M",
+  "tag": "energy",
   "power": -13,
   "minDamage": 15,
   "maxDamage": 40,

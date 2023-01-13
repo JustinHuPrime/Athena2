@@ -1,6 +1,7 @@
 {
   "name": "Whirlwind Missiles",
   "size": "M",
+  "tag": "explosive",
   "power": -17,
   "minDamage": 61,
   "maxDamage": 85,

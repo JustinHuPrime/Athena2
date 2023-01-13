@@ -1,6 +1,7 @@
 {
   "name": "Quantum Missiles",
   "size": "S",
+  "tag": "explosive",
   "power": -13,
   "minDamage": 37,
   "maxDamage": 55,

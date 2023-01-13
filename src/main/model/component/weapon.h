@@ -47,6 +47,7 @@ class Weapon : public util::Named {
   Weapon &operator=(Weapon &&) noexcept = default;
 
   std::string const size;
+  std::string const tag;
   float const power;
   float const minDamage;
   float const maxDamage;
@@ -86,26 +87,26 @@ class Weapon : public util::Named {
   Cost const cost;
 
  private:
-  Weapon(std::string const &name, std::string const &size, float power,
-         float minDamage, float maxDamage, float minRange, float maxRange,
-         float tracking, float accuracy, float cooldown,
-         float shieldDamageModifier, float shieldSkipModifier,
+  Weapon(std::string const &name, std::string const &size,
+         std::string const &tag, float power, float minDamage, float maxDamage,
+         float minRange, float maxRange, float tracking, float accuracy,
+         float cooldown, float shieldDamageModifier, float shieldSkipModifier,
          float armourDamageModifier, float armourSkipModifier,
          float hullDamageModifier, float sizeDamageModifier,
          Cost const &cost) noexcept;
-  Weapon(std::string const &name, std::string const &size, float power,
-         float minDamage, float maxDamage, float minRange, float maxRange,
-         float tracking, float accuracy, float cooldown,
-         float shieldDamageModifier, float shieldSkipModifier,
+  Weapon(std::string const &name, std::string const &size,
+         std::string const &tag, float power, float minDamage, float maxDamage,
+         float minRange, float maxRange, float tracking, float accuracy,
+         float cooldown, float shieldDamageModifier, float shieldSkipModifier,
          float armourDamageModifier, float armourSkipModifier,
          float hullDamageModifier, float sizeDamageModifier,
          float projectileSpeed, float projectileEvasion,
          float projectileRetargetRange, float projectileHull,
          float projectileArmour, Cost const &cost) noexcept;
-  Weapon(std::string const &name, std::string const &size, float power,
-         float minDamage, float maxDamage, float minRange, float maxRange,
-         float tracking, float accuracy, float cooldown,
-         float shieldDamageModifier, float shieldSkipModifier,
+  Weapon(std::string const &name, std::string const &size,
+         std::string const &tag, float power, float minDamage, float maxDamage,
+         float minRange, float maxRange, float tracking, float accuracy,
+         float cooldown, float shieldDamageModifier, float shieldSkipModifier,
          float armourDamageModifier, float armourSkipModifier,
          float hullDamageModifier, float sizeDamageModifier,
          float unitsPerHangar, float regenerationPerDay, float strikeCraftRange,

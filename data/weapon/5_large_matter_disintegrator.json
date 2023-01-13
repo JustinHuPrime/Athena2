@@ -1,6 +1,7 @@
 {
   "name": "Large Matter Disintegrator",
   "size": "L",
+  "tag": "energy",
   "power": -80,
   "minDamage": 120,
   "maxDamage": 294,

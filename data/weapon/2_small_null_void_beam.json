@@ -1,6 +1,7 @@
 {
   "name": "Small Null Void Beam",
   "size": "S",
+  "tag": "energy",
   "power": -7,
   "minDamage": 6,
   "maxDamage": 16,

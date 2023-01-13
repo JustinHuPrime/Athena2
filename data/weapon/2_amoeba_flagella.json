@@ -1,6 +1,7 @@
 {
   "name": "Amoeba Flagella",
   "size": "H",
+  "tag": "hangar",
   "power": -30,
   "minDamage": 20,
   "maxDamage": 30,

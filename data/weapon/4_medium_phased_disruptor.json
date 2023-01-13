@@ -1,6 +1,7 @@
 {
   "name": "Medium Phased Disruptor",
   "size": "M",
+  "tag": "energy",
   "power": -39,
   "minDamage": 1,
   "maxDamage": 48,

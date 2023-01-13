@@ -1,6 +1,7 @@
 {
   "name": "Kinetic Battery",
   "size": "L",
+  "tag": "kinetic",
   "power": -70,
   "minDamage": 150,
   "maxDamage": 450,

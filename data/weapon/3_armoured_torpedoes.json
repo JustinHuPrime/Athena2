@@ -1,6 +1,7 @@
 {
   "name": "Armoured Torpedoes",
   "size": "G",
+  "tag": "energy",
   "power": -26,
   "minDamage": 130,
   "maxDamage": 195,

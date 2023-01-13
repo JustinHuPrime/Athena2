@@ -1,6 +1,7 @@
 {
   "name": "Kinetic Artillery",
   "size": "L",
+  "tag": "kinetic",
   "power": -91,
   "minDamage": 195,
   "maxDamage": 585,

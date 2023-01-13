@@ -1,6 +1,7 @@
 {
   "name": "Small UV Laser",
   "size": "S",
+  "tag": "energy",
   "power": -10,
   "minDamage": 10,
   "maxDamage": 27,

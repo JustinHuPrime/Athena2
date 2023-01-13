@@ -1,6 +1,7 @@
 {
   "name": "Perdition Beam",
   "size": "T",
+  "tag": "energy",
   "power": 500,
   "minDamage": 5000,
   "maxDamage": 10000,

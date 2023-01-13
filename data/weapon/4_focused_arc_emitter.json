@@ -1,6 +1,7 @@
 {
   "name": "Focused Arc Emitter",
   "size": "X",
+  "tag": "energy",
   "power": -260,
   "minDamage": 2,
   "maxDamage": 1690,

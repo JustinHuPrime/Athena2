@@ -1,6 +1,7 @@
 {
   "name": "Small Coilgun",
   "size": "S",
+  "tag": "kinetic",
   "power": -7,
   "minDamage": 7,
   "maxDamage": 21,

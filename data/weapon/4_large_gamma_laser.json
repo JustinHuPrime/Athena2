@@ -1,6 +1,7 @@
 {
   "name": "Large Gamma Laser",
   "size": "L",
+  "tag": "energy",
   "power": -88,
   "minDamage": 102,
   "maxDamage": 276,

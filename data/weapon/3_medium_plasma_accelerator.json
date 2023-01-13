@@ -1,6 +1,7 @@
 {
   "name": "Medium Plasma Accelerator",
   "size": "M",
+  "tag": "energy",
   "power": -36,
   "minDamage": 40,
   "maxDamage": 108,

@@ -1,6 +1,7 @@
 {
   "name": "Antimatter Missiles",
   "size": "S",
+  "tag": "explosive",
   "power": -10,
   "minDamage": 28,
   "maxDamage": 42,

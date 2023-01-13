@@ -1,6 +1,7 @@
 {
   "name": "Small Nanite Autocannon",
   "size": "S",
+  "tag": "kinetic",
   "power": -30,
   "minDamage": 17,
   "maxDamage": 35,

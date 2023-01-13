@@ -1,6 +1,7 @@
 {
   "name": "Small Mining Drone Laser",
   "size": "S",
+  "tag": "energy",
   "power": -7,
   "minDamage": 8,
   "maxDamage": 21,

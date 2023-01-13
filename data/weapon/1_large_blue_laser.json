@@ -1,6 +1,7 @@
 {
   "name": "Large Blue Laser",
   "size": "L",
+  "tag": "energy",
   "power": -39,
   "minDamage": 48,
   "maxDamage": 126,

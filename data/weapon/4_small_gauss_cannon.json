@@ -1,6 +1,7 @@
 {
   "name": "Small Gauss Cannon",
   "size": "S",
+  "tag": "kinetic",
   "power": -17,
   "minDamage": 16,
   "maxDamage": 46,

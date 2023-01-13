@@ -1,6 +1,7 @@
 {
   "name": "Large Ripper Autocannon",
   "size": "L",
+  "tag": "kinetic",
   "power": -88,
   "minDamage": 60,
   "maxDamage": 126,
