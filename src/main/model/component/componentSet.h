@@ -62,28 +62,17 @@ class ComponentSet final {
   ComponentSet &add(Auxiliary &&, EvalContext &);
   ComponentSet &add(Weapon &&, EvalContext &);
 
-  std::optional<std::reference_wrapper<Hull const>> getHull(
-      std::string const &name) const noexcept;
-  std::optional<std::reference_wrapper<Section const>> getSection(
-      std::string const &name) const noexcept;
-  std::optional<std::reference_wrapper<Reactor const>> getReactor(
-      std::string const &name) const noexcept;
-  std::optional<std::reference_wrapper<FTL const>> getFTL(
-      std::string const &name) const noexcept;
-  std::optional<std::reference_wrapper<Sublight const>> getSublight(
-      std::string const &name) const noexcept;
-  std::optional<std::reference_wrapper<Sensor const>> getSensor(
-      std::string const &name) const noexcept;
-  std::optional<std::reference_wrapper<Computer const>> getComputer(
-      std::string const &name) const noexcept;
-  std::optional<std::reference_wrapper<Aura const>> getAura(
-      std::string const &name) const noexcept;
-  std::optional<std::reference_wrapper<Utility const>> getUtility(
-      std::string const &name) const noexcept;
-  std::optional<std::reference_wrapper<Auxiliary const>> getAuxiliary(
-      std::string const &name) const noexcept;
-  std::optional<std::reference_wrapper<Weapon const>> getWeapon(
-      std::string const &name) const noexcept;
+  Hull const *getHull(std::string const &name) const noexcept;
+  Section const *getSection(std::string const &name) const noexcept;
+  Reactor const *getReactor(std::string const &name) const noexcept;
+  FTL const *getFTL(std::string const &name) const noexcept;
+  Sublight const *getSublight(std::string const &name) const noexcept;
+  Sensor const *getSensor(std::string const &name) const noexcept;
+  Computer const *getComputer(std::string const &name) const noexcept;
+  Aura const *getAura(std::string const &name) const noexcept;
+  Utility const *getUtility(std::string const &name) const noexcept;
+  Auxiliary const *getAuxiliary(std::string const &name) const noexcept;
+  Weapon const *getWeapon(std::string const &name) const noexcept;
 
  private:
   std::vector<Hull> hulls;

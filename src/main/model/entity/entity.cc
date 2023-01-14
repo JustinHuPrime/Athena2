@@ -19,6 +19,10 @@
 
 #include "model/entity/entity.h"
 
+using namespace std;
+using namespace athena2::model::component;
+using namespace athena2::model::design;
+
 namespace athena2::model::entity {
 Entity::Entity(float hull_, float armour_, float armourHardening_,
                float shields_, float shieldHardening_, float evasion_,
@@ -26,8 +30,65 @@ Entity::Entity(float hull_, float armour_, float armourHardening_,
     : hull(hull_),
       armour(armour_),
       armourHardening(armourHardening_),
-      shields(shields),
+      shields(shields_),
       shieldHardening(shieldHardening_),
       position(position_),
       evasion(evasion_) {}
+float Entity::rangeTo(Entity const &target) const noexcept {
+  return fabs(position - position);
+}
+void Entity::takeDamage(Weapon const &weapon, Ship const &ship,
+                        mt19937_64 &rng) noexcept {
+  // chanceToHit = probability of a hit from 0 to 1
+  float tracking =
+      (weapon.tracking + ship.trackingBonus) * (1.f + ship.trackingModifier);
+  float chanceToHit =
+      fminf(1.f, fmaxf(0.f, weapon.accuracy - fmaxf(0.f, evasion - tracking)) +
+                     ship.chanceToHitBonus);
+  if (!bernoulli_distribution(clamp(chanceToHit, 0.f, 1.f))(rng)) {
+    // missed; no damage done
+    return;
+  }
+
+  // damage = weapons damage on a hit
+  float damage =
+      uniform_real_distribution(weapon.minDamage, weapon.maxDamage)(rng);
+  if (weapon.tag == "explosive")
+    damage *= (1.f + ship.explosiveWeaponsDamageModifier);
+
+  // shield layer
+  float shieldSkipped = damage * weapon.shieldSkipModifier;
+  float shieldDamaging = damage * (1.f - weapon.shieldSkipModifier);
+  shieldDamaging += shieldSkipped * shieldHardening;
+  shieldSkipped -= shieldSkipped * shieldHardening;
+  if (shieldDamaging < shields / weapon.shieldDamageModifier) {
+    shields -= shieldDamaging * weapon.shieldDamageModifier;
+  } else {
+    shields = 0;
+    shieldSkipped += shieldDamaging - shields / weapon.shieldDamageModifier;
+  }
+
+  float armourSkipped = shieldSkipped * weapon.armourSkipModifier;
+  float armourDamaging = shieldSkipped * (1.f - weapon.armourSkipModifier);
+  armourDamaging += armourSkipped * armourHardening;
+  armourSkipped -= armourSkipped * armourHardening;
+  if (armourDamaging < armour / weapon.armourDamageModifier) {
+    armour -= armourDamaging * weapon.armourDamageModifier;
+  } else {
+    armour = 0;
+    armourSkipped += armourDamaging - armour / weapon.armourDamageModifier;
+  }
+
+  if (armourSkipped < hull / weapon.hullDamageModifier) {
+    float hullDamage = armourSkipped * weapon.hullDamageModifier;
+    hull -= hullDamage;
+    checkRetreat(hullDamage, rng);
+  } else {
+    hull = 0;
+    // float overkill = armourSkipped - hull /
+    // component.hullDamageModifier;
+  }
+}
+void Entity::checkRetreat(float, mt19937_64 &) noexcept {}
+void Entity::tick() noexcept {}
 }  // namespace athena2::model::entity

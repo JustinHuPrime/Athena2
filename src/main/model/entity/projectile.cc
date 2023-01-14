@@ -29,6 +29,10 @@ Projectile::Projectile(component::Weapon const &weapon_,
     : Entity(weapon_.data.projectileWeapon.projectileHull,
              weapon_.data.projectileWeapon.projectileArmour, 0.f, 0.f, 0.f,
              weapon_.data.projectileWeapon.projectileEvasion, ship_.position),
-      weapon(weapon_),
+      weapon(&weapon_),
       ship(ship_.design) {}
+bool Projectile::inRange(Entity const &target) const noexcept {
+  return rangeTo(target) <=
+         weapon->data.projectileWeapon.projectileSpeed * 0.1f;
+}
 }  // namespace athena2::model::entity

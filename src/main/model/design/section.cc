@@ -40,7 +40,8 @@ Section Section::fromJson(json const &data, ComponentSet const &components,
   vector<string> auxiliaryNames = checkStringArray(data, "auxiliaries", ctx);
   checkFields(data, {"section", "weapons", "utilities", "auxiliaries"}, ctx);
 
-  component::Section const &section = [&components, &sectionName, &ctx]() {
+  component::Section const &section = [&components, &sectionName,
+                                       &ctx]() -> component::Section const & {
     auto _ = ctx.push("section");
     auto section = components.getSection(sectionName);
     if (!section) ctx.error("no such section '" + sectionName + "'");
@@ -86,22 +87,29 @@ Section Section::fromJson(json const &data, ComponentSet const &components,
   }
 }
 
-Section::Section(component::Section const &section_,
-                 vector<reference_wrapper<Weapon const>> const &weapons_,
-                 vector<reference_wrapper<Utility const>> const &utilities_,
-                 vector<reference_wrapper<Auxiliary const>> const &auxiliaries_)
-    : section(section_),
-      weapons(weapons_),
-      utilities(utilities_),
-      auxiliaries(auxiliaries_) {
-  string weaponSizes = accumulate(weapons.begin(), weapons.end(), ""s,
-                                  [](string const &rsf, Weapon const &weapon) {
-                                    return rsf + weapon.size;
-                                  });
+Section::Section(
+    component::Section const &section_,
+    vector<reference_wrapper<component::Weapon const>> const &weapons_,
+    vector<reference_wrapper<component::Utility const>> const &utilities_,
+    vector<reference_wrapper<component::Auxiliary const>> const &auxiliaries_)
+    : section(&section_) {
+  transform(weapons_.begin(), weapons_.end(), back_inserter(weapons),
+            [](component::Weapon const &weapon) { return &weapon; });
+  transform(utilities_.begin(), utilities_.end(), back_inserter(utilities),
+            [](component::Utility const &utility) { return &utility; });
+  transform(auxiliaries_.begin(), auxiliaries_.end(),
+            back_inserter(auxiliaries),
+            [](component::Auxiliary const &auxiliary) { return &auxiliary; });
+
+  string weaponSizes =
+      accumulate(weapons.begin(), weapons.end(), ""s,
+                 [](string const &rsf, Weapon const *const &weapon) {
+                   return rsf + weapon->size;
+                 });
   sort(weaponSizes.begin(), weaponSizes.end());
   string unmatched;
   set_difference(weaponSizes.begin(), weaponSizes.end(),
-                 section.weaponSlots.begin(), section.weaponSlots.end(),
+                 section->weaponSlots.begin(), section->weaponSlots.end(),
                  back_inserter(unmatched));
   if (!unmatched.empty())
     throw DesignException("weapons requiring missing slots (" + unmatched +
@@ -109,16 +117,16 @@ Section::Section(component::Section const &section_,
 
   string utilitySizes =
       accumulate(utilities.begin(), utilities.end(), ""s,
-                 [](string const &rsf, Utility const &utility) {
-                   return rsf + utility.size;
+                 [](string const &rsf, Utility const *const &utility) {
+                   return rsf + utility->size;
                  }) +
       accumulate(auxiliaries.begin(), auxiliaries.end(), ""s,
-                 [](string const &rsf, Auxiliary const &auxiliary) {
-                   return rsf + auxiliary.size;
+                 [](string const &rsf, Auxiliary const *const &auxiliary) {
+                   return rsf + auxiliary->size;
                  });
   sort(utilitySizes.begin(), utilitySizes.end());
   set_difference(utilitySizes.begin(), utilitySizes.end(),
-                 section.utilitySlots.begin(), section.utilitySlots.end(),
+                 section->utilitySlots.begin(), section->utilitySlots.end(),
                  back_inserter(unmatched));
   if (!unmatched.empty())
     throw DesignException("utility components requiring missing slots (" +

@@ -37,15 +37,14 @@ void addChecked(vector<T> &destination, T &&component, EvalContext &ctx) {
   destination.emplace_back(move(component));
 }
 template <typename T>
-optional<reference_wrapper<T const>> getFrom(vector<T> const &from,
-                                             string const &name) {
-  auto it = find_if(from.begin(), from.end(), [&name](T const &component) {
+T const *getFrom(vector<T> const &from, string const &name) {
+  auto it = find_if(from.cbegin(), from.cend(), [&name](T const &component) {
     return component.name == name;
   });
-  if (it == from.end())
-    return nullopt;
+  if (it == from.cend())
+    return nullptr;
   else
-    return *it;
+    return &*it;
 }
 }  // namespace
 
@@ -93,48 +92,37 @@ ComponentSet &ComponentSet::add(Weapon &&weapon, EvalContext &ctx) {
   addChecked(weapons, move(weapon), ctx);
   return *this;
 }
-optional<reference_wrapper<Hull const>> ComponentSet::getHull(
-    string const &name) const noexcept {
+Hull const *ComponentSet::getHull(string const &name) const noexcept {
   return getFrom(hulls, name);
 }
-optional<reference_wrapper<Section const>> ComponentSet::getSection(
-    string const &name) const noexcept {
+Section const *ComponentSet::getSection(string const &name) const noexcept {
   return getFrom(sections, name);
 }
-optional<reference_wrapper<Reactor const>> ComponentSet::getReactor(
-    string const &name) const noexcept {
+Reactor const *ComponentSet::getReactor(string const &name) const noexcept {
   return getFrom(reactors, name);
 }
-optional<reference_wrapper<FTL const>> ComponentSet::getFTL(
-    string const &name) const noexcept {
+FTL const *ComponentSet::getFTL(string const &name) const noexcept {
   return getFrom(ftls, name);
 }
-optional<reference_wrapper<Sublight const>> ComponentSet::getSublight(
-    string const &name) const noexcept {
+Sublight const *ComponentSet::getSublight(string const &name) const noexcept {
   return getFrom(sublights, name);
 }
-optional<reference_wrapper<Sensor const>> ComponentSet::getSensor(
-    string const &name) const noexcept {
+Sensor const *ComponentSet::getSensor(string const &name) const noexcept {
   return getFrom(sensors, name);
 }
-optional<reference_wrapper<Computer const>> ComponentSet::getComputer(
-    string const &name) const noexcept {
+Computer const *ComponentSet::getComputer(string const &name) const noexcept {
   return getFrom(computers, name);
 }
-optional<reference_wrapper<Aura const>> ComponentSet::getAura(
-    string const &name) const noexcept {
+Aura const *ComponentSet::getAura(string const &name) const noexcept {
   return getFrom(auras, name);
 }
-optional<reference_wrapper<Utility const>> ComponentSet::getUtility(
-    string const &name) const noexcept {
+Utility const *ComponentSet::getUtility(string const &name) const noexcept {
   return getFrom(utilities, name);
 }
-optional<reference_wrapper<Auxiliary const>> ComponentSet::getAuxiliary(
-    string const &name) const noexcept {
+Auxiliary const *ComponentSet::getAuxiliary(string const &name) const noexcept {
   return getFrom(auxiliaries, name);
 }
-optional<reference_wrapper<Weapon const>> ComponentSet::getWeapon(
-    string const &name) const noexcept {
+Weapon const *ComponentSet::getWeapon(string const &name) const noexcept {
   return getFrom(weapons, name);
 }
 }  // namespace athena2::model::component

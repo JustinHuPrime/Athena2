@@ -53,13 +53,13 @@ class Ship final : public util::Named {
   Ship &operator=(Ship &&) noexcept = default;
 
   // ship design
-  component::Hull const &hull;
-  component::Reactor const &reactor;
-  component::FTL const &ftl;
-  component::Sublight const &sublight;
-  component::Sensor const &sensor;
-  component::Computer const &computer;
-  std::optional<std::reference_wrapper<component::Aura const>> const aura;
+  component::Hull const *hull;
+  component::Reactor const *reactor;
+  component::FTL const *ftl;
+  component::Sublight const *sublight;
+  component::Sensor const *sensor;
+  component::Computer const *computer;
+  component::Aura const *aura;
   std::vector<Section> const sections;
 
   // basic stats
@@ -96,8 +96,7 @@ class Ship final : public util::Named {
   Ship(std::string const &, component::Hull const &, component::Reactor const &,
        component::FTL const &, component::Sublight const &,
        component::Sensor const &, component::Computer const &,
-       std::optional<std::reference_wrapper<component::Aura const>> const &,
-       std::vector<Section> const &);
+       component::Aura const *, std::vector<Section> const &);
 };
 }  // namespace athena2::model::design
 

@@ -45,11 +45,10 @@ class Section final {
   Section &operator=(Section const &) noexcept = default;
   Section &operator=(Section &&) noexcept = default;
 
-  component::Section const &section;
-  std::vector<std::reference_wrapper<component::Weapon const>> const weapons;
-  std::vector<std::reference_wrapper<component::Utility const>> const utilities;
-  std::vector<std::reference_wrapper<component::Auxiliary const>> const
-      auxiliaries;
+  component::Section const *section;
+  std::vector<component::Weapon const *> weapons;
+  std::vector<component::Utility const *> utilities;
+  std::vector<component::Auxiliary const *> auxiliaries;
 
  private:
   /**

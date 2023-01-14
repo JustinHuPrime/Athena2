@@ -19,64 +19,45 @@
 
 #include "model/entity/ship.h"
 
+using namespace std;
 using namespace athena2::model::component;
 using namespace athena2::model::entity;
 using namespace athena2::model::design;
 
 namespace athena2::model::entity {
-Weapon::Weapon(component::Weapon const &weapon_, Ship const &ship_) noexcept
-    : component(weapon_), ship(ship_), cooldown(0.f) {}
-void Weapon::doDamage(Entity &target) noexcept {
-  // reset cooldown
-  cooldown = component.cooldown;
-
-  // chanceToHit = probability of a hit from 0 to 1
-  float tracking = (component.tracking + ship.design.trackingBonus) *
-                   (1.f + ship.design.trackingModifier);
-  float chanceToHit = fminf(
-      1.f,
-      fmaxf(0.f, component.accuracy - fmaxf(0.f, target.evasion - tracking)) +
-          ship.design.chanceToHitBonus);
-
-  // baseDamage = weapons damage on a hit
-  float baseDamage = ((component.minDamage + component.maxDamage) / 2);
-  if (component.tag == "explosive")
-    baseDamage *= (1.f + ship.design.explosiveWeaponsDamageModifier);
-
-  // damage = expected damage per hit
-  float damage = baseDamage * chanceToHit;
-
-  // shield layer
-  float shieldSkipped = damage * component.shieldSkipModifier;
-  float shieldDamaging = damage * (1.f - component.shieldSkipModifier);
-  shieldDamaging += shieldSkipped * target.shieldHardening;
-  shieldSkipped -= shieldSkipped * target.shieldHardening;
-  if (shieldDamaging < target.shields / component.shieldDamageModifier) {
-    target.shields -= shieldDamaging * component.shieldDamageModifier;
-  } else {
-    target.shields = 0;
-    shieldSkipped +=
-        shieldDamaging - target.shields / component.shieldDamageModifier;
+Weapon::Weapon(component::Weapon const &weapon_,
+               design::Ship const &ship_) noexcept
+    : component(&weapon_), ship(&ship_) {
+  switch (component->type) {
+    case component::Weapon::Type::REGULAR: {
+      data.regularWeapon.cooldown = 0.f;
+      break;
+    }
+    case component::Weapon::Type::PROJECTILE: {
+      data.projectileWeapon.cooldown = 0.f;
+      break;
+    }
+    case component::Weapon::Type::HANGAR: {
+      data.hangarWeapon.unitsStored =
+          component->data.hangarWeapon.unitsPerHangar;
+      break;
+    }
   }
-
-  float armourSkipped = shieldSkipped * component.armourSkipModifier;
-  float armourDamaging = shieldSkipped * (1.f - component.armourSkipModifier);
-  armourDamaging += armourSkipped * target.armourHardening;
-  armourSkipped -= armourSkipped * target.armourHardening;
-  if (armourDamaging < target.armour / component.armourDamageModifier) {
-    target.armour -= armourDamaging * component.armourDamageModifier;
-  } else {
-    target.armour = 0;
-    armourSkipped +=
-        armourDamaging - target.armour / component.armourDamageModifier;
-  }
-
-  if (armourSkipped < target.hull / component.hullDamageModifier) {
-    target.hull -= armourSkipped * component.hullDamageModifier;
-  } else {
-    target.hull = 0;
-    // float overkill = armourSkipped - target.hull /
-    // component.hullDamageModifier;
+}
+void Weapon::fire() noexcept {
+  switch (component->type) {
+    case component::Weapon::Type::REGULAR: {
+      data.regularWeapon.cooldown = component->cooldown;
+      break;
+    }
+    case component::Weapon::Type::PROJECTILE: {
+      data.projectileWeapon.cooldown = component->cooldown;
+      break;
+    }
+    case component::Weapon::Type::HANGAR: {
+      --data.hangarWeapon.unitsStored;
+      break;
+    }
   }
 }
 Ship::Ship(design::Ship const &design_, float position_) noexcept
@@ -84,6 +65,26 @@ Ship::Ship(design::Ship const &design_, float position_) noexcept
              design_.shieldHealth, design_.shieldHardening, design_.evasion,
              position_),
       weapons(),
-      design(design_),
-      disengageChancesRemaining(design.disengageChances) {}
+      design(&design_),
+      disengageChancesRemaining(design->disengageChances),
+      willDisengage(false) {}
+bool Ship::inRange(Weapon const &weapon, Entity const &target) const noexcept {
+  float range = rangeTo(target);
+  return weapon.component->minRange <= range &&
+         range <=
+             weapon.component->maxRange * (1.f + design->weaponsRangeModifier);
+}
+void Ship::checkRetreat(float hullDamage, mt19937_64 &rng) noexcept {
+  if (hull > design->hullHealth * 0.5f)
+    return;  // won't retreat when over 50% hull
+
+  if (disengageChancesRemaining <= 0.f)
+    return;  // can't disengage without a remaining chance
+
+  disengageChancesRemaining -= 1.f;
+
+  float disengageChance =
+      hullDamage / design->hullHealth * 1.5f * design->disengageChanceModifier;
+  willDisengage = bernoulli_distribution(disengageChance)(rng);
+}
 }  // namespace athena2::model::entity

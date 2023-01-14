@@ -20,6 +20,7 @@
 #include "model/evaluator.h"
 
 #include <numeric>
+#include <random>
 
 #include "model/design/fleet.h"
 #include "model/entity/fleet.h"
@@ -36,8 +37,9 @@ float engagementRange(design::Fleet const &fleet) {
   for (auto const &[ship, _] : fleet.ships) {
     float maxWeaponRange = 0.f;
     for (design::Section const &section : ship.sections) {
-      for (component::Weapon const &weapon : section.weapons) {
-        if (weapon.maxRange > maxWeaponRange) maxWeaponRange = weapon.maxRange;
+      for (component::Weapon const *const &weapon : section.weapons) {
+        if (weapon->maxRange > maxWeaponRange)
+          maxWeaponRange = weapon->maxRange * (1.f + ship.weaponsRangeModifier);
       }
     }
     float shipEngagementRange =
@@ -49,6 +51,157 @@ float engagementRange(design::Fleet const &fleet) {
 }
 }  // namespace
 
+void fireWeapons(entity::Fleet &firing, entity::Fleet &targets,
+                 mt19937_64 &rng) noexcept {
+  // for each ship
+  for (entity::Ship &ship : firing.ships) {
+    // for each weapon
+    for (entity::Weapon &weapon : ship.weapons) {
+      switch (weapon.component->type) {
+        case component::Weapon::Type::REGULAR: {
+          // must have cooled down
+          if (weapon.data.regularWeapon.cooldown > 0.f) break;
+
+          // find closest target in range
+          optional<reference_wrapper<Entity>> target = nullopt;
+          for (Entity &candidate : targets.ships) {
+            if (ship.inRange(weapon, candidate) &&
+                (!target ||
+                 ship.rangeTo(candidate) < ship.rangeTo(target->get()))) {
+              target = candidate;
+            }
+          }
+
+          // also look at small targets for PD
+          if (weapon.component->tag == "point-defence") {
+            for (Entity &candidate : targets.projectiles) {
+              if (ship.inRange(weapon, candidate) &&
+                  (!target ||
+                   ship.rangeTo(candidate) < ship.rangeTo(target->get()))) {
+                target = candidate;
+              }
+            }
+            for (Entity &candidate : targets.strikeCraft) {
+              if (ship.inRange(weapon, candidate) &&
+                  (!target ||
+                   ship.rangeTo(candidate) < ship.rangeTo(target->get()))) {
+                target = candidate;
+              }
+            }
+          }
+
+          // fire if we have a target
+          if (target) {
+            weapon.fire();
+            target->get().takeDamage(*weapon.component, *ship.design, rng);
+          }
+          break;
+        }
+        case component::Weapon::Type::PROJECTILE: {
+          // must have cooled down
+          if (weapon.data.projectileWeapon.cooldown > 0.f) break;
+
+          // fire if there's a ship in range
+          if (any_of(targets.ships.begin(), targets.ships.end(),
+                     [&weapon, &ship](Entity const &target) {
+                       return ship.inRange(weapon, target);
+                     })) {
+            weapon.fire();
+            // TODO: add a target to projectiles and implement the retarget
+            // mechanic
+            firing.projectiles.emplace_back(*weapon.component, ship);
+          }
+          break;
+        }
+        case component::Weapon::Type::HANGAR: {
+          // must have craft available to deploy
+          if (weapon.data.hangarWeapon.unitsStored < 1.f) break;
+
+          // deploy all strike craft
+          while (weapon.data.hangarWeapon.unitsStored >= 1.f) {
+            weapon.fire();
+            firing.strikeCraft.emplace_back(*weapon.component, ship);
+          }
+          break;
+        }
+      }
+    }
+  }
+  // for each strike craft
+  for (entity::StrikeCraft &strikeCraft : firing.strikeCraft) {
+    // must have cooled down
+    if (strikeCraft.cooldown > 0.f) break;
+
+    // find closest target in range
+    optional<reference_wrapper<Entity>> target = nullopt;
+    for (Entity &candidate : targets.ships) {
+      if (strikeCraft.inRange(candidate) &&
+          (!target || strikeCraft.rangeTo(candidate) <
+                          strikeCraft.rangeTo(target->get()))) {
+        target = candidate;
+      }
+    }
+
+    // fire if we have a target
+    if (target) {
+      strikeCraft.fire();
+      target->get().takeDamage(*strikeCraft.weapon, *strikeCraft.ship, rng);
+    }
+  }
+}
+
+void checkProjectiles(entity::Fleet &firing, entity::Fleet &targets,
+                      mt19937_64 &rng) noexcept {
+  for (entity::Projectile &projectile : firing.projectiles) {
+    // is there any ship within retarget range?
+    if (!any_of(targets.ships.begin(), targets.ships.end(),
+                [&projectile](Entity const &target) {
+                  return projectile.rangeTo(target) <=
+                         projectile.weapon->data.projectileWeapon
+                             .projectileRetargetRange;
+                })) {
+      // no targets; abort projectile
+      projectile.hull = 0.f;
+      continue;
+    }
+
+    // find closest ship in range
+    optional<reference_wrapper<Entity>> target = nullopt;
+    for (Entity &candidate : targets.ships) {
+      if (projectile.inRange(candidate) &&
+          (!target ||
+           projectile.rangeTo(candidate) < projectile.rangeTo(target->get()))) {
+        target = candidate;
+      }
+    }
+
+    // hit if we have a target
+    if (target) {
+      projectile.hull = 0.f;  // destroy projectile
+      target->get().takeDamage(*projectile.weapon, *projectile.ship, rng);
+    }
+  }
+}
+
+void applyDisengageAndDestruction(entity::Fleet &fleet) {
+  copy_if(fleet.ships.begin(), fleet.ships.end(),
+          back_inserter(fleet.disengaged),
+          [](entity::Ship const &ship) { return ship.willDisengage; });
+  erase_if(fleet.ships, [](entity::Ship const &ship) {
+    return ship.willDisengage || ship.hull <= 0.f;
+  });
+  erase_if(fleet.projectiles,
+           [](Entity const &entity) { return entity.hull <= 0.f; });
+  erase_if(fleet.strikeCraft,
+           [](Entity const &entity) { return entity.hull <= 0.f; });
+}
+
+void tick(entity::Fleet &fleet) {
+  for (Entity &entity : fleet.ships) entity.tick();
+  for (Entity &entity : fleet.strikeCraft) entity.tick();
+  for (Entity &entity : fleet.projectiles) entity.tick();
+}
+
 pair<float, float> evaluate(design::Fleet const &aDesign,
                             design::Fleet const &bDesign,
                             EvaluationSettings const &settings) noexcept {
@@ -57,6 +210,9 @@ pair<float, float> evaluate(design::Fleet const &aDesign,
   entity::Fleet b = entity::Fleet(
       bDesign, fmaxf(engagementRange(aDesign), engagementRange(bDesign)));
 
+  // RNG for this evaluation run
+  mt19937_64 rng((random_device())());
+
   // for each tick
   for (float tick = 0.f;
        tick < settings.fightLengthLimit && !a.ships.empty() && !b.ships.empty();
@@ -64,32 +220,38 @@ pair<float, float> evaluate(design::Fleet const &aDesign,
     // fire weapons:
     //  - fire ship weapons
     //  - fire strike craft weapons
+    fireWeapons(a, b, rng);
+    fireWeapons(b, a, rng);
+
     // check for projectile hits
-    // apply damage
-    //  - update damage penalties to fire rate
-    //  - check for disengage
-    // tick weapons
-    // tick regen
+    checkProjectiles(a, b, rng);
+    checkProjectiles(b, a, rng);
+
+    // apply disengages and destruction
+    applyDisengageAndDestruction(a);
+    applyDisengageAndDestruction(b);
+
+    // tick
     // move ships
   }
 
   return pair(accumulate(a.destroyed.begin(), a.destroyed.end(), 0.f,
                          [](float rsf, entity::Ship const &ship) {
-                           return rsf + ship.design.cost;
+                           return rsf + ship.design->cost;
                          }) +
                   settings.withdrawMultiplier *
-                      accumulate(a.withdrawn.begin(), a.withdrawn.end(), 0.f,
+                      accumulate(a.disengaged.begin(), a.disengaged.end(), 0.f,
                                  [](float rsf, entity::Ship const &ship) {
-                                   return rsf + ship.design.cost;
+                                   return rsf + ship.design->cost;
                                  }),
               accumulate(b.destroyed.begin(), b.destroyed.end(), 0.f,
                          [](float rsf, entity::Ship const &ship) {
-                           return rsf + ship.design.cost;
+                           return rsf + ship.design->cost;
                          }) +
                   settings.withdrawMultiplier *
-                      accumulate(b.withdrawn.begin(), b.withdrawn.end(), 0.f,
+                      accumulate(b.disengaged.begin(), b.disengaged.end(), 0.f,
                                  [](float rsf, entity::Ship const &ship) {
-                                   return rsf + ship.design.cost;
+                                   return rsf + ship.design->cost;
                                  }));
 }
 }  // namespace athena2::model

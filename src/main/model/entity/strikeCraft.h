@@ -38,8 +38,12 @@ class StrikeCraft final : public Entity {
   StrikeCraft &operator=(StrikeCraft const &) noexcept = default;
   StrikeCraft &operator=(StrikeCraft &&) noexcept = default;
 
-  component::Weapon const &weapon;
-  design::Ship const &ship;
+  bool inRange(Entity const &) const noexcept;
+  void fire() noexcept;
+
+  component::Weapon const *weapon;
+  design::Ship const *ship;
+  float cooldown;
 };
 }  // namespace athena2::model::entity
 

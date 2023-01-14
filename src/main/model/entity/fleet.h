@@ -44,7 +44,7 @@ class Fleet final {
   std::vector<Projectile> projectiles;
   std::vector<StrikeCraft> strikeCraft;
   std::vector<Ship> destroyed;
-  std::vector<Ship> withdrawn;
+  std::vector<Ship> disengaged;
 };
 }  // namespace athena2::model::entity
 

@@ -20,6 +20,11 @@
 #ifndef ATHENA2_MODEL_ENTITY_ENTITY_H_
 #define ATHENA2_MODEL_ENTITY_ENTITY_H_
 
+#include <random>
+
+#include "model/component/weapon.h"
+#include "model/design/ship.h"
+
 namespace athena2::model::entity {
 class Entity {
  public:
@@ -28,10 +33,17 @@ class Entity {
   Entity(Entity const &) noexcept = default;
   Entity(Entity &&) noexcept = default;
 
-  ~Entity() noexcept = default;
+  virtual ~Entity() noexcept = default;
 
   Entity &operator=(Entity const &) noexcept = default;
   Entity &operator=(Entity &&) noexcept = default;
+
+  float rangeTo(Entity const &target) const noexcept;
+
+  void takeDamage(component::Weapon const &weapon, design::Ship const &ship,
+                  std::mt19937_64 &rng) noexcept;
+  virtual void checkRetreat(float damage, std::mt19937_64 &rng) noexcept;
+  virtual void tick() noexcept;
 
   float hull;
   float armour;

@@ -30,7 +30,7 @@ namespace athena2::model::entity {
 class Ship;
 class Weapon final {
  public:
-  Weapon(component::Weapon const &, Ship const &) noexcept;
+  Weapon(component::Weapon const &, design::Ship const &) noexcept;
 
   Weapon(Weapon const &) noexcept = default;
   Weapon(Weapon &&) noexcept = default;
@@ -40,12 +40,21 @@ class Weapon final {
   Weapon &operator=(Weapon const &) noexcept = default;
   Weapon &operator=(Weapon &&) noexcept = default;
 
-  void doDamage(Entity &target) noexcept;
+  void fire() noexcept;
 
-  component::Weapon const &component;
-  Ship const &ship;
-
-  float cooldown;
+  component::Weapon const *component;
+  design::Ship const *ship;
+  union {
+    struct {
+      float cooldown;
+    } regularWeapon;
+    struct {
+      float cooldown;
+    } projectileWeapon;
+    struct {
+      float unitsStored;
+    } hangarWeapon;
+  } data;
 };
 class Ship final : public Entity {
  public:
@@ -54,14 +63,18 @@ class Ship final : public Entity {
   Ship(Ship const &) noexcept = default;
   Ship(Ship &&) noexcept = default;
 
-  ~Ship() noexcept = default;
+  ~Ship() noexcept override = default;
 
   Ship &operator=(Ship const &) noexcept = default;
   Ship &operator=(Ship &&) noexcept = default;
 
+  bool inRange(Weapon const &weapon, Entity const &target) const noexcept;
+  void checkRetreat(float hullDamage, std::mt19937_64 &rng) noexcept override;
+
   std::vector<Weapon> weapons;
-  design::Ship const &design;
+  design::Ship const *design;
   float disengageChancesRemaining;
+  bool willDisengage;
 };
 }  // namespace athena2::model::entity
 

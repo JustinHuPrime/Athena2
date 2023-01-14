@@ -33,13 +33,15 @@ class Projectile final : public Entity {
   Projectile(Projectile const &) noexcept = default;
   Projectile(Projectile &&) noexcept = default;
 
-  ~Projectile() noexcept = default;
+  ~Projectile() noexcept override = default;
 
   Projectile &operator=(Projectile const &) noexcept = default;
   Projectile &operator=(Projectile &&) noexcept = default;
 
-  component::Weapon const &weapon;
-  design::Ship const &ship;
+  bool inRange(Entity const &target) const noexcept;
+
+  component::Weapon const *weapon;
+  design::Ship const *ship;
 };
 }  // namespace athena2::model::entity
 

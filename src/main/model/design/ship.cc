@@ -46,51 +46,54 @@ Ship Ship::fromJson(json const &data, ComponentSet const &components,
                "computer", "aura", "sections"},
               ctx);
 
-  Hull const &hull = [&components, &hullName, &ctx]() {
+  Hull const &hull = [&components, &hullName, &ctx]() -> Hull const & {
     auto _ = ctx.push("hull");
     auto hull = components.getHull(hullName);
     if (!hull) ctx.error("no such hull '" + hullName + "'");
     return *hull;
   }();
-  Reactor const &reactor = [&components, &reactorName, &ctx]() {
+  Reactor const &reactor = [&components, &reactorName,
+                            &ctx]() -> Reactor const & {
     auto _ = ctx.push("reactor");
     auto reactor = components.getReactor(reactorName);
     if (!reactor) ctx.error("no such reactor '" + reactorName + "'");
     return *reactor;
   }();
-  FTL const &ftl = [&components, &ftlName, &ctx]() {
+  FTL const &ftl = [&components, &ftlName, &ctx]() -> FTL const & {
     auto _ = ctx.push("ftl");
     auto ftl = components.getFTL(ftlName);
     if (!ftl) ctx.error("no such ftl '" + ftlName + "'");
     return *ftl;
   }();
-  Sublight const &sublight = [&components, &sublightName, &ctx]() {
+  Sublight const &sublight = [&components, &sublightName,
+                              &ctx]() -> Sublight const & {
     auto _ = ctx.push("sublight");
     auto sublight = components.getSublight(sublightName);
     if (!sublight) ctx.error("no such sublight '" + sublightName + "'");
     return *sublight;
   }();
-  Sensor const &sensor = [&components, &sensorName, &ctx]() {
+  Sensor const &sensor = [&components, &sensorName, &ctx]() -> Sensor const & {
     auto _ = ctx.push("sensor");
     auto sensor = components.getSensor(sensorName);
     if (!sensor) ctx.error("no such sensor '" + sensorName + "'");
     return *sensor;
   }();
-  Computer const &computer = [&components, &computerName, &ctx]() {
+  Computer const &computer = [&components, &computerName,
+                              &ctx]() -> Computer const & {
     auto _ = ctx.push("computer");
     auto computer = components.getComputer(computerName);
     if (!computer) ctx.error("no such computer '" + computerName + "'");
     return *computer;
   }();
-  optional<reference_wrapper<Aura const>> aura =
-      auraName ? ([&components, &auraName,
-                   &ctx]() -> optional<reference_wrapper<Aura const>> {
-        auto _ = ctx.push("aura");
-        auto aura = components.getAura(*auraName);
-        if (!aura) ctx.error("no such aura '" + *auraName + "'");
-        return *aura;
-      }())
-               : nullopt;
+  Aura const *aura = auraName
+                         ? ([&components, &auraName, &ctx]() -> Aura const * {
+                             auto _ = ctx.push("aura");
+                             auto aura = components.getAura(*auraName);
+                             if (!aura)
+                               ctx.error("no such aura '" + *auraName + "'");
+                             return aura;
+                           }())
+                         : nullptr;
   vector<Section> sections;
   for (auto const &[key, val] : sectionsData.items()) {
     auto _ = ctx.push(key);
@@ -106,260 +109,269 @@ Ship Ship::fromJson(json const &data, ComponentSet const &components,
 }
 Ship::Ship(string const &name_, Hull const &hull_, Reactor const &reactor_,
            FTL const &ftl_, Sublight const &sublight_, Sensor const &sensor_,
-           Computer const &computer_,
-           optional<reference_wrapper<component::Aura const>> const &aura_,
+           Computer const &computer_, component::Aura const *aura_,
            vector<Section> const &sections_)
     : Named(name_ + "-class " + hull_.name),
-      hull(hull_),
-      reactor(reactor_),
-      ftl(ftl_),
-      sublight(sublight_),
-      sensor(sensor_),
-      computer(computer_),
+      hull(&hull_),
+      reactor(&reactor_),
+      ftl(&ftl_),
+      sublight(&sublight_),
+      sensor(&sensor_),
+      computer(&computer_),
       aura(aura_),
       sections(sections_),
-      power(reactor.power + ftl.power + sublight.power + sensor.power +
-            computer.power +
+      power(reactor->power + ftl->power + sublight->power + sensor->power +
+            computer->power +
             accumulate(
                 sections.begin(), sections.end(), 0.0f,
                 [](float acc, Section const &section) {
                   return acc +
                          accumulate(section.weapons.begin(),
                                     section.weapons.end(), 0.f,
-                                    [](float rsf, Weapon const &weapon) {
-                                      return rsf + weapon.power;
+                                    [](float rsf, Weapon const *const &weapon) {
+                                      return rsf + weapon->power;
                                     }) +
-                         accumulate(section.utilities.begin(),
-                                    section.utilities.end(), 0.f,
-                                    [](float rsf, Utility const &utility) {
-                                      return rsf + utility.power;
-                                    }) +
-                         accumulate(section.auxiliaries.begin(),
-                                    section.auxiliaries.end(), 0.f,
-                                    [](float rsf, Auxiliary const &auxiliary) {
-                                      return rsf + auxiliary.power;
-                                    });
+                         accumulate(
+                             section.utilities.begin(), section.utilities.end(),
+                             0.f,
+                             [](float rsf, Utility const *const &utility) {
+                               return rsf + utility->power;
+                             }) +
+                         accumulate(
+                             section.auxiliaries.begin(),
+                             section.auxiliaries.end(), 0.f,
+                             [](float rsf, Auxiliary const *const &auxiliary) {
+                               return rsf + auxiliary->power;
+                             });
                 })),
-      cost(hull.includeComponentCost
-               ? hull.cost + reactor.cost + ftl.cost + sublight.cost +
-                     sensor.cost + computer.cost +
+      cost(hull->includeComponentCost
+               ? hull->cost + reactor->cost + ftl->cost + sublight->cost +
+                     sensor->cost + computer->cost +
                      accumulate(
                          sections.begin(), sections.end(), 0.f,
                          [](float rsf, Section const &section) {
                            return rsf +
-                                  accumulate(
-                                      section.weapons.begin(),
-                                      section.weapons.end(), 0.f,
-                                      [](float rsf, Weapon const &weapon) {
-                                        return rsf + weapon.cost;
-                                      }) +
-                                  accumulate(
-                                      section.utilities.begin(),
-                                      section.utilities.end(), 0.f,
-                                      [](float rsf, Utility const &utility) {
-                                        return rsf + utility.cost;
-                                      }) +
-                                  accumulate(section.auxiliaries.begin(),
-                                             section.auxiliaries.end(), 0.f,
+                                  accumulate(section.weapons.begin(),
+                                             section.weapons.end(), 0.f,
                                              [](float rsf,
-                                                Auxiliary const &auxiliary) {
-                                               return rsf + auxiliary.cost;
-                                             });
+                                                Weapon const *const &weapon) {
+                                               return rsf + weapon->cost;
+                                             }) +
+                                  accumulate(section.utilities.begin(),
+                                             section.utilities.end(), 0.f,
+                                             [](float rsf,
+                                                Utility const *const &utility) {
+                                               return rsf + utility->cost;
+                                             }) +
+                                  accumulate(
+                                      section.auxiliaries.begin(),
+                                      section.auxiliaries.end(), 0.f,
+                                      [](float rsf,
+                                         Auxiliary const *const &auxiliary) {
+                                        return rsf + auxiliary->cost;
+                                      });
                          })
-               : hull.cost),
-      speed(hull.speed *
-            (1.f + sublight.sublightSpeedModifier +
-             computer.sublightSpeedModifier +
-             accumulate(sections.begin(), sections.end(), 0.f,
-                        [](float rsf, Section const &section) {
-                          return rsf +
-                                 accumulate(
-                                     section.auxiliaries.begin(),
-                                     section.auxiliaries.end(), 0.f,
-                                     [](float rsf, Auxiliary const &auxiliary) {
-                                       return rsf +
-                                              auxiliary.sublightSpeedModifier;
-                                     });
-                        }))),
-      evasion(
-          (hull.evasion + sublight.evasionBonus) *
-          (1.f + hull.evasionModifier + computer.evasionModifier +
-           accumulate(sections.begin(), sections.end(), 0.f,
-                      [](float rsf, Section const &section) {
-                        return rsf +
-                               accumulate(
-                                   section.auxiliaries.begin(),
-                                   section.auxiliaries.end(), 0.f,
-                                   [](float rsf, Auxiliary const &auxiliary) {
-                                     return rsf + auxiliary.evasionModifier;
-                                   });
-                      }))),
-      hullHealth(
-          (hull.hullHealth +
-           accumulate(sections.begin(), sections.end(), 0.f,
-                      [](float rsf, Section const &section) {
-                        return rsf + accumulate(
-                                         section.utilities.begin(),
-                                         section.utilities.end(), 0.f,
-                                         [](float rsf, Utility const &utility) {
-                                           return rsf + utility.hullHealth;
-                                         });
-                      })) *
-          (1.f + hull.hullHealthModifier)),
-      hullRegen(
-          hullHealth *
-          (1.f +
-           accumulate(sections.begin(), sections.end(), 0.f,
-                      [](float rsf, Section const &section) {
-                        return rsf +
-                               accumulate(
-                                   section.auxiliaries.begin(),
-                                   section.auxiliaries.end(), 0.f,
-                                   [](float rsf, Auxiliary const &auxiliary) {
-                                     return rsf + auxiliary.hullRegenModifier;
-                                   });
-                      }))),
+               : hull->cost),
+      speed(hull->speed *
+            (1.f + sublight->sublightSpeedModifier +
+             computer->sublightSpeedModifier +
+             accumulate(
+                 sections.begin(), sections.end(), 0.f,
+                 [](float rsf, Section const &section) {
+                   return rsf +
+                          accumulate(
+                              section.auxiliaries.begin(),
+                              section.auxiliaries.end(), 0.f,
+                              [](float rsf, Auxiliary const *const &auxiliary) {
+                                return rsf + auxiliary->sublightSpeedModifier;
+                              });
+                 }))),
+      evasion((hull->evasion + sublight->evasionBonus) *
+              (1.f + hull->evasionModifier + computer->evasionModifier +
+               accumulate(sections.begin(), sections.end(), 0.f,
+                          [](float rsf, Section const &section) {
+                            return rsf +
+                                   accumulate(
+                                       section.auxiliaries.begin(),
+                                       section.auxiliaries.end(), 0.f,
+                                       [](float rsf,
+                                          Auxiliary const *const &auxiliary) {
+                                         return rsf +
+                                                auxiliary->evasionModifier;
+                                       });
+                          }))),
+      hullHealth((hull->hullHealth +
+                  accumulate(sections.begin(), sections.end(), 0.f,
+                             [](float rsf, Section const &section) {
+                               return rsf +
+                                      accumulate(
+                                          section.utilities.begin(),
+                                          section.utilities.end(), 0.f,
+                                          [](float rsf,
+                                             Utility const *const &utility) {
+                                            return rsf + utility->hullHealth;
+                                          });
+                             })) *
+                 (1.f + hull->hullHealthModifier)),
+      hullRegen(hullHealth *
+                accumulate(sections.begin(), sections.end(), 0.f,
+                           [](float rsf, Section const &section) {
+                             return rsf +
+                                    accumulate(
+                                        section.auxiliaries.begin(),
+                                        section.auxiliaries.end(), 0.f,
+                                        [](float rsf,
+                                           Auxiliary const *const &auxiliary) {
+                                          return rsf +
+                                                 auxiliary->hullRegenModifier;
+                                        });
+                           })),
       armourHealth(
-          hull.armourHealth +
+          hull->armourHealth +
           accumulate(sections.begin(), sections.end(), 0.f,
                      [](float rsf, Section const &section) {
                        return rsf +
-                              accumulate(section.utilities.begin(),
-                                         section.utilities.end(), 0.f,
-                                         [](float rsf, Utility const &utility) {
-                                           return rsf + utility.armourHealth;
-                                         });
+                              accumulate(
+                                  section.utilities.begin(),
+                                  section.utilities.end(), 0.f,
+                                  [](float rsf, Utility const *const &utility) {
+                                    return rsf + utility->armourHealth;
+                                  });
                      })),
       armourRegen(
           armourHealth *
-          (1.f +
-           accumulate(sections.begin(), sections.end(), 0.f,
-                      [](float rsf, Section const &section) {
-                        return rsf +
-                               accumulate(
-                                   section.auxiliaries.begin(),
-                                   section.auxiliaries.end(), 0.f,
-                                   [](float rsf, Auxiliary const &auxiliary) {
-                                     return rsf + auxiliary.armourRegenModifier;
-                                   });
-                      }))),
+          accumulate(sections.begin(), sections.end(), 0.f,
+                     [](float rsf, Section const &section) {
+                       return rsf + accumulate(
+                                        section.auxiliaries.begin(),
+                                        section.auxiliaries.end(), 0.f,
+                                        [](float rsf,
+                                           Auxiliary const *const &auxiliary) {
+                                          return rsf +
+                                                 auxiliary->armourRegenModifier;
+                                        });
+                     })),
       armourHardening(accumulate(
           sections.begin(), sections.end(), 0.f,
           [](float rsf, Section const &section) {
-            return rsf + accumulate(section.auxiliaries.begin(),
-                                    section.auxiliaries.end(), 0.f,
-                                    [](float rsf, Auxiliary const &auxiliary) {
-                                      return rsf +
-                                             auxiliary.armourHardeningBonus;
-                                    });
+            return rsf +
+                   accumulate(section.auxiliaries.begin(),
+                              section.auxiliaries.end(), 0.f,
+                              [](float rsf, Auxiliary const *const &auxiliary) {
+                                return rsf + auxiliary->armourHardeningBonus;
+                              });
           })),
       shieldHealth(
           accumulate(sections.begin(), sections.end(), 0.f,
                      [](float rsf, Section const &section) {
                        return rsf +
-                              accumulate(section.utilities.begin(),
-                                         section.utilities.end(), 0.f,
-                                         [](float rsf, Utility const &utility) {
-                                           return rsf + utility.shieldHealth;
-                                         });
-                     }) *
-          (1.f + accumulate(
-                     sections.begin(), sections.end(), 0.f,
-                     [](float rsf, Section const &section) {
-                       return rsf +
                               accumulate(
-                                  section.auxiliaries.begin(),
-                                  section.auxiliaries.end(), 0.f,
-                                  [](float rsf, Auxiliary const &auxiliary) {
-                                    return rsf + auxiliary.shieldHealthModifier;
+                                  section.utilities.begin(),
+                                  section.utilities.end(), 0.f,
+                                  [](float rsf, Utility const *const &utility) {
+                                    return rsf + utility->shieldHealth;
                                   });
-                     }))),
+                     }) *
+          (1.f +
+           accumulate(
+               sections.begin(), sections.end(), 0.f,
+               [](float rsf, Section const &section) {
+                 return rsf +
+                        accumulate(
+                            section.auxiliaries.begin(),
+                            section.auxiliaries.end(), 0.f,
+                            [](float rsf, Auxiliary const *const &auxiliary) {
+                              return rsf + auxiliary->shieldHealthModifier;
+                            });
+               }))),
       shieldRegen(accumulate(
           sections.begin(), sections.end(), 0.f,
           [](float rsf, Section const &section) {
-            return rsf + accumulate(section.utilities.begin(),
-                                    section.utilities.end(), 0.f,
-                                    [](float rsf, Utility const &utility) {
-                                      return rsf + utility.shieldRegen;
-                                    });
+            return rsf + accumulate(
+                             section.utilities.begin(), section.utilities.end(),
+                             0.f, [](float rsf, Utility const *const &utility) {
+                               return rsf + utility->shieldRegen;
+                             });
           })),
       shieldHardening(accumulate(
           sections.begin(), sections.end(), 0.f,
           [](float rsf, Section const &section) {
-            return rsf + accumulate(section.auxiliaries.begin(),
-                                    section.auxiliaries.end(), 0.f,
-                                    [](float rsf, Auxiliary const &auxiliary) {
-                                      return rsf +
-                                             auxiliary.shieldHardeningBonus;
-                                    });
+            return rsf +
+                   accumulate(section.auxiliaries.begin(),
+                              section.auxiliaries.end(), 0.f,
+                              [](float rsf, Auxiliary const *const &auxiliary) {
+                                return rsf + auxiliary->shieldHardeningBonus;
+                              });
           })),
       disengageChances(
-          ftl.disengageChances +
+          ftl->disengageChances +
           accumulate(
               sections.begin(), sections.end(), 0.f,
               [](float rsf, Section const &section) {
-                return rsf + accumulate(
-                                 section.auxiliaries.begin(),
-                                 section.auxiliaries.end(), 0.f,
-                                 [](float rsf, Auxiliary const &auxiliary) {
-                                   return rsf + auxiliary.disengageChancesBonus;
-                                 });
+                return rsf +
+                       accumulate(
+                           section.auxiliaries.begin(),
+                           section.auxiliaries.end(), 0.f,
+                           [](float rsf, Auxiliary const *const &auxiliary) {
+                             return rsf + auxiliary->disengageChancesBonus;
+                           });
               })),
-      disengageChanceModifier(hull.disengageChanceModifier),
+      disengageChanceModifier(hull->disengageChanceModifier),
       chanceToHitBonus(
-          computer.chanceToHitBonus +
+          computer->chanceToHitBonus +
           accumulate(sections.begin(), sections.end(), 0.f,
                      [](float rsf, Section const &section) {
                        return rsf +
-                              accumulate(
-                                  section.auxiliaries.begin(),
-                                  section.auxiliaries.end(), 0.f,
-                                  [](float rsf, Auxiliary const &auxiliary) {
-                                    return rsf + auxiliary.chanceToHitBonus;
-                                  });
+                              accumulate(section.auxiliaries.begin(),
+                                         section.auxiliaries.end(), 0.f,
+                                         [](float rsf,
+                                            Auxiliary const *const &auxiliary) {
+                                           return rsf +
+                                                  auxiliary->chanceToHitBonus;
+                                         });
                      })),
       trackingBonus(
-          computer.trackingBonus + sensor.trackingBonus +
+          computer->trackingBonus + sensor->trackingBonus +
           accumulate(sections.begin(), sections.end(), 0.f,
                      [](float rsf, Section const &section) {
-                       return rsf +
-                              accumulate(
-                                  section.auxiliaries.begin(),
-                                  section.auxiliaries.end(), 0.f,
-                                  [](float rsf, Auxiliary const &auxiliary) {
-                                    return rsf + auxiliary.trackingBonus;
-                                  });
+                       return rsf + accumulate(
+                                        section.auxiliaries.begin(),
+                                        section.auxiliaries.end(), 0.f,
+                                        [](float rsf,
+                                           Auxiliary const *const &auxiliary) {
+                                          return rsf + auxiliary->trackingBonus;
+                                        });
                      })),
-      trackingModifier(hull.trackingModifier),
-      fireRateModifier(computer.fireRateModifier),
-      explosiveWeaponsDamageModifier(computer.explosiveWeaponsDamageModifier),
-      weaponsRangeModifier(computer.weaponsRangeModifier),
-      engagementRangeModifier(computer.engagementRangeModifier) {
+      trackingModifier(hull->trackingModifier),
+      fireRateModifier(computer->fireRateModifier),
+      explosiveWeaponsDamageModifier(computer->explosiveWeaponsDamageModifier),
+      weaponsRangeModifier(computer->weaponsRangeModifier),
+      engagementRangeModifier(computer->engagementRangeModifier) {
   vector<string> sectionSizes;
   transform(sections.begin(), sections.end(), back_inserter(sectionSizes),
-            [](Section const &section) { return section.section.size; });
+            [](Section const &section) { return section.section->size; });
   sort(sectionSizes.begin(), sectionSizes.end());
   vector<string> unmatched;
   set_difference(sectionSizes.begin(), sectionSizes.end(),
-                 hull.sectionSizes.begin(), hull.sectionSizes.end(),
+                 hull->sectionSizes.begin(), hull->sectionSizes.end(),
                  back_inserter(unmatched));
   if (!unmatched.empty())
     throw DesignException(to_string(unmatched.size()) +
                           "sections requriring missing slots");
 
-  if (find(reactor.sizes.begin(), reactor.sizes.end(), hull.coreSize) ==
-      reactor.sizes.end())
+  if (find(reactor->sizes.begin(), reactor->sizes.end(), hull->coreSize) ==
+      reactor->sizes.end())
     throw DesignException("reactor does not fit hull");
 
-  if (find(sublight.sizes.begin(), sublight.sizes.end(), hull.coreSize) ==
-      sublight.sizes.end())
+  if (find(sublight->sizes.begin(), sublight->sizes.end(), hull->coreSize) ==
+      sublight->sizes.end())
     throw DesignException("sublight does not fit hull");
 
-  if (find(computer.sizes.begin(), computer.sizes.end(), hull.coreSize) ==
-      computer.sizes.end())
+  if (find(computer->sizes.begin(), computer->sizes.end(), hull->coreSize) ==
+      computer->sizes.end())
     throw DesignException("computer does not fit hull");
 
-  if (aura && aura->get().size != hull.coreSize)
+  if (aura && aura->size != hull->coreSize)
     throw DesignException("aura does not fit hull");
 
   if (power < 0) throw DesignException("insufficient power");

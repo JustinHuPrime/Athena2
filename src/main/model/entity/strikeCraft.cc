@@ -30,6 +30,11 @@ StrikeCraft::StrikeCraft(component::Weapon const &weapon_,
              weapon_.data.hangarWeapon.strikeCraftArmour, 0.f,
              weapon_.data.hangarWeapon.strikeCraftHull, 0.f,
              weapon_.data.hangarWeapon.strikeCraftEvasion, ship_.position),
-      weapon(weapon_),
+      weapon(&weapon_),
       ship(ship_.design) {}
+bool StrikeCraft::inRange(Entity const &target) const noexcept {
+  return rangeTo(target) < weapon->data.hangarWeapon.strikeCraftRange *
+                               (1.f + ship->weaponsRangeModifier);
+}
+void StrikeCraft::fire() noexcept { cooldown = weapon->cooldown; }
 }  // namespace athena2::model::entity

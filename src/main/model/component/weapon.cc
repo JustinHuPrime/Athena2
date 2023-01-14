@@ -263,7 +263,8 @@ Weapon::Weapon(string const &name_, string const &size_, string const &tag_,
       data{
           .hangarWeapon{
               .unitsPerHangar = unitsPerHangar_,
-              .regenerationPerDay = regenerationPerDay_,
+              // NOTE: in-combat regen is 20% of listed regen
+              .regenerationPerDay = regenerationPerDay_ * 0.2f,
               .strikeCraftRange = strikeCraftRange_,
               .strikeCraftSpeed = strikeCraftSpeed_,
               .strikeCraftEvasion = strikeCraftEvasion_,
