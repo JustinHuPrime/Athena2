@@ -214,9 +214,9 @@ pair<float, float> evaluate(design::Fleet const &aDesign,
   mt19937_64 rng((random_device())());
 
   // for each tick
-  for (float tick = 0.f;
-       tick < settings.fightLengthLimit && !a.ships.empty() && !b.ships.empty();
-       tick += 0.1f) {
+  for (float time = 0.f;
+       time < settings.fightLengthLimit && !a.ships.empty() && !b.ships.empty();
+       time += TIME_QUANTUM) {
     // fire weapons:
     //  - fire ship weapons
     //  - fire strike craft weapons
@@ -232,6 +232,9 @@ pair<float, float> evaluate(design::Fleet const &aDesign,
     applyDisengageAndDestruction(b);
 
     // tick
+    tick(a);
+    tick(b);
+
     // move ships
   }
 

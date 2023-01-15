@@ -19,6 +19,8 @@
 
 #include "model/entity/strikeCraft.h"
 
+#include "model/evaluator.h"
+
 using namespace athena2::model::component;
 using namespace athena2::model::entity;
 using namespace athena2::model::design;
@@ -37,4 +39,7 @@ bool StrikeCraft::inRange(Entity const &target) const noexcept {
                                (1.f + ship->weaponsRangeModifier);
 }
 void StrikeCraft::fire() noexcept { cooldown = weapon->cooldown; }
+void StrikeCraft::tick() noexcept {
+  cooldown -= TIME_QUANTUM * (1.f + ship->fireRateModifier);
+}
 }  // namespace athena2::model::entity

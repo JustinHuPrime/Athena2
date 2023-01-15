@@ -40,6 +40,7 @@ class StrikeCraft final : public Entity {
 
   bool inRange(Entity const &) const noexcept;
   void fire() noexcept;
+  void tick() noexcept override;
 
   component::Weapon const *weapon;
   design::Ship const *ship;

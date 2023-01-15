@@ -29,6 +29,7 @@ struct EvaluationSettings {
   float fightLengthLimit;
   float withdrawMultiplier;
 };
+constexpr float TIME_QUANTUM = 0.1f;
 /**
  * score two fleets against each other
  *

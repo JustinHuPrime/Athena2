@@ -41,6 +41,7 @@ class Weapon final {
   Weapon &operator=(Weapon &&) noexcept = default;
 
   void fire() noexcept;
+  void tick(Ship const &) noexcept;
 
   component::Weapon const *component;
   design::Ship const *ship;
@@ -70,6 +71,7 @@ class Ship final : public Entity {
 
   bool inRange(Weapon const &weapon, Entity const &target) const noexcept;
   void checkRetreat(float hullDamage, std::mt19937_64 &rng) noexcept override;
+  void tick() noexcept override;
 
   std::vector<Weapon> weapons;
   design::Ship const *design;

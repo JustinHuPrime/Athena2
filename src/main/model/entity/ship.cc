@@ -19,6 +19,8 @@
 
 #include "model/entity/ship.h"
 
+#include "model/evaluator.h"
+
 using namespace std;
 using namespace athena2::model::component;
 using namespace athena2::model::entity;
@@ -60,6 +62,31 @@ void Weapon::fire() noexcept {
     }
   }
 }
+void Weapon::tick(Ship const &shipEntity) noexcept {
+  switch (component->type) {
+    case component::Weapon::Type::REGULAR: {
+      if (data.regularWeapon.cooldown > 0.f)
+        data.regularWeapon.cooldown -=
+            TIME_QUANTUM * (1.f + ship->fireRateModifier) *
+            (0.5f + 0.5f * (shipEntity.hull / ship->hullHealth));
+      break;
+    }
+    case component::Weapon::Type::PROJECTILE: {
+      if (data.projectileWeapon.cooldown)
+        data.projectileWeapon.cooldown -=
+            TIME_QUANTUM * (1.f + ship->fireRateModifier) *
+            (0.5f + 0.5f * (shipEntity.hull / ship->hullHealth));
+      break;
+    }
+    case component::Weapon::Type::HANGAR: {
+      if (data.hangarWeapon.unitsStored <
+          component->data.hangarWeapon.unitsPerHangar)
+        data.hangarWeapon.unitsStored +=
+            component->data.hangarWeapon.regenerationPerDay * TIME_QUANTUM;
+      break;
+    }
+  }
+}
 Ship::Ship(design::Ship const &design_, float position_) noexcept
     : Entity(design_.hullHealth, design_.armourHealth, design_.armourHardening,
              design_.shieldHealth, design_.shieldHardening, design_.evasion,
@@ -86,5 +113,12 @@ void Ship::checkRetreat(float hullDamage, mt19937_64 &rng) noexcept {
   float disengageChance =
       hullDamage / design->hullHealth * 1.5f * design->disengageChanceModifier;
   willDisengage = bernoulli_distribution(disengageChance)(rng);
+}
+void Ship::tick() noexcept {
+  hull = fminf(design->hullHealth, hull + design->hullRegen);
+  armour = fminf(design->armourHealth, armour + design->armourRegen);
+  shields = fminf(design->shieldHealth, shields + design->shieldRegen);
+
+  for (Weapon &weapon : weapons) weapon.tick(*this);
 }
 }  // namespace athena2::model::entity
