@@ -63,12 +63,11 @@ void fireWeapons(entity::Fleet &firing, entity::Fleet &targets,
           if (weapon.data.regularWeapon.cooldown > 0.f) break;
 
           // find closest target in range
-          optional<reference_wrapper<Entity>> target = nullopt;
+          Entity *target = nullptr;
           for (Entity &candidate : targets.ships) {
             if (ship.inRange(weapon, candidate) &&
-                (!target ||
-                 ship.rangeTo(candidate) < ship.rangeTo(target->get()))) {
-              target = candidate;
+                (!target || ship.rangeTo(candidate) < ship.rangeTo(*target))) {
+              target = &candidate;
             }
           }
 
@@ -77,15 +76,15 @@ void fireWeapons(entity::Fleet &firing, entity::Fleet &targets,
             for (Entity &candidate : targets.projectiles) {
               if (ship.inRange(weapon, candidate) &&
                   (!target ||
-                   ship.rangeTo(candidate) < ship.rangeTo(target->get()))) {
-                target = candidate;
+                   ship.rangeTo(candidate) < ship.rangeTo(*target))) {
+                target = &candidate;
               }
             }
             for (Entity &candidate : targets.strikeCraft) {
               if (ship.inRange(weapon, candidate) &&
                   (!target ||
-                   ship.rangeTo(candidate) < ship.rangeTo(target->get()))) {
-                target = candidate;
+                   ship.rangeTo(candidate) < ship.rangeTo(*target))) {
+                target = &candidate;
               }
             }
           }
@@ -93,7 +92,7 @@ void fireWeapons(entity::Fleet &firing, entity::Fleet &targets,
           // fire if we have a target
           if (target) {
             weapon.fire();
-            target->get().takeDamage(*weapon.component, *ship.design, rng);
+            target->takeDamage(*weapon.component, *ship.design, rng);
           }
           break;
         }
@@ -133,19 +132,19 @@ void fireWeapons(entity::Fleet &firing, entity::Fleet &targets,
     if (strikeCraft.cooldown > 0.f) break;
 
     // find closest target in range
-    optional<reference_wrapper<Entity>> target = nullopt;
+    Entity *target = nullptr;
     for (Entity &candidate : targets.ships) {
       if (strikeCraft.inRange(candidate) &&
-          (!target || strikeCraft.rangeTo(candidate) <
-                          strikeCraft.rangeTo(target->get()))) {
-        target = candidate;
+          (!target ||
+           strikeCraft.rangeTo(candidate) < strikeCraft.rangeTo(*target))) {
+        target = &candidate;
       }
     }
 
     // fire if we have a target
     if (target) {
       strikeCraft.fire();
-      target->get().takeDamage(*strikeCraft.weapon, *strikeCraft.ship, rng);
+      target->takeDamage(*strikeCraft.weapon, *strikeCraft.ship, rng);
     }
   }
 }
@@ -166,19 +165,19 @@ void checkProjectiles(entity::Fleet &firing, entity::Fleet &targets,
     }
 
     // find closest ship in range
-    optional<reference_wrapper<Entity>> target = nullopt;
+    Entity *target = nullptr;
     for (Entity &candidate : targets.ships) {
       if (projectile.inRange(candidate) &&
           (!target ||
-           projectile.rangeTo(candidate) < projectile.rangeTo(target->get()))) {
-        target = candidate;
+           projectile.rangeTo(candidate) < projectile.rangeTo(*target))) {
+        target = &candidate;
       }
     }
 
     // hit if we have a target
     if (target) {
       projectile.hull = 0.f;  // destroy projectile
-      target->get().takeDamage(*projectile.weapon, *projectile.ship, rng);
+      target->takeDamage(*projectile.weapon, *projectile.ship, rng);
     }
   }
 }

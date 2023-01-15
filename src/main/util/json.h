@@ -67,17 +67,17 @@ inline nlohmann::json const &checkFieldType(
 
   return json[key];
 }
-inline std::optional<std::reference_wrapper<nlohmann::json const>>
-checkMaybeFieldType(nlohmann::json const &json, std::string const &key,
-                    bool (nlohmann::json::*typechecker)() const,
-                    std::string const &type, EvalContext &ctx) {
+inline nlohmann::json const *checkMaybeFieldType(
+    nlohmann::json const &json, std::string const &key,
+    bool (nlohmann::json::*typechecker)() const, std::string const &type,
+    EvalContext &ctx) {
   if (!json.contains(key)) {
-    return std::nullopt;
+    return nullptr;
   } else if (!(json[key].*typechecker)()) {
     ctx.error("expected " + type + " for field " + key);
   }
 
-  return json[key];
+  return &json[key];
 }
 inline std::string checkString(nlohmann::json const &json,
                                std::string const &key, EvalContext &ctx) {
@@ -92,7 +92,7 @@ inline std::optional<std::string> checkMaybeString(nlohmann::json const &json,
   if (!maybeField)
     return std::nullopt;
   else
-    return maybeField->get().get<std::string>();
+    return maybeField->get<std::string>();
 }
 inline float checkFloat(nlohmann::json const &json, std::string const &key,
                         EvalContext &ctx) {
@@ -124,7 +124,7 @@ inline std::optional<float> checkMaybeFloat(nlohmann::json const &json,
   if (!maybeField)
     return std::nullopt;
   else
-    return maybeField->get().get<float>();
+    return maybeField->get<float>();
 }
 inline std::optional<bool> checkMaybeBool(nlohmann::json const &json,
                                           std::string const &key,
@@ -134,7 +134,7 @@ inline std::optional<bool> checkMaybeBool(nlohmann::json const &json,
   if (!maybeField)
     return std::nullopt;
   else
-    return maybeField.value().get().get<bool>();
+    return maybeField->get<bool>();
 }
 inline nlohmann::json const &checkArray(nlohmann::json const &json,
                                         std::string const &key,
@@ -160,9 +160,9 @@ inline nlohmann::json const &checkObject(nlohmann::json const &json,
                                          EvalContext &ctx) {
   return checkFieldType(json, key, &nlohmann::json::is_object, "object", ctx);
 }
-inline std::optional<std::reference_wrapper<nlohmann::json const>>
-checkMaybeObject(nlohmann::json const &json, std::string const &key,
-                 EvalContext &ctx) {
+inline nlohmann::json const *checkMaybeObject(nlohmann::json const &json,
+                                              std::string const &key,
+                                              EvalContext &ctx) {
   return checkMaybeFieldType(json, key, &nlohmann::json::is_object, "object",
                              ctx);
 }

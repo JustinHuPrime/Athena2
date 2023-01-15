@@ -34,8 +34,7 @@ Section Section::fromJson(json const &data, EvalContext &ctx) {
   string size = checkString(data, "size", ctx);
   string weaponSlots = checkString(data, "weaponSlots", ctx);
   string utilitySlots = checkString(data, "utilitySlots", ctx);
-  optional<reference_wrapper<json const>> costData =
-      checkMaybeObject(data, "cost", ctx);
+  json const *costData = checkMaybeObject(data, "cost", ctx);
   Cost cost = costData ? [&ctx, &costData]() {
     auto _ = ctx.push("cost");
     return Cost::fromJson(*costData, ctx);

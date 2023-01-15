@@ -51,8 +51,7 @@ Hull Hull::fromJson(nlohmann::json const &data, EvalContext &ctx) {
       checkFloat(data, "disengageChanceModifier", ctx);
   optional<bool> includeComponentCost =
       checkMaybeBool(data, "includeComponentCost", ctx);
-  optional<reference_wrapper<json const>> costData =
-      checkMaybeObject(data, "cost", ctx);
+  json const *costData = checkMaybeObject(data, "cost", ctx);
   Cost cost = costData ? [&ctx, &costData]() {
     auto _ = ctx.push("cost");
     return Cost::fromJson(*costData, ctx);
