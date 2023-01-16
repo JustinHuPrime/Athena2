@@ -336,7 +336,48 @@ Ship::Ship(string const &name_, Hull const &hull_, Reactor const &reactor_,
       fireRateModifier(computer->fireRateModifier),
       explosiveWeaponsDamageModifier(computer->explosiveWeaponsDamageModifier),
       weaponsRangeModifier(computer->weaponsRangeModifier),
-      engagementRangeModifier(computer->engagementRangeModifier) {
+      engagementRangeModifier(computer->engagementRangeModifier),
+      preferredRange([&computer_, &sections_]() {
+        switch (computer_.tactics) {
+          case Computer::Tactics::SWARM:
+          case Computer::Tactics::TORPEDO: {
+            return 0.f;
+          }
+          case Computer::Tactics::PICKET:
+          case Computer::Tactics::LINE: {
+            vector<float> averageRanges;
+            for (Section const &section : sections_) {
+              for (Weapon const *weapon : section.weapons) {
+                averageRanges.push_back((weapon->minRange + weapon->maxRange) /
+                                        2.f);
+              }
+            }
+            if (averageRanges.empty()) {
+              return 0.f;
+            }
+            sort(averageRanges.begin(), averageRanges.end());
+            return averageRanges[averageRanges.size() / 2];
+          }
+          case Computer::Tactics::ARTILLERY:
+          case Computer::Tactics::CARRIER: {
+            vector<float> averageRanges;
+            for (Section const &section : sections_) {
+              for (Weapon const *weapon : section.weapons) {
+                averageRanges.push_back((weapon->minRange + weapon->maxRange) /
+                                        2.f);
+              }
+            }
+            if (averageRanges.empty()) {
+              return 0.f;
+            }
+            sort(averageRanges.begin(), averageRanges.end());
+            return averageRanges.back();
+          }
+          default: {
+            abort();  // invalid enum
+          }
+        }
+      }()) {
   vector<string> sectionSizes;
   transform(sections.begin(), sections.end(), back_inserter(sectionSizes),
             [](Section const &section) { return section.section->size; });

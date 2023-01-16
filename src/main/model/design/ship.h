@@ -88,6 +88,7 @@ class Ship final : public util::Named {
   float const explosiveWeaponsDamageModifier;
   float const weaponsRangeModifier;
   float const engagementRangeModifier;
+  float const preferredRange;
 
  private:
   /**
