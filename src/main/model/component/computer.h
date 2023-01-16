@@ -31,6 +31,15 @@
 namespace athena2::model::component {
 class Computer final : public util::Named {
  public:
+  enum class Tactics {
+    SWARM,
+    TORPEDO,
+    PICKET,
+    LINE,
+    ARTILLERY,
+    CARRIER,
+  };
+
   static Computer fromJson(nlohmann::json const &, EvalContext &);
 
   Computer(Computer const &) noexcept = delete;
@@ -42,7 +51,7 @@ class Computer final : public util::Named {
   Computer &operator=(Computer &&) noexcept = default;
 
   std::vector<std::string> const sizes;
-  std::string tactics;
+  Tactics tactics;
   float const power;
   float const fireRateModifier;
   float const evasionModifier;
@@ -56,7 +65,7 @@ class Computer final : public util::Named {
 
  private:
   Computer(std::string const &name, std::vector<std::string> const &sizes,
-           std::string const &tactics, float power, float fireRateModifier,
+           Tactics tactics, float power, float fireRateModifier,
            float evasionModifier, float sublightSpeedModifier,
            float explosiveWeaponsDamageModifier, float trackingBonus,
            float chanceToHitBonus, float weaponsRangeModifier,

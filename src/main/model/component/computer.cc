@@ -20,6 +20,7 @@
 #include "model/component/computer.h"
 
 #include <optional>
+#include <unordered_map>
 
 #include "util/json.h"
 
@@ -28,11 +29,27 @@ using namespace nlohmann;
 using namespace athena2::util;
 
 namespace athena2::model::component {
+namespace {
+unordered_map<string, Computer::Tactics> tacticsNames{
+    {"swarm", Computer::Tactics::SWARM},
+    {"torpedo", Computer::Tactics::TORPEDO},
+    {"picket", Computer::Tactics::PICKET},
+    {"line", Computer::Tactics::LINE},
+    {"artillery", Computer::Tactics::ARTILLERY},
+};
+}
+
 Computer Computer::fromJson(json const &data, EvalContext &ctx) {
   checkObject(data, ctx);
   string name = checkString(data, "name", ctx);
   vector<string> sizes = checkStringArray(data, "sizes", ctx);
-  string tactics = checkString(data, "tactics", ctx);
+  string tacticsName = checkString(data, "tactics", ctx);
+  auto tactics = tacticsNames.find(tacticsName);
+  {
+    auto _ = ctx.push("tactics");
+    if (tactics == tacticsNames.end())
+      ctx.error("invalid tactics '" + tacticsName + "'");
+  }
   float power = checkFloat(data, "power", ctx);
   optional<float> fireRateModifier =
       checkMaybeFloat(data, "fireRateModifier", ctx);
@@ -63,14 +80,14 @@ Computer Computer::fromJson(json const &data, EvalContext &ctx) {
       ctx);
 
   return Computer(
-      name, sizes, tactics, power, fireRateModifier.value_or(0.f),
+      name, sizes, tactics->second, power, fireRateModifier.value_or(0.f),
       evasionModifier.value_or(0.f), sublightSpeedModifier.value_or(0.f),
       explosiveWeaponsDamageModifier.value_or(0.f), trackingBonus.value_or(0.f),
       chanceToHitBonus.value_or(0.f), weaponsRangeModifier.value_or(0.f),
       engagementRangeModifier.value_or(0.f), cost);
 }
 Computer::Computer(string const &name_, vector<string> const &sizes_,
-                   string const &tactics_, float power_,
+                   Computer::Tactics tactics_, float power_,
                    float fireRateModifier_, float evasionModifier_,
                    float sublightSpeedModifier_,
                    float explosiveWeaponsDamageModifier_, float trackingBonus_,
