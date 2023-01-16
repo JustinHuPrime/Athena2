@@ -31,7 +31,8 @@ StrikeCraft::StrikeCraft(component::Weapon const &weapon_,
     : Entity(weapon_.data.hangarWeapon.strikeCraftHull,
              weapon_.data.hangarWeapon.strikeCraftArmour, 0.f,
              weapon_.data.hangarWeapon.strikeCraftHull, 0.f,
-             weapon_.data.hangarWeapon.strikeCraftEvasion, ship_.position),
+             weapon_.data.hangarWeapon.strikeCraftEvasion, ship_.position,
+             weapon_.data.hangarWeapon.strikeCraftSpeed),
       weapon(&weapon_),
       ship(ship_.design) {}
 bool StrikeCraft::inRange(Entity const &target) const noexcept {

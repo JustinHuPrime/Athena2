@@ -90,7 +90,7 @@ void Weapon::tick(Ship const &shipEntity) noexcept {
 Ship::Ship(design::Ship const &design_, float position_) noexcept
     : Entity(design_.hullHealth, design_.armourHealth, design_.armourHardening,
              design_.shieldHealth, design_.shieldHardening, design_.evasion,
-             position_),
+             position_, design_.speed),
       weapons(),
       design(&design_),
       disengageChancesRemaining(design->disengageChances),

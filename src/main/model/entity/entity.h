@@ -29,7 +29,8 @@ namespace athena2::model::entity {
 class Entity {
  public:
   Entity(float hull, float armour, float armourHardening, float shields,
-         float shieldHardening, float evasion, float position) noexcept;
+         float shieldHardening, float evasion, float position,
+         float speed) noexcept;
   Entity(Entity const &) noexcept = default;
   Entity(Entity &&) noexcept = default;
 
@@ -45,6 +46,8 @@ class Entity {
   virtual void checkRetreat(float damage, std::mt19937_64 &rng) noexcept;
   virtual void tick() noexcept;
 
+  void moveToRange(Entity const &target, float range) noexcept;
+
   float hull;
   float armour;
   float armourHardening;
@@ -52,6 +55,7 @@ class Entity {
   float shieldHardening;
   float evasion;
   float position;
+  float speed;
 };
 }  // namespace athena2::model::entity
 

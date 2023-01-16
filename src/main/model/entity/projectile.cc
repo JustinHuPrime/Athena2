@@ -28,7 +28,8 @@ Projectile::Projectile(component::Weapon const &weapon_,
                        Ship const &ship_) noexcept
     : Entity(weapon_.data.projectileWeapon.projectileHull,
              weapon_.data.projectileWeapon.projectileArmour, 0.f, 0.f, 0.f,
-             weapon_.data.projectileWeapon.projectileEvasion, ship_.position),
+             weapon_.data.projectileWeapon.projectileEvasion, ship_.position,
+             weapon_.data.projectileWeapon.projectileSpeed),
       weapon(&weapon_),
       ship(ship_.design) {}
 bool Projectile::inRange(Entity const &target) const noexcept {

@@ -201,6 +201,50 @@ void tick(entity::Fleet &fleet) {
   for (Entity &entity : fleet.projectiles) entity.tick();
 }
 
+void move(entity::Fleet &moving, entity::Fleet const &opponent) {
+  for (entity::Ship &ship : moving.ships) {
+    // find closest ship
+    Entity const *target = nullptr;
+    for (Entity const &candidate : opponent.ships) {
+      if (!target || ship.rangeTo(candidate) < ship.rangeTo(*target)) {
+        target = &candidate;
+      }
+
+      if (target) {
+        ship.moveToRange(*target, ship.design->preferredRange);
+      }
+    }
+  }
+  for (entity::StrikeCraft &strikeCraft : moving.strikeCraft) {
+    // find closest ship
+    Entity const *target = nullptr;
+    for (Entity const &candidate : opponent.ships) {
+      if (!target ||
+          strikeCraft.rangeTo(candidate) < strikeCraft.rangeTo(*target)) {
+        target = &candidate;
+      }
+    }
+
+    if (target) {
+      strikeCraft.moveToRange(*target, 0.f);
+    }
+  }
+  for (entity::Projectile &projectile : moving.projectiles) {
+    // find closest ship
+    Entity const *target = nullptr;
+    for (Entity const &candidate : opponent.ships) {
+      if (!target ||
+          projectile.rangeTo(candidate) < projectile.rangeTo(*target)) {
+        target = &candidate;
+      }
+    }
+
+    if (target) {
+      projectile.moveToRange(*target, 0.f);
+    }
+  }
+}
+
 pair<float, float> evaluate(design::Fleet const &aDesign,
                             design::Fleet const &bDesign,
                             EvaluationSettings const &settings) noexcept {
@@ -213,6 +257,7 @@ pair<float, float> evaluate(design::Fleet const &aDesign,
   mt19937_64 rng((random_device())());
 
   // for each tick
+  bool moveOrder = false;
   for (float time = 0.f;
        time < settings.fightLengthLimit && !a.ships.empty() && !b.ships.empty();
        time += TIME_QUANTUM) {
@@ -234,7 +279,14 @@ pair<float, float> evaluate(design::Fleet const &aDesign,
     tick(a);
     tick(b);
 
-    // move ships
+    // move
+    if (moveOrder) {
+      move(a, b);
+      move(b, a);
+    } else {
+      move(b, a);
+      move(a, b);
+    }
   }
 
   return pair(accumulate(a.destroyed.begin(), a.destroyed.end(), 0.f,

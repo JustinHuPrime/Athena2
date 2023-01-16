@@ -38,7 +38,7 @@ TEST_CASE("Computer parsing", "[model][component][computer]") {
                                          ctx);
   REQUIRE(computer.name == "Basic Combat Computer");
   REQUIRE(computer.sizes == vector<string>{"KK", "MK"});
-  REQUIRE(computer.tactics == "swarm");
+  REQUIRE(computer.tactics == Computer::Tactics::SWARM);
   REQUIRE(computer.power == -5.f);
   REQUIRE(computer.fireRateModifier == 0.f);
   REQUIRE(computer.evasionModifier == 0.f);
@@ -72,7 +72,7 @@ TEST_CASE("Computer parsing with all fields", "[model][component][computer]") {
                                          ctx);
   REQUIRE(computer.name == "Basic Combat Computer");
   REQUIRE(computer.sizes == vector<string>{"KK", "MK"});
-  REQUIRE(computer.tactics == "swarm");
+  REQUIRE(computer.tactics == Computer::Tactics::SWARM);
   REQUIRE(computer.power == -5.f);
   REQUIRE(computer.fireRateModifier == 1.f);
   REQUIRE(computer.evasionModifier == 1.f);

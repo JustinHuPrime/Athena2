@@ -19,6 +19,8 @@
 
 #include "model/entity/entity.h"
 
+#include "model/evaluator.h"
+
 using namespace std;
 using namespace athena2::model::component;
 using namespace athena2::model::design;
@@ -26,14 +28,15 @@ using namespace athena2::model::design;
 namespace athena2::model::entity {
 Entity::Entity(float hull_, float armour_, float armourHardening_,
                float shields_, float shieldHardening_, float evasion_,
-               float position_) noexcept
+               float position_, float speed_) noexcept
     : hull(hull_),
       armour(armour_),
       armourHardening(armourHardening_),
       shields(shields_),
       shieldHardening(shieldHardening_),
       position(position_),
-      evasion(evasion_) {}
+      evasion(evasion_),
+      speed(speed_) {}
 float Entity::rangeTo(Entity const &target) const noexcept {
   return fabs(position - position);
 }
@@ -91,4 +94,20 @@ void Entity::takeDamage(Weapon const &weapon, Ship const &ship,
 }
 void Entity::checkRetreat(float, mt19937_64 &) noexcept {}
 void Entity::tick() noexcept {}
+void Entity::moveToRange(Entity const &target, float range) noexcept {
+  // find target location
+  float smallerCandidate = target.position - range;
+  float largerCandidate = target.position + range;
+  float destination =
+      fabs(position - smallerCandidate) < fabs(position - largerCandidate)
+          ? smallerCandidate
+          : largerCandidate;
+  if (fabs(destination - position) <= TIME_QUANTUM * speed) {
+    position = destination;
+  } else if (destination < position) {
+    position -= TIME_QUANTUM * speed;
+  } else {
+    position += TIME_QUANTUM * speed;
+  }
+}
 }  // namespace athena2::model::entity
