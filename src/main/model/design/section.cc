@@ -101,11 +101,10 @@ Section::Section(
             back_inserter(auxiliaries),
             [](component::Auxiliary const &auxiliary) { return &auxiliary; });
 
-  string weaponSizes =
-      accumulate(weapons.begin(), weapons.end(), ""s,
-                 [](string const &rsf, Weapon const *const &weapon) {
-                   return rsf + weapon->size;
-                 });
+  string weaponSizes = accumulate(weapons.begin(), weapons.end(), ""s,
+                                  [](string const &rsf, Weapon const *weapon) {
+                                    return rsf + weapon->size;
+                                  });
   sort(weaponSizes.begin(), weaponSizes.end());
   string unmatched;
   set_difference(weaponSizes.begin(), weaponSizes.end(),
@@ -117,11 +116,11 @@ Section::Section(
 
   string utilitySizes =
       accumulate(utilities.begin(), utilities.end(), ""s,
-                 [](string const &rsf, Utility const *const &utility) {
+                 [](string const &rsf, Utility const *utility) {
                    return rsf + utility->size;
                  }) +
       accumulate(auxiliaries.begin(), auxiliaries.end(), ""s,
-                 [](string const &rsf, Auxiliary const *const &auxiliary) {
+                 [](string const &rsf, Auxiliary const *auxiliary) {
                    return rsf + auxiliary->size;
                  });
   sort(utilitySizes.begin(), utilitySizes.end());
