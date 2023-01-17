@@ -25,6 +25,7 @@ using namespace std;
 using namespace athena2::model::component;
 using namespace athena2::model::entity;
 using namespace athena2::model::design;
+using namespace nlohmann;
 
 namespace athena2::model::entity {
 Weapon::Weapon(component::Weapon const &weapon_,
@@ -87,6 +88,23 @@ void Weapon::tick(Ship const &shipEntity) noexcept {
     }
   }
 }
+void to_json(json &j, Weapon const &w) noexcept {
+  j["name"] = w.component->name;
+  switch (w.component->type) {
+    case component::Weapon::Type::REGULAR: {
+      j["cooldown"] = w.data.regularWeapon.cooldown;
+      break;
+    }
+    case component::Weapon::Type::PROJECTILE: {
+      j["cooldown"] = w.data.projectileWeapon.cooldown;
+      break;
+    }
+    case component::Weapon::Type::HANGAR: {
+      j["unitsStored"] = w.data.hangarWeapon.unitsStored;
+      break;
+    }
+  }
+}
 Ship::Ship(design::Ship const &design_, float position_) noexcept
     : Entity(design_.hullHealth, design_.armourHealth, design_.armourHardening,
              design_.shieldHealth, design_.shieldHardening, design_.evasion,
@@ -94,7 +112,13 @@ Ship::Ship(design::Ship const &design_, float position_) noexcept
       weapons(),
       design(&design_),
       disengageChancesRemaining(design->disengageChances),
-      willDisengage(false) {}
+      willDisengage(false) {
+  for (design::Section const &section : design_.sections) {
+    for (component::Weapon const *weapon : section.weapons) {
+      weapons.emplace_back(*weapon, design_);
+    }
+  }
+}
 bool Ship::inRange(Weapon const &weapon, Entity const &target) const noexcept {
   float range = rangeTo(target);
   return weapon.component->minRange <= range &&
@@ -120,5 +144,10 @@ void Ship::tick() noexcept {
   shields = fminf(design->shieldHealth, shields + design->shieldRegen);
 
   for (Weapon &weapon : weapons) weapon.tick(*this);
+}
+void to_json(json &j, Ship const &s) noexcept {
+  to_json(j, static_cast<Entity const &>(s));
+  j["weapons"] = static_cast<json>(s.weapons);
+  j["disengageChancesRemaining"] = s.disengageChancesRemaining;
 }
 }  // namespace athena2::model::entity

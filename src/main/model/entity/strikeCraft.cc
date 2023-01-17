@@ -24,6 +24,7 @@
 using namespace athena2::model::component;
 using namespace athena2::model::entity;
 using namespace athena2::model::design;
+using namespace nlohmann;
 
 namespace athena2::model::entity {
 StrikeCraft::StrikeCraft(component::Weapon const &weapon_,
@@ -42,5 +43,9 @@ bool StrikeCraft::inRange(Entity const &target) const noexcept {
 void StrikeCraft::fire() noexcept { cooldown = weapon->cooldown; }
 void StrikeCraft::tick() noexcept {
   cooldown -= TIME_QUANTUM * (1.f + ship->fireRateModifier);
+}
+void to_json(json &j, StrikeCraft const &s) noexcept {
+  to_json(j, static_cast<Entity const &>(s));
+  j["cooldown"] = s.cooldown;
 }
 }  // namespace athena2::model::entity

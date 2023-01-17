@@ -22,6 +22,7 @@
 using namespace athena2::model::component;
 using namespace athena2::model::design;
 using namespace athena2::model::entity;
+using namespace nlohmann;
 
 namespace athena2::model::entity {
 Fleet::Fleet(design::Fleet const &design, float position) noexcept {
@@ -30,5 +31,12 @@ Fleet::Fleet(design::Fleet const &design, float position) noexcept {
       ships.emplace_back(ship, position);
     }
   }
+}
+void to_json(json &j, Fleet const &f) noexcept {
+  j = json{{"ships", static_cast<json>(f.ships)},
+           {"projectiles", static_cast<json>(f.projectiles)},
+           {"strikeCraft", static_cast<json>(f.strikeCraft)},
+           {"destroyed", static_cast<json>(f.destroyed)},
+           {"disengaged", static_cast<json>(f.disengaged)}};
 }
 }  // namespace athena2::model::entity

@@ -177,13 +177,12 @@ int eval(istream &in, EvalContext &ctx) noexcept {
 
     // generic hyperparams
     Header paramsHeader = Header("Loading settings...");
-    float fightLengthLimit =
-        checkMaybeFloat(runspec, "fightLengthLimit", ctx).value_or(360.f);
-    float withdrawMultiplier =
-        checkMaybeFloat(runspec, "withdrawMultiplier", ctx).value_or(0.1f);
     EvaluationSettings evaluationSettings = {
-        .fightLengthLimit = fightLengthLimit,
-        .withdrawMultiplier = withdrawMultiplier,
+        .fightLengthLimit =
+            checkMaybeFloat(runspec, "fightLengthLimit", ctx).value_or(360.f),
+        .withdrawMultiplier =
+            checkMaybeFloat(runspec, "withdrawMultiplier", ctx).value_or(0.1f),
+        .debugDump = checkMaybeBool(runspec, "debugDump", ctx).value_or(false),
     };
     string mode = checkString(runspec, "mode", ctx);
     paramsHeader.finish();
@@ -196,16 +195,17 @@ int eval(istream &in, EvalContext &ctx) noexcept {
       abort();
 
       checkFields(runspec,
-                  {"load", "mode", "fightLengthLimit", "withdrawMultiplier"},
+                  {"load", "mode", "fightLengthLimit", "withdrawMultiplier",
+                   "debugDump"},
                   ctx);
     } else if (mode == "manual") {
       // manual mode - read fleets and simulate combat
       Header loadFleetHeader = Header("Loading fleets...");
       json const &fleetData = checkArray(runspec, "fleets", ctx);
-      checkFields(
-          runspec,
-          {"load", "mode", "fightLengthLimit", "withdrawMultiplier", "fleets"},
-          ctx);
+      checkFields(runspec,
+                  {"load", "mode", "fightLengthLimit", "withdrawMultiplier",
+                   "debugDump", "fleets"},
+                  ctx);
 
       vector<Fleet> fleets;
       for (auto const &[key, val] : fleetData.items()) {

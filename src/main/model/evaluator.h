@@ -28,6 +28,7 @@ namespace athena2::model {
 struct EvaluationSettings {
   float fightLengthLimit;
   float withdrawMultiplier;
+  bool debugDump;
 };
 constexpr float TIME_QUANTUM = 0.1f;
 /**

@@ -34,6 +34,7 @@
     ]
   },
   "mode": "manual",
+  "debugDump": true,
   "fleets": [
     {
       "name": "Missile Corvettes",
@@ -73,7 +74,7 @@
       "ships": [
         {
           "ship": {
-            "name": "Alpha",
+            "name": "Beta",
             "hull": "Corvette",
             "reactor": "Corvette Fission Reactor",
             "ftl": "Hyper Drive I",

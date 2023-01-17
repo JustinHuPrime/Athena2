@@ -24,6 +24,7 @@
 using namespace std;
 using namespace athena2::model::component;
 using namespace athena2::model::design;
+using namespace nlohmann;
 
 namespace athena2::model::entity {
 Entity::Entity(float hull_, float armour_, float armourHardening_,
@@ -109,5 +110,11 @@ void Entity::moveToRange(Entity const &target, float range) noexcept {
   } else {
     position += TIME_QUANTUM * speed;
   }
+}
+void to_json(json &j, Entity const &e) noexcept {
+  j = json{{"hull", e.hull},
+           {"armour", e.armour},
+           {"shields", e.shields},
+           {"position", e.position}};
 }
 }  // namespace athena2::model::entity

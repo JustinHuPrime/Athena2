@@ -57,6 +57,7 @@ class Weapon final {
     } hangarWeapon;
   } data;
 };
+void to_json(nlohmann::json &, Weapon const &) noexcept;
 class Ship final : public Entity {
  public:
   Ship(design::Ship const &, float position) noexcept;
@@ -78,6 +79,7 @@ class Ship final : public Entity {
   float disengageChancesRemaining;
   bool willDisengage;
 };
+void to_json(nlohmann::json &, Ship const &) noexcept;
 }  // namespace athena2::model::entity
 
 #endif  // ATHENA2_MODEL_ENTITY_SHIP_H_

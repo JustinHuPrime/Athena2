@@ -19,9 +19,12 @@
 
 #include "model/entity/projectile.h"
 
+#include "model/evaluator.h"
+
 using namespace athena2::model::component;
 using namespace athena2::model::entity;
 using namespace athena2::model::design;
+using namespace nlohmann;
 
 namespace athena2::model::entity {
 Projectile::Projectile(component::Weapon const &weapon_,
@@ -34,6 +37,9 @@ Projectile::Projectile(component::Weapon const &weapon_,
       ship(ship_.design) {}
 bool Projectile::inRange(Entity const &target) const noexcept {
   return rangeTo(target) <=
-         weapon->data.projectileWeapon.projectileSpeed * 0.1f;
+         weapon->data.projectileWeapon.projectileSpeed * TIME_QUANTUM;
+}
+void to_json(json &j, Projectile const &p) noexcept {
+  return to_json(j, static_cast<Entity const &>(p));
 }
 }  // namespace athena2::model::entity

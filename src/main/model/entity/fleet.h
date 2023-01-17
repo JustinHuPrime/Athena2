@@ -26,6 +26,7 @@
 #include "model/entity/projectile.h"
 #include "model/entity/ship.h"
 #include "model/entity/strikeCraft.h"
+#include "nlohmann/json.hpp"
 
 namespace athena2::model::entity {
 class Fleet final {
@@ -46,6 +47,7 @@ class Fleet final {
   std::vector<Ship> destroyed;
   std::vector<Ship> disengaged;
 };
+void to_json(nlohmann::json &, Fleet const &) noexcept;
 }  // namespace athena2::model::entity
 
 #endif  // ATHENA2_MODEL_ENTITY_FLEET_H_

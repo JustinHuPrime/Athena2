@@ -57,6 +57,7 @@ class Entity {
   float position;
   float speed;
 };
+void to_json(nlohmann::json &, Entity const &) noexcept;
 }  // namespace athena2::model::entity
 
 #endif  // ATHENA2_MODEL_ENTITY_ENTITY_H_

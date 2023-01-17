@@ -46,6 +46,7 @@ class StrikeCraft final : public Entity {
   design::Ship const *ship;
   float cooldown;
 };
+void to_json(nlohmann::json &, StrikeCraft const &) noexcept;
 }  // namespace athena2::model::entity
 
 #endif  // ATHENA2_MODEL_ENTITY_STRIKECRAFT_H_

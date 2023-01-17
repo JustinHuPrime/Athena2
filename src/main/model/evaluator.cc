@@ -19,16 +19,19 @@
 
 #include "model/evaluator.h"
 
+#include <iostream>
 #include <numeric>
 #include <random>
 
 #include "model/design/fleet.h"
 #include "model/entity/fleet.h"
+#include "nlohmann/json.hpp"
 
 using namespace athena2::model::design;
 using namespace athena2::model::entity;
 using namespace athena2::model::component;
 using namespace std;
+using namespace nlohmann;
 
 namespace athena2::model {
 namespace {
@@ -186,6 +189,9 @@ void applyDisengageAndDestruction(entity::Fleet &fleet) {
   copy_if(fleet.ships.begin(), fleet.ships.end(),
           back_inserter(fleet.disengaged),
           [](entity::Ship const &ship) { return ship.willDisengage; });
+  copy_if(fleet.ships.begin(), fleet.ships.end(),
+          back_inserter(fleet.destroyed),
+          [](entity::Ship const &ship) { return ship.hull <= 0.f; });
   erase_if(fleet.ships, [](entity::Ship const &ship) {
     return ship.willDisengage || ship.hull <= 0.f;
   });
@@ -261,6 +267,12 @@ pair<float, float> evaluate(design::Fleet const &aDesign,
   for (float time = 0.f;
        time < settings.fightLengthLimit && !a.ships.empty() && !b.ships.empty();
        time += TIME_QUANTUM) {
+    if (settings.debugDump) {
+      json aDumped = static_cast<json>(a);
+      cerr << "// A @ " << time << ":\n" << aDumped.dump(2) << "\n";
+      json bDumped = static_cast<json>(b);
+      cerr << "// B @ " << time << ":\n" << bDumped.dump(2) << "\n";
+    }
     // fire weapons:
     //  - fire ship weapons
     //  - fire strike craft weapons
@@ -287,6 +299,13 @@ pair<float, float> evaluate(design::Fleet const &aDesign,
       move(b, a);
       move(a, b);
     }
+  }
+
+  if (settings.debugDump) {
+    json aDumped = static_cast<json>(a);
+    cerr << "// A @ end:\n" << aDumped.dump(2) << "\n";
+    json bDumped = static_cast<json>(b);
+    cerr << "// B @ end:\n" << bDumped.dump(2) << "\n";
   }
 
   return pair(accumulate(a.destroyed.begin(), a.destroyed.end(), 0.f,

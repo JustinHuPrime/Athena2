@@ -43,6 +43,7 @@ class Projectile final : public Entity {
   component::Weapon const *weapon;
   design::Ship const *ship;
 };
+void to_json(nlohmann::json &, Projectile const &) noexcept;
 }  // namespace athena2::model::entity
 
 #endif  // ATHENA2_MODEL_ENTITY_PROJECTILE_H_
