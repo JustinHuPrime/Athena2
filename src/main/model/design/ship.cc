@@ -341,7 +341,18 @@ Ship::Ship(string const &name_, Hull const &hull_, Reactor const &reactor_,
         switch (computer_.tactics) {
           case Computer::Tactics::SWARM:
           case Computer::Tactics::TORPEDO: {
-            return 0.f;
+            vector<float> averageRanges;
+            for (Section const &section : sections_) {
+              for (Weapon const *weapon : section.weapons) {
+                averageRanges.push_back((weapon->minRange + weapon->maxRange) /
+                                        2.f);
+              }
+            }
+            if (averageRanges.empty()) {
+              return 0.f;
+            }
+            sort(averageRanges.begin(), averageRanges.end());
+            return averageRanges.front();
           }
           case Computer::Tactics::PICKET:
           case Computer::Tactics::LINE: {
